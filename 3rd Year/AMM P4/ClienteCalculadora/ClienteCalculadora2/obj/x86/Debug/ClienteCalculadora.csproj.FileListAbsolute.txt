@@ -1,0 +1,24 @@
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ClienteCalculadora\ClienteCalculadora2\bin\Debug\ClienteCalculadora.exe.config
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ClienteCalculadora\ClienteCalculadora2\bin\Debug\ClienteCalculadora.exe
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ClienteCalculadora\ClienteCalculadora2\bin\Debug\ClienteCalculadora.pdb
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ClienteCalculadora\ClienteCalculadora2\obj\x86\Debug\ClienteCalculadora.exe
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ClienteCalculadora\ClienteCalculadora2\obj\x86\Debug\ClienteCalculadora.pdb
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\bin\Debug\ClienteCalculadora.exe.config
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\obj\x86\Debug\ClienteCalculadora.exe
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\obj\x86\Debug\ClienteCalculadora.pdb
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\bin\Debug\ClienteCalculadora.exe
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\bin\Debug\ClienteCalculadora.pdb
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\bin\Debug\ClienteCalculadora.exe.config
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\bin\Debug\ClienteCalculadora.exe
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\bin\Debug\ClienteCalculadora.pdb
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\obj\x86\Debug\ClienteCalculadora.csprojAssemblyReference.cache
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\obj\x86\Debug\ClienteCalculadora.csproj.CoreCompileInputs.cache
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\obj\x86\Debug\ClienteCalculadora.exe
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\obj\x86\Debug\ClienteCalculadora.pdb
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\bin\Debug\ClienteCalculadora.exe.config
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\bin\Debug\ClienteCalculadora.exe
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\bin\Debug\ClienteCalculadora.pdb
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\obj\x86\Debug\ClienteCalculadora.csprojAssemblyReference.cache
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\obj\x86\Debug\ClienteCalculadora.csproj.CoreCompileInputs.cache
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\obj\x86\Debug\ClienteCalculadora.exe
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ClienteCalculadora\ClienteCalculadora2\obj\x86\Debug\ClienteCalculadora.pdb

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1062
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestorDeMultas", "GestorDeMultas\GestorDeMultas.csproj", "{07CB7DF6-CCD3-4675-AC50-231C1C2AE49E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Servidor", "Servidor\Servidor.csproj", "{9B21B28B-9BB8-4363-B2DF-E24AE48E5EF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliente", "Cliente\Cliente.csproj", "{AB5BA413-A0AF-4DEE-B3A3-72528F6D6875}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07CB7DF6-CCD3-4675-AC50-231C1C2AE49E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07CB7DF6-CCD3-4675-AC50-231C1C2AE49E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07CB7DF6-CCD3-4675-AC50-231C1C2AE49E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07CB7DF6-CCD3-4675-AC50-231C1C2AE49E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B21B28B-9BB8-4363-B2DF-E24AE48E5EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B21B28B-9BB8-4363-B2DF-E24AE48E5EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B21B28B-9BB8-4363-B2DF-E24AE48E5EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B21B28B-9BB8-4363-B2DF-E24AE48E5EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB5BA413-A0AF-4DEE-B3A3-72528F6D6875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB5BA413-A0AF-4DEE-B3A3-72528F6D6875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB5BA413-A0AF-4DEE-B3A3-72528F6D6875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB5BA413-A0AF-4DEE-B3A3-72528F6D6875}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6A3BA61-7B75-4773-9DB5-FDE7E49C0F8C}
+	EndGlobalSection
+EndGlobal

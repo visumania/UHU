@@ -1,0 +1,38 @@
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServidorCalculadora.exe
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServidorCalculadora.pdb
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.exe
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.pdb
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServidorCalculadora.exe.config
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServicioCalculadora.dll
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServicioCalculadora.pdb
+E:\2014-2015 Sistemas Distribuidos\Temario\Tema7 WCF\MisPruebas\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.csprojResolveAssemblyReference.cache
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServidorCalculadora.exe.config
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServidorCalculadora.exe
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServidorCalculadora.pdb
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServicioCalculadora2.dll
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServicioCalculadora2.pdb
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.csprojResolveAssemblyReference.cache
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.exe
+E:\2014-2015 Sistemas Distribuidos\Temario\Codigo Ejemplos\Servicios Web\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.pdb
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServidorCalculadora.exe.config
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServidorCalculadora.exe
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServidorCalculadora.pdb
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServicioCalculadora2.dll
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServicioCalculadora2.pdb
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServicioCalculadora2.dll.config
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.csprojAssemblyReference.cache
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.csproj.CoreCompileInputs.cache
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.csproj.CopyComplete
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.exe
+C:\Users\adria\Desktop\UHU online\SD\Prácticas\Práctica 4\ServiciosWeb_Calculadora\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.pdb
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServidorCalculadora.exe.config
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServidorCalculadora.exe
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServidorCalculadora.pdb
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServicioCalculadora2.dll
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServicioCalculadora2.pdb
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\bin\Debug\ServicioCalculadora2.dll.config
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.csprojAssemblyReference.cache
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.csproj.CoreCompileInputs.cache
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.csproj.CopyComplete
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.exe
+C:\Users\adria\Desktop\ServiciosWeb_Calculadora\ServicioCalculadora\ServidorCalculadora\obj\x86\Debug\ServidorCalculadora.pdb

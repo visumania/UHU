@@ -1,0 +1,20 @@
+C:\Users\adria\Desktop\P3 AMM\Servidor\obj\Debug\Servidor.csprojAssemblyReference.cache
+C:\Users\adria\Desktop\P3 AMM\Servidor\obj\Debug\Servidor.csproj.CoreCompileInputs.cache
+C:\Users\adria\Desktop\P3 AMM\Servidor\bin\Debug\Servidor.exe.config
+C:\Users\adria\Desktop\P3 AMM\Servidor\bin\Debug\Servidor.exe
+C:\Users\adria\Desktop\P3 AMM\Servidor\bin\Debug\Servidor.pdb
+C:\Users\adria\Desktop\P3 AMM\Servidor\bin\Debug\GestorDeMultas.dll
+C:\Users\adria\Desktop\P3 AMM\Servidor\bin\Debug\GestorDeMultas.pdb
+C:\Users\adria\Desktop\P3 AMM\Servidor\obj\Debug\Servidor.csproj.CopyComplete
+C:\Users\adria\Desktop\P3 AMM\Servidor\obj\Debug\Servidor.exe
+C:\Users\adria\Desktop\P3 AMM\Servidor\obj\Debug\Servidor.pdb
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Servidor\bin\Debug\Servidor.exe.config
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Servidor\bin\Debug\Servidor.exe
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Servidor\bin\Debug\Servidor.pdb
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Servidor\bin\Debug\GestorDeMultas.dll
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Servidor\bin\Debug\GestorDeMultas.pdb
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Servidor\obj\Debug\Servidor.csprojAssemblyReference.cache
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Servidor\obj\Debug\Servidor.csproj.CoreCompileInputs.cache
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Servidor\obj\Debug\Servidor.csproj.CopyComplete
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Servidor\obj\Debug\Servidor.exe
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Servidor\obj\Debug\Servidor.pdb

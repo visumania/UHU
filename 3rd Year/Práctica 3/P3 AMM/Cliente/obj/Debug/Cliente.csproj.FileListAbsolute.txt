@@ -1,0 +1,26 @@
+C:\Users\adria\Desktop\GestorDeMultas\Cliente\bin\Debug\Cliente.exe.config
+C:\Users\adria\Desktop\GestorDeMultas\Cliente\bin\Debug\Cliente.exe
+C:\Users\adria\Desktop\GestorDeMultas\Cliente\bin\Debug\Cliente.pdb
+C:\Users\adria\Desktop\GestorDeMultas\Cliente\obj\Debug\Cliente.csproj.CoreCompileInputs.cache
+C:\Users\adria\Desktop\GestorDeMultas\Cliente\obj\Debug\Cliente.exe
+C:\Users\adria\Desktop\GestorDeMultas\Cliente\obj\Debug\Cliente.pdb
+C:\Users\adria\Desktop\P3 AMM\Cliente\bin\Debug\Cliente.exe.config
+C:\Users\adria\Desktop\P3 AMM\Cliente\bin\Debug\Cliente.exe
+C:\Users\adria\Desktop\P3 AMM\Cliente\bin\Debug\Cliente.pdb
+C:\Users\adria\Desktop\P3 AMM\Cliente\obj\Debug\Cliente.csprojAssemblyReference.cache
+C:\Users\adria\Desktop\P3 AMM\Cliente\obj\Debug\Cliente.csproj.CoreCompileInputs.cache
+C:\Users\adria\Desktop\P3 AMM\Cliente\obj\Debug\Cliente.exe
+C:\Users\adria\Desktop\P3 AMM\Cliente\obj\Debug\Cliente.pdb
+C:\Users\adria\Desktop\P3 AMM\Cliente\bin\Debug\GestorDeMultas.dll
+C:\Users\adria\Desktop\P3 AMM\Cliente\bin\Debug\GestorDeMultas.pdb
+C:\Users\adria\Desktop\P3 AMM\Cliente\obj\Debug\Cliente.csproj.CopyComplete
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Cliente\bin\Debug\Cliente.exe.config
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Cliente\bin\Debug\Cliente.exe
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Cliente\bin\Debug\Cliente.pdb
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Cliente\bin\Debug\GestorDeMultas.dll
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Cliente\bin\Debug\GestorDeMultas.pdb
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Cliente\obj\Debug\Cliente.csprojAssemblyReference.cache
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Cliente\obj\Debug\Cliente.csproj.CoreCompileInputs.cache
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Cliente\obj\Debug\Cliente.csproj.CopyComplete
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Cliente\obj\Debug\Cliente.exe
+H:\UHU\Asignaturas\3 CURSO\2do cuatrimestre\SD\Práctica 3\P3 AMM\Cliente\obj\Debug\Cliente.pdb

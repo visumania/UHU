@@ -1,0 +1,12 @@
+C:\Users\adria\Desktop\GestorDeMultas\GestorDeMultas\obj\Debug\GestorDeMultas.csproj.CoreCompileInputs.cache
+C:\Users\adria\Desktop\GestorDeMultas\GestorDeMultas\bin\Debug\GestorDeMultas.dll
+C:\Users\adria\Desktop\GestorDeMultas\GestorDeMultas\bin\Debug\GestorDeMultas.pdb
+C:\Users\adria\Desktop\GestorDeMultas\GestorDeMultas\obj\Debug\GestorDeMultas.dll
+C:\Users\adria\Desktop\GestorDeMultas\GestorDeMultas\obj\Debug\GestorDeMultas.pdb
+C:\Users\adria\Desktop\GestorDeMultas\GestorDeMultas\obj\Debug\GestorDeMultas.csprojAssemblyReference.cache
+C:\Users\adria\Desktop\P3 AMM\GestorDeMultas\bin\Debug\GestorDeMultas.dll
+C:\Users\adria\Desktop\P3 AMM\GestorDeMultas\bin\Debug\GestorDeMultas.pdb
+C:\Users\adria\Desktop\P3 AMM\GestorDeMultas\obj\Debug\GestorDeMultas.csprojAssemblyReference.cache
+C:\Users\adria\Desktop\P3 AMM\GestorDeMultas\obj\Debug\GestorDeMultas.csproj.CoreCompileInputs.cache
+C:\Users\adria\Desktop\P3 AMM\GestorDeMultas\obj\Debug\GestorDeMultas.dll
+C:\Users\adria\Desktop\P3 AMM\GestorDeMultas\obj\Debug\GestorDeMultas.pdb
