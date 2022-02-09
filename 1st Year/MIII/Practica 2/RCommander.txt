@@ -1,0 +1,249 @@
+
+> load("C:/Users/usuario/Desktop/RCars.RData")
+
+> library(abind, pos=17)
+
+> library(e1071, pos=18)
+
+> numSummary(RCars[,c("consumo", "peso")], statistics=c("sd", "cv"), quantiles=c(0,.25,.5,.75,1,0.30))
+                sd        cv   n NA
+consumo   3.946172 0.3514380 398  8
+peso    283.277160 0.2862796 406  0
+
+> numSummary(RCars[,"peso"], groups=RCars$origen, statistics=c("skewness", "kurtosis"), quantiles=c(0,.25,.5,
++   .75,1,0.30), type="1")
+         skewness   kurtosis data:n
+EE.UU. 0.05525765 -0.9577358    253
+Europa 0.75713056 -0.3857040     73
+Japón  0.48769387 -0.4305033     79
+
+> RCars <- within(RCars, {
++   cilindr_fac <- as.factor(cilindr)
++ })
+
+> with(RCars, tapply(consumo, list(cilindr_fac, origen), mean, na.rm=TRUE))
+     EE.UU.    Europa     Japón
+3        NA        NA 11.500000
+4  8.680556  8.634921  7.666667
+5        NA  9.000000        NA
+6 12.243243 12.750000 10.166667
+8 16.215686        NA        NA
+
+> with(RCars, tapply(consumo, list(cilindr_fac, origen), median, na.rm=TRUE))
+  EE.UU. Europa Japón
+3     NA     NA  11.5
+4    9.0      9   7.0
+5     NA      9    NA
+6   12.0     14  10.5
+8   16.5     NA    NA
+
+> with(RCars, tapply(consumo, list(cilindr_fac, origen), sd, na.rm=TRUE))
+    EE.UU.   Europa    Japón
+3       NA       NA 1.290994
+4 1.351331 1.834276 1.491808
+5       NA 3.000000       NA
+6 1.788937 3.201562 1.940790
+8 2.738170       NA       NA
+
+> RCars <- within(RCars, {
++   año_fac <- as.factor(año)
++ })
+
+> with(RCars, tapply(consumo, list(año_fac, cilindr_fac, origen), mean, na.rm=TRUE))
+, , EE.UU.
+
+    3         4  5         6        8
+70 NA        NA NA 11.500000 17.00000
+71 NA  9.400000 NA 13.000000 17.71429
+72 NA 10.200000 NA        NA 17.53846
+73 NA 11.500000 NA 12.571429 18.10000
+74 NA  8.666667 NA 13.428571 16.80000
+75 NA 10.000000 NA 13.583333 15.50000
+76 NA  9.000000 NA 11.625000 16.11111
+77 NA  8.500000 NA 12.500000 14.75000
+78 NA  8.666667 NA 12.100000 12.33333
+79 NA  8.000000 NA 10.500000 12.80000
+80 NA  8.666667 NA 12.000000       NA
+81 NA  7.875000 NA 11.500000  9.00000
+82 NA  8.176471 NA  8.666667       NA
+
+, , Europa
+
+    3         4  5    6  8
+70 NA  9.200000 NA   NA NA
+71 NA  8.250000 NA   NA NA
+72 NA 10.800000 NA   NA NA
+73 NA 10.000000 NA   NA NA
+74 NA  8.833333 NA   NA NA
+75 NA  9.500000 NA   NA NA
+76 NA  9.428571 NA 14.0 NA
+77 NA  8.500000 NA   NA NA
+78 NA  7.666667 12 14.5 NA
+79 NA  7.333333  9   NA NA
+80 NA  6.500000  6   NA NA
+81 NA  7.333333 NA  8.0 NA
+82 NA  6.000000 NA   NA NA
+
+, , Japón
+
+    3         4  5    6  8
+70 NA  9.500000 NA   NA NA
+71 NA  8.250000 NA   NA NA
+72 12  9.250000 NA   NA NA
+73 13 11.500000 NA 12.0 NA
+74 NA  8.166667 NA   NA NA
+75 NA  8.750000 NA   NA NA
+76 NA  7.333333 NA 12.0 NA
+77 11  7.750000 NA 11.0 NA
+78 NA  8.375000 NA   NA NA
+79 NA  7.000000 NA   NA NA
+80 10  6.454545 NA  7.0 NA
+81 NA  6.700000 NA  9.5 NA
+82 NA  6.777778 NA   NA NA
+
+
+> local({
++   .Table <- with(RCars, table(origen))
++   cat("\ncounts:\n")
++   print(.Table)
++   cat("\npercentages:\n")
++   print(round(100*.Table/sum(.Table), 2))
++ })
+
+counts:
+origen
+EE.UU. Europa  Japón 
+   253     73     79 
+
+percentages:
+origen
+EE.UU. Europa  Japón 
+ 62.47  18.02  19.51 
+
+> local({
++   .Table <- xtabs(~cilindr_fac+origen, data=RCars)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+           origen
+cilindr_fac EE.UU. Europa Japón
+          3      0      0     4
+          4     72     66    69
+          5      0      3     0
+          6     74      4     6
+          8    107      0     0
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 185.79, df = 8, p-value < 2.2e-16
+
+
+> local({
++   .Table <- xtabs(~cilindr_fac+origen, data=RCars)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   cat("\nTotal percentages:\n")
++   print(totPercents(.Table))
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+           origen
+cilindr_fac EE.UU. Europa Japón
+          3      0      0     4
+          4     72     66    69
+          5      0      3     0
+          6     74      4     6
+          8    107      0     0
+
+Total percentages:
+      EE.UU. Europa Japón Total
+3        0.0    0.0   1.0   1.0
+4       17.8   16.3  17.0  51.1
+5        0.0    0.7   0.0   0.7
+6       18.3    1.0   1.5  20.7
+8       26.4    0.0   0.0  26.4
+Total   62.5   18.0  19.5 100.0
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 185.79, df = 8, p-value < 2.2e-16
+
+
+> local({
++   .Table <- xtabs(~cilindr_fac+origen, data=RCars)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   cat("\nColumn percentages:\n")
++   print(colPercents(.Table))
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+           origen
+cilindr_fac EE.UU. Europa Japón
+          3      0      0     4
+          4     72     66    69
+          5      0      3     0
+          6     74      4     6
+          8    107      0     0
+
+Column percentages:
+           origen
+cilindr_fac EE.UU. Europa Japón
+      3        0.0    0.0   5.1
+      4       28.5   90.4  87.3
+      5        0.0    4.1   0.0
+      6       29.2    5.5   7.6
+      8       42.3    0.0   0.0
+      Total  100.0  100.0 100.0
+      Count  253.0   73.0  79.0
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 185.79, df = 8, p-value < 2.2e-16
+
+
+> local({
++   .Table <- xtabs(~cilindr_fac+origen, data=RCars)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   cat("\nRow percentages:\n")
++   print(rowPercents(.Table))
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+           origen
+cilindr_fac EE.UU. Europa Japón
+          3      0      0     4
+          4     72     66    69
+          5      0      3     0
+          6     74      4     6
+          8    107      0     0
+
+Row percentages:
+           origen
+cilindr_fac EE.UU. Europa Japón Total Count
+          3    0.0    0.0 100.0   100     4
+          4   34.8   31.9  33.3   100   207
+          5    0.0  100.0   0.0   100     3
+          6   88.1    4.8   7.1   100    84
+          8  100.0    0.0   0.0   100   107
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 185.79, df = 8, p-value < 2.2e-16
+
+

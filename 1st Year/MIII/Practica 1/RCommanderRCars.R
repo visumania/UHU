@@ -1,0 +1,15 @@
+
+load("G:/UHU/Asignaturas/1 CURSO/2do Cuatrimestre/Matemáticas III/Estudiando Septiembre/Practica 1/.RData")
+load("C:/Users/usuario/Desktop/RCars.RData")
+Consumos_Europa <- subset(RCars, subset=origen=='Europa', select=c(consumo))
+summary(RCars)
+summary(Consumos_Europa)
+Consumos_Japón <- subset(RCars, subset=origen=='Japón', select=c(consumo))
+summary(Consumos_Japón)
+cv_no_8 <- subset(RCars, subset=cilindr!=8, select=c(cv))
+summary(cv_no_8)
+Ejercicio1 <- subset(RCars, subset=cilindr==4, select=c(acel))
+summary(Ejercicio1)
+Ejercicio2 <- subset(RCars, subset=consumo<=8, select=c(cv))
+summary(Ejercicio2)
+

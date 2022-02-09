@@ -1,0 +1,79 @@
+<!-- R Commander Markdown Template -->
+
+Replace with Main Title
+=======================
+
+### Your Name
+
+### `r as.character(Sys.Date())`
+
+```{r echo=FALSE}
+# include this code chunk as-is to set options
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, out.width=750, fig.height=8, fig.width=8)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+
+```{r echo=FALSE}
+# include this code chunk as-is to enable 3D graphs
+library(rgl)
+knitr::knit_hooks$set(webgl = hook_webgl)
+```
+
+
+```{r}
+load("G:/UHU/Asignaturas/1 CURSO/2do Cuatrimestre/Matemáticas III/Estudiando Septiembre/Practica 1/.RData")
+```
+
+```{r}
+load("C:/Users/usuario/Desktop/RCars.RData")
+```
+
+
+```{r}
+Consumos_Europa <- subset(RCars, subset=origen=='Europa', select=c(consumo))
+```
+
+```{r}
+summary(RCars)
+```
+
+```{r}
+summary(Consumos_Europa)
+```
+
+```{r}
+Consumos_Japón <- subset(RCars, subset=origen=='Japón', select=c(consumo))
+```
+
+```{r}
+summary(Consumos_Japón)
+```
+
+```{r}
+cv_no_8 <- subset(RCars, subset=cilindr!=8, select=c(cv))
+```
+
+```{r}
+summary(cv_no_8)
+```
+
+```{r}
+Ejercicio1 <- subset(RCars, subset=cilindr==4, select=c(acel))
+```
+
+```{r}
+summary(Ejercicio1)
+```
+
+```{r}
+Ejercicio2 <- subset(RCars, subset=consumo<=8, select=c(cv))
+```
+
+```{r}
+summary(Ejercicio2)
+```
+
+

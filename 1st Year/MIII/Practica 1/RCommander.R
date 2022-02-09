@@ -1,0 +1,11 @@
+
+save("Datos_personas", 
+  file="G:/UHU/Asignaturas/1 CURSO/2do Cuatrimestre/Matemáticas III/Estudiando Septiembre/Datos_personas.RData")
+Datos1_completo <- merge(Personas1, Personas1_pelo, all=TRUE, by="row.names")
+rownames(Datos1_completo) <- Datos1_completo$Row.names
+Datos1_completo$Row.names <- NULL
+editDataset(Datos1_completo)
+Datos_personas <- mergeRows(Datos1_completo, Personas2, common.only=FALSE)
+Datos_personas$IMC <- with(Datos_personas, Peso/ Altura^2)
+load("G:/UHU/Asignaturas/1 CURSO/2do Cuatrimestre/Matemáticas III/Estudiando Septiembre/Practica 1/.RData")
+

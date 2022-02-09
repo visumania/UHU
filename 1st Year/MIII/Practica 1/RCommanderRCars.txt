@@ -1,0 +1,81 @@
+
+> load("G:/UHU/Asignaturas/1 CURSO/2do Cuatrimestre/Matemáticas III/Estudiando Septiembre/Practica 1/.RData")
+
+> load("C:/Users/usuario/Desktop/RCars.RData")
+
+> Consumos_Europa <- subset(RCars, subset=origen=='Europa', select=c(consumo))
+
+> summary(RCars)
+    consumo          motor            cv              peso             acel            año           origen   
+ Min.   : 5.00   Min.   :  66   Min.   : 46.00   Min.   : 244.0   Min.   : 8.00   Min.   :70.00   EE.UU.:253  
+ 1st Qu.: 8.00   1st Qu.:1708   1st Qu.: 75.75   1st Qu.: 741.2   1st Qu.:13.62   1st Qu.:73.00   Europa: 73  
+ Median :10.00   Median :2434   Median : 95.00   Median : 936.5   Median :15.50   Median :76.00   Japón : 79  
+ Mean   :11.23   Mean   :3180   Mean   :104.83   Mean   : 989.5   Mean   :15.50   Mean   :75.94   NA's  :  1  
+ 3rd Qu.:13.00   3rd Qu.:4806   3rd Qu.:129.25   3rd Qu.:1203.8   3rd Qu.:17.07   3rd Qu.:79.00               
+ Max.   :26.00   Max.   :7456   Max.   :230.00   Max.   :1713.0   Max.   :24.80   Max.   :82.00               
+ NA's   :8                      NA's   :6                                         NA's   :1                   
+    cilindr     
+ Min.   :3.000  
+ 1st Qu.:4.000  
+ Median :4.000  
+ Mean   :5.469  
+ 3rd Qu.:8.000  
+ Max.   :8.000  
+ NA's   :1      
+
+> summary(Consumos_Europa)
+    consumo      
+ Min.   : 5.000  
+ 1st Qu.: 8.000  
+ Median : 9.000  
+ Mean   : 8.886  
+ 3rd Qu.:10.000  
+ Max.   :15.000  
+ NA's   :3       
+
+> Consumos_Japón <- subset(RCars, subset=origen=='Japón', select=c(consumo))
+
+> summary(Consumos_Japón)
+    consumo      
+ Min.   : 5.000  
+ 1st Qu.: 7.000  
+ Median : 7.000  
+ Mean   : 8.051  
+ 3rd Qu.: 9.000  
+ Max.   :13.000  
+
+> cv_no_8 <- subset(RCars, subset=cilindr!=8, select=c(cv))
+
+> summary(cv_no_8)
+       cv        
+ Min.   : 46.00  
+ 1st Qu.: 71.00  
+ Median : 86.00  
+ Mean   : 85.34  
+ 3rd Qu.: 97.00  
+ Max.   :165.00  
+ NA's   :6       
+
+> Ejercicio1 <- subset(RCars, subset=cilindr==4, select=c(acel))
+
+> summary(Ejercicio1)
+      acel      
+ Min.   :11.60  
+ 1st Qu.:14.85  
+ Median :16.20  
+ Mean   :16.62  
+ 3rd Qu.:18.00  
+ Max.   :24.80  
+
+> Ejercicio2 <- subset(RCars, subset=consumo<=8, select=c(cv))
+
+> summary(Ejercicio2)
+       cv        
+ Min.   : 48.00  
+ 1st Qu.: 65.00  
+ Median : 70.00  
+ Mean   : 72.79  
+ 3rd Qu.: 80.00  
+ Max.   :132.00  
+ NA's   :2       
+
