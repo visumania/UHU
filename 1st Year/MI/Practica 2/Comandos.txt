@@ -1,0 +1,1 @@
+subs(p,x,2) --> sustituye en el polinomio p , en la variable x , el valor 2
