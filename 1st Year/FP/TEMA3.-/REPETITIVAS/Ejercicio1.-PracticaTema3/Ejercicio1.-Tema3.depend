@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1515453027 source:c:\users\user\desktop\uhu\asignaturas\1er cuatrimestre\fundamentos de programación\tema3.-\repetitivas\ejercicio1.-tema3(por terminar)\main.cpp
+	<iostream>
+	<math.h>
+
+1515493931 source:c:\users\user\desktop\uhu\asignaturas\1er cuatrimestre\fundamentos de programación\tema3.-\repetitivas\ejercicio1.-tema3(hecho pero con 1 duda)\main.cpp
+	<iostream>
+	<math.h>
+	<windows.h>
+	<stdlib.h>
+
+1515607815 source:c:\users\user\desktop\uhu\asignaturas\1er cuatrimestre\fundamentos de programación\tema3.-\repetitivas\ejercicio1.-tema3\main.cpp
+	<iostream>
+	<math.h>
+	<windows.h>
+	<stdlib.h>
+
+1515607815 source:c:\users\user\desktop\uhu\asignaturas\1er cuatrimestre\fundamentos de programación\tema3.-\repetitivas\ejercicio1.-practicatema3\main.cpp
+	<iostream>
+	<math.h>
+	<windows.h>
+	<stdlib.h>
+

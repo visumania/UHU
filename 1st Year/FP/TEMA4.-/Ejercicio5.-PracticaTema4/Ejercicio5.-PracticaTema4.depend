@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1517954534 source:c:\users\user\desktop\uhu\asignaturas\1er cuatrimestre\fundamentos de programación\tema4.-\ejercicio5.-practicatema4\main.cpp
+	<iostream>
+	<string.h>
+	<windows.h>
+
+1517958136 source:g:\uhu\asignaturas\1 curso\1er cuatrimestre\fundamentos de programación\tema4.-\ejercicio5.-practicatema4\main.cpp
+	<iostream>
+	<string.h>
+	<windows.h>
+

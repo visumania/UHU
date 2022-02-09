@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1516132443 source:c:\users\user\desktop\uhu\asignaturas\1er cuatrimestre\fundamentos de programación\examenfp2parcial\main.cpp
+	<iostream>
+	<cmath>
+	<cstring>
+

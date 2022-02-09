@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1535920872 source:g:\uhu\asignaturas\1 curso\1er cuatrimestre\fundamentos de programación\estudiando para septiembre\examenes\bicheandoexamen3\main.cpp
+	<iostream>
+	<string.h>
+	<windows.h>
+

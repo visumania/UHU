@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1518131786 source:c:\users\user\desktop\uhu\asignaturas\1er cuatrimestre\fundamentos de programación\tema5.-\ejercicio3.-practicatema5\main.cpp
+	<iostream>
+	<windows.h>
+	<string.h>
+
