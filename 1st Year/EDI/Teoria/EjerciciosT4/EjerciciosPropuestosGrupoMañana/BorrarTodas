@@ -1,0 +1,52 @@
+#include <iostream>
+
+using namespace std; 
+
+struct TNodo
+{
+    float datos; 
+    TNodo *sig; //Puntero al siguiente nodo
+};
+
+int main()
+{
+    TNodo *punt; 
+    float x; 
+    ...
+    cout << "Pon el numero que quieras quitar de la lista: " ; 
+    cin >> x; 
+
+    Borrartodas(&punt,x); //punt tiene la direccion del primer nodo de la lista
+    //x es el valor a borrar 
+}
+
+void Borrartodas(TNodo **L , float e)
+{
+    TNodo *aux = *L;
+    TNodo *primero = aux;
+    TNodo *anterior=NULL;
+    TNodo *borr ; 
+
+    while(aux!=NULL) //Mientas que aux no este apuntando a nulo 
+    {
+        if(aux->datos == e) //Encontramos un nodo del tipo que queremos eliminar
+        {
+            borr = aux; 
+
+            if(anterior==NULL)//Si estamos en el primer nodo 
+            {
+                primero = aux->siguiente;
+            }
+            else
+                anterior->sig = aux->sig; 
+
+            delete borr; //Nos cargamos el nodo al que estamos apuntando
+        }
+        else
+            anterior = aux; 
+
+        aux = aux->sig; 
+    }
+
+    *L=primero;
+}

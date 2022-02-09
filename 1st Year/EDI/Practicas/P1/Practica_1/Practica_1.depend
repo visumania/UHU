@@ -1,0 +1,58 @@
+# depslib dependency file v1.0
+1552478227 source:f:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practica_1\main.cpp
+	<iostream>
+	<windows.h>
+
+1552478227 source:g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practica_1\main.cpp
+	<iostream>
+	<windows.h>
+
+1552478227 source:h:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practica_1\main.cpp
+	<iostream>
+	<windows.h>
+
+1552478227 source:f:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\practica_1\main.cpp
+	<iostream>
+	<windows.h>
+
+1555871299 source:g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\practica_1\main.cpp
+	<iostream>
+	<windows.h>
+	"Ventas.h"
+	"Ventas.cpp"
+	"Productos.h"
+	"Productos.cpp"
+
+1554748168 g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\practica_1\ventas.h
+	<iostream>
+	<fstream>
+
+1555940384 g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\practica_1\ventas.cpp
+	"Ventas.h"
+	"Productos.h"
+
+1554897034 source:h:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\practica_1\main.cpp
+	<iostream>
+	<windows.h>
+	"Ventas.h"
+	"Ventas.cpp"
+	"Productos.h"
+
+1554748168 h:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\practica_1\ventas.h
+	<iostream>
+	<fstream>
+
+1554893783 h:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\practica_1\ventas.cpp
+	"Ventas.h"
+
+1554897047 h:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\practica_1\productos.h
+	"Ventas.h"
+	<fstream>
+
+1554920635 g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\practica_1\productos.h
+	"Ventas.h"
+	<fstream>
+
+1555870552 g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\practica_1\productos.cpp
+	"Productos.h"
+

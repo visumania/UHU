@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1554801649 source:g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\teoria\pila_con_ficheros\main.cpp
+	<iostream>
+	<fstream>
+	<windows.h>
+

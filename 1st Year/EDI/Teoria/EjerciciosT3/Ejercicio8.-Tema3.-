@@ -1,0 +1,72 @@
+#include <iostream>
+#define MAX 30
+
+using namespace std; 
+
+class ColaCircular
+{
+    int elementos[MAX];
+    int inicio, fin; 
+    public: 
+        ColaCircular();
+        void encolar(int e);
+        void desencolar();
+        int esvacia();
+        int primero();
+        int longitud();
+};
+
+ColaCircular::ColaCircular()
+{
+    inicio=0;
+    fin=-1; 
+}
+
+void ColaCircular::encolar(int e)
+{
+    if(longitud()<MAX)
+    {
+        fin++;
+        if(fin == MAX)
+            fin = 0; 
+        elementos[fin]=e; 
+    }
+}
+
+void ColaCircular::desencolar()
+{
+    if(longitud()!=1)
+    {
+        inicio++;
+        if(inicio==MAX)
+            inicio = 0; 
+    }
+    else
+    {
+        fin = -1; 
+        inicio=0; 
+    }
+}
+
+int ColaCircular::esvacia()
+{
+    return(fin==-1);
+}
+
+int ColaCircular::primero()
+{
+    return elementos[inicio];
+}
+
+int ColaCircular::longitud()
+{
+    int l; 
+
+    if(fin==-1)
+        l=0; 
+
+    if(fin>=inicio)
+        l = fin-inicio+1;
+    else
+        l = MAX-inicio+fin+1;
+}

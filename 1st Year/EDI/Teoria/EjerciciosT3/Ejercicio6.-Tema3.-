@@ -1,0 +1,41 @@
+#include <iostream>
+
+using namespace std; 
+
+pila pila::concatenar(pila p1 , pila p2)
+{
+    pila aux , p3; 
+
+    if(!p1.vacia()) //Si p1 no esta vacia
+    {
+        while(!p1.esvacia()) //Vuelco p1 en aux 
+        {
+            aux.apilar(p1.cima());
+            p1.desapilar();
+        }
+
+        while(!aux.vacia()) //Vuelco aux en p3
+        {
+            p3.apilar(aux.cima());
+            aux.desapilar();
+        }
+    }
+
+    if(!p2.vacia()) //Si p2 no esta vacia
+    {
+        while(!p2.vacia()) //Vuelco p2 en aux
+        {
+            aux.apilar(p2.cima());
+            p2.desapilar();
+        }
+
+        while(!aux.vacia()) //Vuelco aux en p3
+        {
+            p3.apilar(aux.cima());
+            aux.desapilar();
+        }
+    }
+
+    return p3; 
+    
+}

@@ -1,0 +1,66 @@
+#include <iostream>
+
+using namespace std; 
+
+int main()
+{
+    //Ejercicio 1.-
+
+    float *r; 
+    int *e; 
+    Proveedor *p;   
+    Polinomio *m;
+
+    //Ejercicio 2.-
+
+    r = new float;
+    e = new int; 
+    p = new Proveedor("Adrian" , "49063961Q");
+    m = new Polinomio;
+
+    //Ejercicio 3.-
+
+    Cliente *c = new Cliente[100];
+
+    if(c != NULL)
+    {
+        //Operaciones que tengamos que hacer con la tabla de Clientes
+    }
+
+    //Ejercicio 4.- 
+
+    Cliente *c = new Cliente[100];
+
+    if(c != NULL)
+    {
+        for(int i=0 ; i<100 ; i++)
+        {
+            c[i] = NULL;
+        }
+    }
+    else
+        cout << "No hay memoria suficiente para reservar la tabla" << endl;
+    
+    //Ejercicio 5.-
+
+    Proveedor **p = new Proveedor*[120]
+
+    if(p != NULL)
+    {
+        for(int i=0 ; i<120 ; i++)
+            p[i] = new Proveedor; 
+    }
+    else
+        cout << "No hay memoria suficiente para reservar la tabla" << endl; 
+    
+    //Ejercicio 6.- 
+
+    delete [] c;
+
+    //Ejercicio 7.- 
+
+    for(int i=0 ; i<120 ; i++)
+        delete p[i];
+    
+    delete []p; 
+}

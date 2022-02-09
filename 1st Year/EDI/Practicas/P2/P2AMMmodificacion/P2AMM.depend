@@ -1,0 +1,73 @@
+# depslib dependency file v1.0
+1559711419 source:g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\p2\p2amm\main.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<conio.h>
+	<cstring>
+	"peluqueria.h"
+
+1559708387 g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\p2\p2amm\include\peluqueria.h
+	"Lista.h"
+	"Cola.h"
+
+1559703242 g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\p2\p2amm\include\lista.h
+	<cstdlib>
+	<cstring>
+	"cola.h"
+
+1559711440 g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\p2\p2amm\include\cola.h
+
+1559703881 source:g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\p2\p2amm\src\cola.cpp
+	"Cola.h"
+	<cstdlib>
+	<cstring>
+	<iostream>
+
+1559709356 source:g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\p2\p2amm\src\peluqueria.cpp
+	"Peluqueria.h"
+	<fstream>
+	<iostream>
+	<iomanip>
+	"peluqueria.h"
+
+1559703093 source:g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\practicas\p2\p2amm\src\lista.cpp
+	"Lista.h"
+	<iostream>
+
+1559732546 source:c:\users\usuario\desktop\p2amm\main.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<conio.h>
+	<cstring>
+	"peluqueria.h"
+
+1559732517 c:\users\usuario\desktop\p2amm\include\peluqueria.h
+	"Lista.h"
+	"Cola.h"
+
+1559703242 c:\users\usuario\desktop\p2amm\include\lista.h
+	<cstdlib>
+	<cstring>
+	"cola.h"
+
+1559711440 c:\users\usuario\desktop\p2amm\include\cola.h
+
+1559703881 source:c:\users\usuario\desktop\p2amm\src\cola.cpp
+	"Cola.h"
+	<cstdlib>
+	<cstring>
+	<iostream>
+
+1559734388 source:c:\users\usuario\desktop\p2amm\src\lista.cpp
+	"Lista.h"
+	<iostream>
+
+1559734112 source:c:\users\usuario\desktop\p2amm\src\peluqueria.cpp
+	"Peluqueria.h"
+	<fstream>
+	<iostream>
+	<iomanip>
+	"peluqueria.h"
+

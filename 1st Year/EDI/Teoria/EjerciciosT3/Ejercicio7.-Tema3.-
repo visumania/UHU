@@ -1,0 +1,40 @@
+#include <iostream>
+
+using namespace std; 
+
+int pila::observar(int i) //Metodo que te devuelve el elemento e de la posicion i de la pila
+{
+    return elemento[i-1];
+}
+
+int pila::observar(int i) //Metodo que te devuelve el elemento e de la posicion i de la pila
+{
+    pila aux; 
+    int ele; 
+
+    if(this->longitud()==i) //Caso de que me pidan devolver el elemento de la cima de mi pila
+        ele=this->cima();
+    
+    if(this->longitud()<i) //Caso en el que tenga que devolver el elemento que esta en una posicion que es mayor que la longitud de mi pila (Error)
+        ele=-1; 
+
+    if(this->longitud()>i) //Caso en el que tengo que devolver un elemento que se encuentra en una posicion dentro de mi pila
+    {
+        for(int j=1 ; j<i ; j++) //Desapilar hasta que el elemento de la posicion se convierta en la cima. Apilando en una pila auxiliar
+        {
+            aux.apilar(this->cima());
+            this->desapilar();
+        }
+
+        ele = this->cima(); //Nos guardamos el valor del elemento 
+
+        while(!aux.esvacia()) //Dejamos la pila como estaba, apilando los elementos de la pila aux en mi pila
+        {
+            this->apilar(aux.cima());
+            aux.desapilar();
+        }
+    }
+
+    return ele; 
+
+}

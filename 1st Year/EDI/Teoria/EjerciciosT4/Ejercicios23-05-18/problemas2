@@ -1,0 +1,47 @@
+#include <iostream>
+
+using namespace std; 
+
+struct Tnodo
+{
+    int dato; 
+    Tnodo *siguiente; //estructura simplemente enlazada circular
+}
+
+class examen
+{
+    int *tabla; 
+    int n; //numero de elementos que tiene la tabla
+    Tnodo *elementos; 
+public:
+    void volcar();
+}
+
+void examen::volcar()
+{
+    //Lo primero que tenemos que hacer es vaciar la tabla: 
+
+    if(tabla != NULL)
+        delete [] tabla; 
+
+    tabla = NULL;
+    n=0;
+
+    Tnodo *aux = elementos; 
+    Tnodo *borr; 
+
+    while(aux->siguiente != elementos)
+    {
+        borr = aux;
+        tabla[n] = aux->dato; 
+        n++; 
+        aux=aux->siguiente; 
+        delete borr; 
+    }
+
+    tabla[n] = aux->dato; 
+    n++; 
+    delete aux; 
+
+    elementos = NULL; 
+}

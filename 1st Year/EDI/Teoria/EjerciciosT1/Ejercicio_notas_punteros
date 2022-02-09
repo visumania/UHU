@@ -1,0 +1,61 @@
+//Deseamos desarrollar un programa que permita obtener las notas superiores a la media de una serie de notas
+//introducidas por teclado. Dichas notas se irán introduciendo hasta que el usuario no desee seguir introduciendo notas
+
+#include <iostream>
+#include <conio.h>
+
+using namespace std; 
+
+#define SALTO 10;
+
+int main()
+{
+    float *notas = new float[SALTO]; 
+    char respuesta;
+    int i = 0; 
+    float suma = 0; 
+
+    do
+    {
+        cout << "Introduzca nota: ";
+        cin >> notas[i];
+
+        suma += notas[i];
+        i++; 
+
+        if(i%SALTO == 0)
+        {
+            float *nuevatabla = new float[SALTO+i];
+
+            if(nuevatabla == NULL)
+                cout << "No hay memoria para almacenar la nueva tabla" << endl; 
+            else
+            {
+                for(int j=0 ; j<SALTO+i ; j++)
+                    nuevatabla[j] = notas[j]; 
+
+                delete [] notas; 
+                notas = nuevatabla; 
+            }
+        }
+
+        cout << "Desea seguir introduciendo notas?(s/n): ";
+        respuesta = toupper(getch());
+
+    }while(respuesta != 'N');
+
+    float media = suma/i;
+
+    cout << "La media de las notas introducidas es: " << media << endl;
+
+    for(int j=0 ; j<i ; j++)
+    {
+        if(notas[j]>media)
+            cout << "El alumno " << j+1 << " tiene una nota superior a la media de : " << notas[j]; 
+    } 
+
+    system("pause");
+    delete [] notas; 
+
+    return 0; 
+}

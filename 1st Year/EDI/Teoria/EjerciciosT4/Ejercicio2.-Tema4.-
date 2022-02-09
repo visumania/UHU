@@ -1,0 +1,63 @@
+#include <iostream>
+
+using namespace std; 
+
+struct TNodo_Cola
+{
+    float Datos; //Datos a almacenar en cada nodo
+    TNodo_Cola *Siguiente; //Puntero al siguiente nodo
+    TNodo_Cola *Anterior; // Puntero al anterior nodo
+};
+
+struct
+
+class cola 
+{
+    TNodo_Cola *Inicio; 
+    int ne; 
+ public: 
+    void encolar(float e);
+    void desencolar();
+}
+
+void encolar(float e)
+{
+    TNodo_Cola nuevoNodo = new TNodo_Cola; 
+    nuevoNodo->Datos = e; 
+
+    if(Inicio == NULL) //en caso de que la cola este vacia
+    {
+        Inicio = nuevoNodo; //¿Importa el orden en que vayas haciendo las asignaciones?
+        nuevoNodo->siguiente = nuevoNodo; 
+        nuevoNodo->anterior = nuevoNodo; 
+
+    }
+    else //En caso de que la cola no este vacia
+    {
+        Inicio->anterior->siguiente = nuevoNodo; 
+        nuevoNodo->anterior = Inicio->anterior; 
+        Inicio->anterior = nuevoNodo; 
+        nuevoNodo->siguiente = Inicio; 
+    }
+
+    ne++; 
+}
+
+void desencolar()
+{
+    if(ne==1) //Caso en que haya un solo elemento en la cola
+    {
+        delete Inicio; //Borramos el contenido de inicio 
+        Inicio = NULL;   //Y hacemos que apunte a NULL
+    }
+    else //Caso en que haya mas de un elemento en la cola
+    {
+        TNodo_Cola *p = inicio; 
+        inicio = inicio->siguiente; 
+        inicio->anterior = p->anterior; 
+        p->anterior->siguiente = inicio; 
+        delete p; 
+    }
+
+    ne--; 
+}

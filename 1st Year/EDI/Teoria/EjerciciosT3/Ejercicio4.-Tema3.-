@@ -1,0 +1,16 @@
+#include <iostream> 
+
+using namespace std; 
+
+pila pila::invertirPila(pila p)
+{
+    pila aux; 
+
+    while(!p.esvacia())
+    {
+        aux.apilar(p.cima());
+        p.desapilar();
+    }
+
+    return aux; 
+}

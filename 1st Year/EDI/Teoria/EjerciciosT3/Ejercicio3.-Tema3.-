@@ -1,0 +1,23 @@
+#include <iostream>
+
+using namespace std; 
+
+pila pila::copiarPila(pila p)
+{
+    pila aux; 
+
+    while(!this->esvacia()) //Vuelco los elementos de p1 en una pila auxiliar
+    {
+        aux.apilar(this->cima());
+        this->desapilar();
+    }
+
+    while(!aux.esvacia()) //Vuelco aux tanto en nuestra pila como en la que nos pasan por parametro y de forma ya ordenada
+    {
+        this->apilar(aux.cima());
+        p.apilar(aux.cima());
+        aux.desapilar();
+    }
+
+    return p; //Devolvemos p que es donde esta la copia de nuestra pila 
+}

@@ -1,0 +1,68 @@
+#include <iostream>
+
+using namespace std; 
+
+struct Tnodo
+{
+    int dato; 
+    Tnodo *siguiente; //Estructura simplemente enlazada circular
+};
+
+//Métodos que suponemos que estan implementados de la clase cola:
+cola::cola();
+void cola::encolar(int e);
+void cola::desencolar();
+bool cola::esvacia();
+int cola::longitud();
+int cola::primero();
+
+class examen
+{
+    cola C; 
+    Tnodo *L;
+public:
+    void copiar();
+}
+
+void examen::copiar()
+{
+    Tnodo *aux , *borr , *anterior=NULL; 
+
+    if(L!=NULL)//Si la lista no esta vacia
+    {
+        aux = L ; 
+
+        while(aux->siguiente!=L) //Al ser una lista simplemente enlazada circular , el ultimo elemento tendra como siguiente el primero
+        {
+            borr = aux;
+            aux = aux->siguiente; 
+            delete borr; 
+        }
+
+        delete aux;
+        L=NULL;
+    }
+
+    while(!C.esvacia())
+    {
+        aux = new Tnodo ; //Pido memoria
+
+        if(aux!=NULL)
+        {
+            aux->dato = C.primero();
+
+            if(L==NULL)//Si la lista esta vacia
+                L = aux;
+            else
+                anterior->siguiente = aux;
+
+            anterior=aux; 
+
+         }
+
+         C.desencolar();
+    }
+
+    if(L!=NULL)
+        anterior->siguiente=L; 
+}

@@ -1,0 +1,26 @@
+#include <iostream>
+
+using namespace std; 
+
+bool PilasIguales(pila p1 , pila p2)
+{
+    bool iguales = true; 
+
+    if(p1.longitud() == p2.longitud())
+    {
+        while(!p1.esvacia() && iguales)
+        {
+            if(p1.cima() != p2.cima())
+                iguales = false; 
+            else
+                {
+                    p1.desapilar();
+                    p2.desapilar();
+                }
+        }
+    }
+    else
+        iguales = false; 
+
+    return iguales; 
+}

@@ -1,0 +1,31 @@
+#include <iostream>
+
+using namespace std; 
+
+// Apartado a) 
+
+bool lista::pertenece(int e)
+{
+    bool encontrado = false; 
+    int pos = 0 ; 
+
+    while(pos<n && !encontrado)
+    {
+        if(elementos[pos]==e)
+            encontrado = true; 
+        else
+            pos++; 
+    }
+
+    return encontrado; 
+}
+
+//Apartado b)
+
+bool lista::pertenece(int e)
+{
+    if(posicion(e) == -1)
+        return false; 
+    else
+        return true; 
+}

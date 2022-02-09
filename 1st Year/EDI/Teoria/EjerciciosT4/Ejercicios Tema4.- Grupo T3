@@ -1,0 +1,143 @@
+#include <iostream>
+
+using namespace std; 
+
+struct nodoColegio
+{
+    int idColegio; 
+    nodoUrna *urnas; 
+    nodoColegio *sig; 
+}; 
+
+struct nodoUrna
+{
+    int idUrna; 
+    nodoVoto *votos;
+    nodoVoto *ultimoVoto; 
+    nodoUrna *sig; 
+};
+
+struct nodoVoto
+{
+    int idPartido; 
+    nodoVoto *sig; 
+}; 
+
+//Teniendo en cuenta que esté completamente llena de datos, se pide,
+//implementar funciones que permitan: 
+
+//Ejercicio 1.- Mostrar por pantalla el identificador del colegio en
+//el que más se ha votado junto con el número de votos obtenidos en
+//dicho colegio
+
+void ColegioMasVotos(TNodoColegio *Colegios)
+{
+    TNodoColegio *colegioActual = Colegios; 
+    TNodoUrna *urnaActual; 
+    TNodoVoto *votoActual; 
+    int nVotosColegio; 
+    int nVotosUrna;
+    int idColegio; 
+    int nVotosMax = -1; 
+
+    while(colegioActual != NULL)
+    {
+        nVotosColegio = 0; 
+
+        urnaActual = colegioActual->urnas; 
+
+        while(urnaActual != NULL)
+        {
+            nVotosUrna = 0; 
+
+            votoActual=urnaActual->votos;
+
+            while(votoActual!=NULL)
+            {
+                nVotosUrna++;
+                votoActual = votoActual->sig; 
+            }
+
+            nVotosColegio += nVotosUrna; 
+            urnaActual = urnaActual->sig; 
+        }
+
+        if(nVotosColegio>nVotosMax)
+        {
+            idColegio = colegioActual->idColegio; 
+            nVotosMax = nVotosColegio; 
+        }
+
+        colegioActual = colegioActual->sig; 
+    }
+
+    cout << "El colegio en el que mas se ha votado ha sido "<<  colegio  << " con un total de " << nVotosMax << " votos" << endl; 
+}
+
+//Ejercicio 2.- Calcular el resultado de las votaciones. Este resultado
+//se almacenará en una tabla, donde el índice de la tabla corresponderá
+//con el identificador del partido(N partidos)
+
+void Votaciones(TNodoColegio *Colegios , int Votos[10])
+{
+    TNodoColegio *colegioActual = Colegios; 
+    TNodoUrna *urnaActual; 
+    TNodoVoto *votoActual; 
+
+    while(colegioActual!=NULL)
+    {
+        urnaActual = colegioActual->urnas; 
+
+        while(urnaActual != NULL)
+        {
+            votoActual = urnaActual->votos; 
+
+            while(votoActual != NULL)
+            {
+                Votos[votoActual->idPartido]++;
+
+                votoActual = votoActual->sig; 
+            }
+
+            urnaActual = urnaActual->sig; 
+        }
+
+        colegioActual = colegioActual->sig; 
+    }
+}
+
+//Ejercicio 3.- Eliminar toda la memoria dinámica reservada
+
+void ProcesoEliminacion(TNodoColegio **PColegios)
+{
+    TNodoColegio *colegioActual = *PColegios , *colegioSiguiente; 
+    TNodoUrna *urnaActual, *urnaSiguiente; 
+    TNodoVoto *votoActual , *votoSiguiente; 
+
+    while(colegioAux != NULL)
+    {
+        colegioSiguiente = colegioActual->sig; 
+        urnaActual = colegioActual->urnas; 
+
+        while(urnaActual != NULL)
+        {
+            urnaSiguiente = urnaActual->sig; 
+            votoActual = urnaActual->votos;
+
+            while(votoActual != NULL)
+            {
+                votoSiguiente= votoActual->sig; 
+                delete votoActual; 
+                votoActual=votoSiguiente;
+            } 
+
+            delete urnaActual;
+            urnaActual=urnaSiguiente; 
+        }
+
+        delete colegioActual; 
+        colegioActual=colegioSiguiente; 
+    }
+
+    *PColegios = NULL; 
+}

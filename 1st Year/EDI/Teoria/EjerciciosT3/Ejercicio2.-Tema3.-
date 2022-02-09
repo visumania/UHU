@@ -1,0 +1,25 @@
+#include <iostream>
+
+using namespace std; 
+
+bool lista::ListasIguales(lista l)
+{
+    bool iguales = true; 
+
+    if(longitud() == l.longitud())
+    {
+        int i=0;
+
+        while(iguales && i<n)
+            {
+                if(observar(i)==l.observar(i))
+                    i++;
+                else
+                    iguales = false; 
+            }
+    }
+    else
+        iguales = false; 
+
+    return iguales;  
+}

@@ -1,0 +1,105 @@
+#include <iostream>
+
+using namespace std; 
+
+struct nodoColegio
+{
+    int idColegio; 
+    nodoUrna *urnas; 
+    nodoColegio *sig; 
+}
+
+struct nodoUrna
+{
+    int idUrna; 
+    nodoVoto *votos; 
+    nodoVoto *ultimoVoto;
+    nodoUrna *sig;  
+}
+
+struct nodoVoto
+{
+    int idPartido; 
+    nodoVoto *sig; 
+}
+
+//Apartado a) 
+
+void mostrarVotos(nodoColegio *colegios , int urna) //no importa cargarnos el puntero a colegios ya que lo que nos pasan es una copia 
+{
+    bool encontrado = false;
+    nodoUrna *pnu;  
+    nodoVoto *nvoto; 
+
+    while(!encontrado && colegios!=NULL)
+    {
+        pnu = colegios->urnas; 
+
+        while(!encontrado && pnu!=NULL)
+        {
+            if(pnu->idUrna == urna)
+            {
+                encontrado = true; 
+                nvoto = pnu->votos; 
+
+                cout << "Votos de la urna " << urna ":" << endl;   
+
+                while(nvoto!=NULL)
+                {
+                    cout << nvoto->idPartido;
+                    nvoto = nvoto->sig; 
+                }
+            }
+            else
+                pnu = pnu->sig; 
+        }
+
+        if(!encontrado)
+            colegios = colegios->sig; 
+    }
+
+    if(!encontrado)
+        cout << "No se ha encontrado ninguna urna con ese identificador " << endl; 
+}
+
+//Apartado b)
+
+void insertarVoto(nodoColegio *colegios , int colegios , int urna , int partido)
+{
+    bool encontradocolegio = false; 
+    bool encontradaurna = false; 
+    nodoUrna nurna; 
+
+    while(!encontradocolegio && colegios!=NULL) //Busqueda por los colegios
+    {
+        if(colegios->idColegio == colegios)
+        {
+            encontradocolegio = true; 
+            nurna = colegios->urnas;
+
+            while(!encontradaurna && nurna!=NULL) //Busqueda por las urnas
+            {
+                if(nurna->idUrna == urna)
+                {
+                    encontradaurna = true; 
+
+                    nodoVoto votoInsertar = new nodoVoto;  //Pido memoria
+                    votoInsertar->idPartido = partido; //Modifico el campo idpartido con el que me pasan por parametro
+                    votoInsertar->sig = NULL;  
+
+                    if(nurna->ultimoVoto == NULL)//Está vacio lo de los votos
+                        nurna->votos = votoInsertar; 
+                    else
+                        nurna->ultimoVoto->sig = votoInsertar; 
+
+                    nurna->ultimoVoto = votoInsertar; 
+
+                }
+                else
+                    nurna = nurna->sig; 
+            } 
+        }
+        else
+            colegios = colegios->sig; 
+    }
+}

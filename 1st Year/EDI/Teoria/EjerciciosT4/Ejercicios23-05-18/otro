@@ -1,0 +1,66 @@
+#include <iostream>
+
+using namespace std; 
+
+struct Tnodo
+{
+    int dato; 
+    Tnodo *siguiente; 
+};
+
+int main()
+{
+    Tnodo *Lista , *imp , *par; 
+    ...
+    funcion(Lista , &imp , &par); //Llamada a la funcion
+
+    return 0; 
+}
+
+void funcion(Tnodo *L , Tnodo **i , Tnodo **p)
+{
+    Tnodo *auxi=NULL , *auxp=NULL , *aux , *ultp , *ulti;
+
+    while(L != NULL) //Mientras L no llegue al final 
+    {
+        aux = new Tnodo ; 
+
+        if(aux != NULL) //Si se nos ha dado memoria
+        {
+            aux->dato = L->dato; 
+            aux->siguiente = NULL ; //Esto es opcional 
+
+            if(aux->dato%2==0) //Si es par
+            {
+                if(auxp == NULL) //Si es el primer nodo a insertar
+                {
+                    auxp = aux; 
+                    ultp = aux; 
+                }
+                else //Si no es el primer nodo a insertar
+                {
+                    ultp->siguiente = aux ;
+                    ultp = aux;
+                }
+            }
+            else //Si es impar
+            {
+                if(auxi == NULL) //Si es el primer nodo a insertar
+                {
+                    auxi = aux ; 
+                    ulti = aux; 
+                }
+                else //Si no es el primer nodo a insertar
+                {
+                    ulti->siguiente = aux; 
+                    ulti = aux; 
+                }
+            }
+        }
+
+        L = L->siguiente; 
+    }
+
+    *i = auxi ; //contenido de i apunta a auxi 
+    *p = auxp;  //contenido de p apunta a auxp
+}

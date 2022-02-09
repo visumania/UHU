@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1555494260 source:g:\uhu\asignaturas\1 curso\2do cuatrimestre\estructura de datos\2018-2019\teoria\ejerciciost1\ejercicio3y4.-tema1.-\main.cpp
+	<iostream>
+	<fstream>
+	<conio.h>
+	<windows.h>
+
