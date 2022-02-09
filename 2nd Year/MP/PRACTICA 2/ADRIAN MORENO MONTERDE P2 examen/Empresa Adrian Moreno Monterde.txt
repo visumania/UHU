@@ -1,0 +1,301 @@
+/*public class Empresa implements Cloneable
+{
+	//Atributos de la clase Empresa:
+	private ArrayList<Cliente> clientes;
+	
+	//MŽtodos de la clase Empresa: 
+	public Empresa()
+	{
+		clientes = new ArrayList<Cliente>();
+	}
+	
+	public Empresa(Empresa pEmpresa)
+	{
+		clientes = pEmpresa.clientes;
+	}
+	
+	public void alta()
+	{
+		Scanner teclado = new Scanner(System.in); 
+		String pNif, pNombre;
+		Fecha pFechaNacimiento , pFechaAlta;
+		int tipo ; 
+		Cliente c = null;
+		float pMinutosHablados=0.00f;
+		
+		System.out.println("DNI: ");
+		pNif = teclado.next();
+		teclado.nextLine();
+		
+		if(!existeDNI(pNif))
+		{
+			System.out.println("Nombre: ");
+			pNombre = teclado.nextLine();
+			
+			System.out.println("Fecha Nacimiento:");
+			pFechaNacimiento = Fecha.pedirFecha();
+			
+			System.out.println("Fecha de Alta:");
+			pFechaAlta = Fecha.pedirFecha(); 
+			
+			System.out.println("Minutos que habla al mes: ");
+			pMinutosHablados = teclado.nextFloat();
+			
+			do 
+			{
+				System.out.println("Indique tipo de cliente (1.-Movil , 2.-Tarifa Plana): ");
+				tipo = teclado.nextInt();
+			}while(tipo!= 1 && tipo!=2);
+			
+			if(tipo == 1)
+			{			
+				//ClienteMovil cm = null;
+				float pPrecioMinuto=0.00f; 
+				Fecha pFechaPermanencia; 
+				
+				System.out.println("Precio por minuto: ");
+				pPrecioMinuto = teclado.nextFloat(); 
+				
+				System.out.println("Fecha fin permanencia: ");
+				pFechaPermanencia = Fecha.pedirFecha();
+				
+				if(pFechaPermanencia.equals(null) && pFechaAlta.equals(null))
+					 c = new ClienteMovil(pNif , pNombre , pFechaNacimiento , pMinutosHablados ,  pPrecioMinuto);
+				else 
+					 c = new ClienteMovil(pNif , pNombre , pFechaNacimiento, pFechaAlta, pFechaPermanencia , pMinutosHablados ,  pPrecioMinuto);
+			}
+			
+			if(tipo == 2)
+			{
+				//ClienteTarifaPlana ct = null; 
+				String pNacionalidad;
+				
+				System.out.println("Nacionalidad: ");
+				pNacionalidad = teclado.nextLine();
+				
+				if(pFechaAlta.equals(null))
+					c = new ClienteTarifaPlana(pNif , pNombre , pFechaNacimiento , pMinutosHablados , pNacionalidad);
+				else
+					c = new ClienteTarifaPlana(pNif , pNombre , pFechaNacimiento , pFechaAlta , pMinutosHablados , pNacionalidad);	
+			}
+			alta(c);
+		}
+		else 
+		{
+			System.out.println("Ya existe un Cliente con ese dni: ");
+			
+			for(int i=0 ; i<clientes.size() ; i++)
+			{
+				if(clientes.get(i).getNif().equals(pNif))
+					clientes.get(i).ver();
+					//System.out.println(clientes.get(i));
+			}
+			
+			System.out.println("\n");
+		}
+		
+		//teclado.close();
+	}
+	
+	public void alta(Cliente pCliente) 
+	{
+		if(!existeDNI(pCliente.getNif()))
+		{
+			clientes.add(pCliente);
+		}
+	}
+	
+	public void baja(String nif) 
+	{	
+		if(existeDNI(nif))
+		{	
+			for(int i=0 ; i<clientes.size() ; i++)
+			{
+				if(clientes.get(i).getNif().equals(nif)) 
+				{
+					System.out.println(clientes.get(i));
+					clientes.remove(i);
+				}
+			}
+		}
+	}	
+	
+	public void baja() 
+	{
+		String pNIF = "";
+		Scanner teclado = new Scanner(System.in); 
+		int pos = -1;
+		String c = "" ; 
+		
+		System.out.println("Introduza nif cliente a dar de baja: ");
+		pNIF = teclado.nextLine();
+		
+		if(existeDNI(pNIF))
+		{
+			String opcion=""; 
+			
+			for(int i=0 ; i<clientes.size() ; i++)
+			{
+				if(clientes.get(i).getNif().equals(pNIF)) 
+				{
+					System.out.println(clientes.get(i));
+					pos = i;
+					c = clientes.get(i).getNif();
+				}
+			}
+			
+			System.out.println("ÀSeguro que desea eliminarlo (s/n): ");
+			opcion = teclado.nextLine(); 
+			
+			if(opcion.equals("n"))
+				System.out.println("El cliente con nif " + pNIF + " no se elimina\n");
+				
+			if(opcion.equals("s"))
+			{
+				System.out.println("El cliente " + clientes.get(pos).getNombre() + " con nif " + clientes.get(pos).getNif() +  " ha sido eliminado\n" );
+				baja(c);
+			}
+			
+		}
+		else
+			System.out.println("No se ha encontrado a ningun cliente con ese DNI para eliminar");
+		
+		//teclado.close();
+	}
+	
+	public int nClienteMovil()
+	{
+		int contador = 0;
+		
+		for(int i=0 ; i<clientes.size() ; i++)
+		{
+			if(clientes.get(i) instanceof ClienteMovil)
+				contador++; 
+		}
+		
+		return contador; 
+	}
+	
+	public String toString() 
+	{
+		String s = "";
+		/*
+		for (int i = 0; i < clientes.size(); i++) 
+		{
+			s +=  clientes.get(i) + "\n";
+		}
+		
+		return s;
+		
+String salida = "";
+		
+		for(int i=0; i<this.nClientes; i++)
+		{
+			if(this.V[i] instanceof ClienteMovil)
+				salida += ((ClienteMovil)this.V[i]).toString();
+			else
+				salida += ((ClienteTarifaPlana)this.V[i]).toString();
+			
+			salida += "\n";
+		}
+		
+		return salida;*/
+		/*
+		for(int i=0 ; i<clientes.size() ; i++)
+		{
+			if(clientes.get(i) instanceof ClienteMovil)
+				s += ((ClienteMovil)clientes.get(i)).toString();
+			else
+				s += ((ClienteTarifaPlana)clientes.get(i)).toString();
+			
+			s += "\n";
+		}
+		
+		return s; 
+	}
+	
+	public Object clone() 
+	{
+		return new Empresa(this);
+	}
+	
+	public int getN() { return clientes.size();}
+	
+	public float factura() 
+	{
+		float facTotal = 0.00f;
+		
+		for(int i=0 ; i<clientes.size() ; i++)
+		{
+			Cliente c = clientes.get(i);
+			
+			if(c instanceof ClienteMovil) 
+			{
+				ClienteMovil cm = (ClienteMovil)c.clone();
+				facTotal += cm.getMinutosHablados()*cm.getPrecioMinuto();
+			}
+			else if(c instanceof ClienteTarifaPlana)
+			{
+				ClienteTarifaPlana ct = (ClienteTarifaPlana)c.clone();
+	
+				if(ct.getMinutosHablados() > ClienteTarifaPlana.getLimite())
+					facTotal +=( ClienteTarifaPlana.getPrecioTP() +(ct.getMinutosHablados()-ClienteTarifaPlana.getLimite())*ClienteTarifaPlana.getPrecioExcesoMinutos());
+				else
+					facTotal += ClienteTarifaPlana.getPrecioTP();
+			}
+		}
+		
+		/*for(int i=0 ; i<clientes.size() ; i++)
+		{
+			if(clientes.get(i) instanceof ClienteMovil)
+			{
+				
+			}
+			
+			if(clientes.get(i) instanceof ClienteTarifaPlana)
+			{
+				
+			}
+			
+		
+		return facTotal; 
+	}
+	
+	public float descuento(float pDescuento) //Descuento que solo se aplica a los cliente de tarifa movil 
+	{
+		float facT = 0.00f;
+		
+		for(int i=0 ; i<clientes.size() ; i++)
+		{
+			if(clientes.get(i) instanceof ClienteMovil)
+			{
+				ClienteMovil c = (ClienteMovil)clientes.get(i);
+				float f = c.getFactura()*(1-(pDescuento/100)); 
+				c.setPrecioMinuto(f);
+				clientes.set(i, c);
+			}
+		}
+		
+		return facT;
+	}
+	
+	public boolean existeDNI(String pDNI) //busqueda para buscar clientes cuyo dni nos pasan por par‡metro 
+	{
+		boolean encontrado; 
+		int i ;
+		
+		encontrado = false; 
+		i = 0; 
+		
+		while(i<clientes.size() && !encontrado)
+		{
+			if(clientes.get(i).getNif().equals(pDNI)) 
+				encontrado = true; 
+			else 
+				i++; 
+		}
+		
+		return encontrado ; 
+	}
+}
+*/

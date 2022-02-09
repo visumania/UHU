@@ -1,0 +1,22 @@
+< THE SYMBOL TABLE >  Ejercicio2.-.exe  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00000     	-5        	SEGMENT   	(ITSELF)  
+CADENA                   	00000     	1         	VAR       	data      
+PESO                     	00007     	1         	VAR       	data      
+VALOR_BCS                	0000B     	1         	VAR       	data      
+SIGNO_BCS                	0000C     	1         	VAR       	data      
+VALOR_CO2                	0000D     	1         	VAR       	data      
+SIGNO_CO2                	0000E     	1         	VAR       	data      
+STACK                    	00001     	-5        	SEGMENT   	(ITSELF)  
+CODE                     	00011     	-5        	SEGMENT   	(ITSELF)  
+START                    	00000     	-1        	LABEL     	code      
+BCS_NEGATIVO             	0002B     	-1        	LABEL     	code      
+BCS_FIN                  	00030     	-1        	LABEL     	code      
+ESNEGATIVO               	0005B     	-1        	LABEL     	code      
+FINALIZAR                	00081     	-1        	LABEL     	code      
+===================================================================================================
+[ 20/11/2019  --  18:08:05 ] 
+< END >
+ 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	<ActiveTarget name="Debug" />
+	<File name="src\Empresa.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1564" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="src\ContratoTP.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="853" topLine="30" />
+		</Cursor>
+	</File>
+	<File name="Prueba3.cpp" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1986" topLine="17" />
+		</Cursor>
+	</File>
+	<File name="include\Contrato.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="333" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\ContratoMovil.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="602" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\Cliente.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="665" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Fecha.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4383" topLine="170" />
+		</Cursor>
+	</File>
+	<File name="include\ContratoMovil.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="660" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\ContratoTP.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="176" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Cliente.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1668" topLine="67" />
+		</Cursor>
+	</File>
+	<File name="src\Contrato.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="665" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="include\Empresa.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="913" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\Fecha.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="174" topLine="0" />
+		</Cursor>
+	</File>
+	<EditorTabsLayout layout="08ab2e105bf46dbb000010a200000002=0;Practica1:src\Contrato.cpp,1;Practica1:src\ContratoTP.cpp,2;Practica1:src\ContratoMovil.cpp,*3;Practica1:src\Empresa.cpp,4;Practica1:src\Cliente.cpp,5;Practica1:src\Fecha.cpp|08ab25405bf46dbb000010a800000003=6;Practica1:include\Contrato.h,7;Practica1:include\ContratoMovil.h,8;Practica1:include\ContratoTP.h,9;Practica1:include\Cliente.h,+10;Practica1:include\Empresa.h,11;Practica1:Prueba3.cpp@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=180;besth=180;minw=180;minh=180;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=08ab2e105bf46dbb000010a200000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=08ab25405bf46dbb000010a800000003;caption=;state=2098172;dir=2;layer=0;row=1;pos=0;prop=100000;bestw=854;besth=372;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=202|dock_size(2,0,1)=749|" />
+</CodeBlocks_layout_file>

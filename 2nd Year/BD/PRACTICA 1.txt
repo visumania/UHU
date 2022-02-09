@@ -1,0 +1,146 @@
+PARTE1:
+
+
+CREATE TABLE RALLY(
+  codRally char(4),
+  nombre varchar2(50),
+  pais varchar2(20),
+  fecha date,
+  
+  CONSTRAINT rallyClave PRIMARY KEY (codRally)
+  );
+  
+CREATE TABLE TRAMO(
+  codRally char(4),
+  numeroTramo integer,
+  totalKms number(5,2),
+  dificultad char(1) DEFAULT 'B' not null,
+  
+  CONSTRAINT claveTramo PRIMARY KEY (codRally, numeroTramo),
+  CONSTRAINT ajenaRally FOREIGN KEY codRally REFERENCES RALLY (codRally),
+  CONSTRAINT valorDificultad CHECK (dificultad IN ('A','B','C'))
+);
+
+CREATE TABLE COCHE(
+  codCoche char(4),
+  marca varchar2(10),
+  modelo varchar2(20),
+  cilindrada integer, 
+  
+  CONSTRAINT cocheClave PRIMARY KEY (codCoche),
+  CONSTRAINT valorCilindrada CHECK (cilindrada >= 2000 AND cilindrada <=3000)
+);
+
+CREATE TABLE PILOTO(
+  codPiloto char(4),
+  nombreP varchar2(50),
+  grupoS char(2),
+  rh char(1),
+  nombreCop varchar2(50),
+  coche char(4),
+  puntos integer,
+  
+  CONSTRAINT pilotosClave PRIMARY KEY (codPiloto),
+  CONSTRAINT pilotosAjena FOREIGN KEY (coche) REFERENCES Coche (codCoches),
+  CONSTRAINT valorGrupos CHECK (grupos IN ('A','B','0','AB')),
+  CONSTRAINT valorRh CHECK (rh IN ('+','-')),
+  CONSTRAINT pilotoUnico UNIQUE (nombreCop),
+  CONSTRAINT puntosPositivo CHECK (puntos >= 0),
+  CONSTRAINT nombresDistintos CHECK (nombreP <> nombreCop),
+  CONSTRAINT cocheUnico UNIQUE (coche)
+  );
+  
+CREATE TABLE PARTICIPA(
+  codRally char(4),
+  codPiloto char(4),
+  penalizacion integer default 0,
+  tiempoRally integer default 0,
+  
+  CONSTRAINT claveParticipa PRIMARY KEY (codRally , codPiloto),
+  CONSTRAINT participaAjena1 FOREIGN KEY (codRally) REFERENCES RALLY(codRally),
+  CONSTRAINT participaAjena2 FOREIGN KEY (codPiloto) REFERENCES PILOTO(codPiloto),
+  CONSTRAINT positivoPenalizacion CHECK (penalizacion <= 0),
+  CONSTRAINT positivoTiempoRally CHECK (tiempoRally <= 0)
+);
+
+CREATE TABLE CORRE(
+  codPiloto char(4),
+  codRally char(4),
+  numeroTramo integer,
+  tiempo integer not null ,
+  
+  CONSTRAINT claveCorre PRIMARY KEY(codPiloto , codRally , numeroTramo),
+  CONSTRAINT correAjena1 FOREIGN KEY (codRally , numeroTramo) REFERENCES TRAMO (codRally , numeroTramo),
+  CONSTRAINT correAjena2 FOREIGN KEY (codPiloto) REFERENCES PILOTO (codPiloto),
+  CONSTRAINT tiempoPositivo CHECK (tiempo <= 0)
+);
+
+
+PARTE 2:
+
+-No puede haber dos o más rallies con el mismo nombre:
+
+ALTER TABLE RALLY ADD CONSTRAINT nombreUnico UNIQUE(nombre);
+
+-El número de kilómetros de los que consta un tramo siempre tiene que ser mayor o igual que 20:
+
+ALTER TABLE TRAMO ADD CONSTRAINT valorKilometros CHECK (totalKms >= 20); 
+
+-La fecha de celebración de un rallie no puede ser anterior al 01/01/2009 ni posterior al 31/12/2009:
+
+ALTER TABLE RALLY ADD CONSTRAINT rangoFecha CHECK(fecha > to_date('1/1/2009','dd/mm/yyyy') AND fecha < to_date('31/12/2009','dd/mm/yyyy'));
+
+-En un ralle no puede haber dos tramos de igual longitud: 
+
+ALTER TABLE TRAMO ADD CONSTRAINT longitudTramoUnica UNIQUE(codRally , totalKms);     
+
+-Al borrar un rally de la tabla RALLY se deben borrar además todos los tramos de los que consta dicho rally:
+
+ALTER TABLE TRAMO DROP CONSTRAINT ajenaRally;
+ALTER TABLE TRAMO ADD CONSTRAINT ajenaRally FOREIGN KEY(codRally) REFERENCES RALLY(codRally) ON DELETE CASCADE;
+ 
+
+
+PARTE 3:
+ 
+
+Hecho metiendo directamente en Oracle los datos de las tuplas de las 2 tablas de las que teníamos que insertar datos.
+
+
+
+
+
+PARTE 4: 
+
+
+A) No se puede introducir el primer valor porque no esta entre comillas 'simples'
+
+
+B) No se puede introducir porque los nombres de los Rallys deben de ser únicos y en este caso coincide con el nombre de R001.
+
+
+C) No se puede introducir esta tupla en la tabla Rally debido a que la fecha no se encuentra dentro del rango de restricción que nosotros le dimos anteriormente.
+
+
+D) No se puede introducir la tupla debido a que viola una restricción de integridad: clave principal no encontrada --> Está intentando añadir un Tramo de un Rally que ni siquiera existe.
+
+
+E) No se puede introducir la dupla que salta un mensaje de error de restricción de control, ya que la longitud mínima de una tramo la establecimos anteriormente a 20km como mínimo.
+
+
+F) Me he dejado introducirlo correctamente. 
+
+
+G) No se puede introducir debido a que R001 ya tiene un tramo con la misma longitud y no pueden coincidir las longitudes de los tramos dentro de un mismo Rally. 
+
+
+
+
+PARTE 5:
+
+
+DELETE FROM RALLY WHERE codRally = 'R002';
+
+Para comprobar que lo hemos hecho bien observamos las tuplas de la tabla TRAMO:
+
+SELECT * FROM TRAMO; 

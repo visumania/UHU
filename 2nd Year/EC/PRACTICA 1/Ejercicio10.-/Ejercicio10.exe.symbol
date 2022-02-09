@@ -1,0 +1,28 @@
+< THE SYMBOL TABLE >  Ejercicio10.exe  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00000     	-5        	SEGMENT   	(ITSELF)  
+CADENA                   	00000     	1         	VAR       	data      
+PESO_HEX                 	00007     	2         	VAR       	data      
+PESO_BIN                 	0000F     	1         	VAR       	data      
+VALOR_HEX                	00013     	2         	VAR       	data      
+VALOR_EXZ                	00015     	1         	VAR       	data      
+SIGNO_EXZ                	00016     	1         	VAR       	data      
+STACK                    	00002     	-5        	SEGMENT   	(ITSELF)  
+CODE                     	00012     	-5        	SEGMENT   	(ITSELF)  
+START                    	00000     	-1        	LABEL     	code      
+HEX3CHK                  	00027     	-1        	LABEL     	code      
+HEX4CHK                  	0002E     	-1        	LABEL     	code      
+HEX5CHK                  	00035     	-1        	LABEL     	code      
+C2HEX                    	0003E     	-1        	LABEL     	code      
+C3HEX                    	00045     	-1        	LABEL     	code      
+C4HEX                    	0004C     	-1        	LABEL     	code      
+C5HEX                    	00053     	-1        	LABEL     	code      
+HEXFIN                   	0005A     	-1        	LABEL     	code      
+NEGATIVO_EXZ             	000BD     	-1        	LABEL     	code      
+FINALIZAR_EXZ            	000C8     	-1        	LABEL     	code      
+===================================================================================================
+[ 20/11/2019  --  12:01:25 ] 
+< END >
+ 

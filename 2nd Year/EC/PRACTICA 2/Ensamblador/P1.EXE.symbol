@@ -1,0 +1,17 @@
+< THE SYMBOL TABLE >  P1.EXE  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00000     	-5        	SEGMENT   	(ITSELF)  
+CADENA                   	00000     	1         	VAR       	data      
+PESO                     	00007     	1         	VAR       	data      
+VALOR_B                  	0000B     	1         	VAR       	data      
+VALOR_C1                 	0000C     	1         	VAR       	data      
+SIGNO_C1                 	0000D     	1         	VAR       	data      
+CODE                     	00001     	-5        	SEGMENT   	(ITSELF)  
+ESNEG                    	00053     	-1        	LABEL     	code      
+FINALIZA                 	00076     	-1        	LABEL     	code      
+===================================================================================================
+[ 26/02/2020  --  18:40:03 ] 
+< END >
+ 

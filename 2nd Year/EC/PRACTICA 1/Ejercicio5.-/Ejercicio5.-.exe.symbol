@@ -1,0 +1,22 @@
+< THE SYMBOL TABLE >  Ejercicio5.-.exe  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DATA                     	00000     	-5        	SEGMENT   	(ITSELF)  
+CADENA                   	00000     	1         	VAR       	data      
+PESO                     	00007     	1         	VAR       	data      
+VALOR_CO2                	0000B     	1         	VAR       	data      
+SIGNO_CO2                	0000C     	1         	VAR       	data      
+VALOR_EXZ                	0000D     	1         	VAR       	data      
+SIGNO_EXZ                	0000E     	1         	VAR       	data      
+STACK                    	00001     	-5        	SEGMENT   	(ITSELF)  
+CODE                     	00011     	-5        	SEGMENT   	(ITSELF)  
+START                    	00000     	-1        	LABEL     	code      
+ESNEGATIVO               	0004D     	-1        	LABEL     	code      
+FINALIZAR                	00082     	-1        	LABEL     	code      
+NEGATIVO_EXZ             	000B9     	-1        	LABEL     	code      
+FINALIZAR_EXZ            	000C4     	-1        	LABEL     	code      
+===================================================================================================
+[ 20/11/2019  --  18:13:03 ] 
+< END >
+ 

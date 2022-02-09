@@ -1,0 +1,24 @@
+#ifndef CONTRATOTP_H
+#define CONTRATOTP_H
+#include <Contrato.h>
+
+class ContratoTP:public Contrato // Hereda de Contrato
+{
+    static float precioTP;
+    static int minutosTP;
+    int minutosHablados;
+    static const float precioExcesoMin = 0.15; // Fijo e invariable
+
+    public:
+        ContratoTP(long int dni, Fecha F, int minutos);
+        static float getPrecioTP() {return precioTP;};
+        static int getLimiteMinutos() {return minutosTP;};
+        int getMinutosHablados() const {return this->minutosHablados;};
+        static float getPrecio() {return precioExcesoMin;};
+        void ver();
+        ContratoTP(const ContratoTP &P);
+        float factura() const;
+        void setTarifaPlana(int nuevos_minutos, float )
+};
+
+#endif // CONTRATOTP_H

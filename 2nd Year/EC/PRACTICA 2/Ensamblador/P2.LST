@@ -1,0 +1,156 @@
+Turbo Assembler	 Version 3.2	    02/26/20 20:02:02	    Page 1
+P2.asm
+
+
+
+      1	0000			     .MODEL SMALL
+      2
+      3	0000			     .CODE
+      4
+      5					     org 100h
+      6
+      7	0100			     Programa_Int:
+      8
+      9				     ;DECLARAMOS VARIABLES:
+     10
+     11	0100  EB 7E 90			     JMP Reside
+     12	0103  30 30 3A 30 30		     RELOJ dB '00:00'
+     13	0108  00			     CONTADOR DB 0
+     14
+     15
+     16	0109			     Rutina_Servicio PROC
+     17
+     18	0109  FA			     CLI;no permitimos las interupciones
+     19
+     20	010A  2E: FE 06	0108r		 INC CONTADOR ;PRIMERO LO INCREMENTO
+     21
+     22	010F  2E: 80 3E	0108r 12	     CMP CONTADOR,18 ;compara si el contador vale 18
+     23
+     24	0115  74 03			 JE VALE18 ;si vale 18 salta al	conjunto de instrucciones con etiqueta VALE18
+     25	0117  EB 65 90			 JMP FIN ; si no vale 18 salta al conjunto de instrucciones con	etiqueta FIN
+     26
+     27	011A				 VALE18:
+     28
+     29	011A  2E: C6 06	0108r 00	 MOV CONTADOR,0
+     30	0120  B8 B800			 MOV AX,0B800h
+     31	0123  8E C0			 MOV ES,AX
+     32	0125  B4 0F			 MOV  AH,00001111b
+     33	0127  BE 0000			 MOV SI,0
+     34	012A  BF 0094			 MOV DI,148
+     35
+     36
+     37	012D				 RELOJ2:
+     38
+     39	012D  2E: 8A 84	0103r		 MOV AL,RELOJ[SI]
+     40	0132  26: 89 05			 MOV ES:[DI],AX
+     41	0135  83 C7 02			 ADD DI,2
+     42	0138  83 C6 01			 ADD SI,1
+     43	013B  83 FE 04			 CMP SI,4
+     44	013E  76 ED			 JBE RELOJ2   ;salta si	es igual
+     45
+     46
+     47
+     48
+     49				     ;Controlamos el reloj:
+     50
+     51	0140  2E: 80 3E	0107r 39	 CMP RELOJ[4],'9'
+     52	0146  75 31			 JNE PRINCIPIO
+     53
+     54	0148  2E: C6 06	0107r 30	     MOV RELOJ[4],'0'
+     55	014E  2E: FE 06	0106r		 INC RELOJ[3]
+     56
+     57
+Turbo Assembler	 Version 3.2	    02/26/20 20:02:02	    Page 2
+P2.asm
+
+
+
+     58
+     59
+     60	0153  2E: 80 3E	0106r 36	 CMP RELOJ[3],'6'
+     61	0159  75 23			     JNE FIN
+     62
+     63	015B  2E: C6 06	0106r 30	     MOV RELOJ[3],'0'
+     64	0161  2E: FE 06	0104r		     INC RELOJ[1]
+     65
+     66
+     67	0166  2E: 80 3E	0104r 39	     CMP RELOJ[1],'9'
+     68	016C  75 10			     JNE FIN
+     69
+     70	016E  2E: C6 06	0104r 30	 MOV RELOJ[1],'0'
+     71
+     72	0174  2E: FE 06	0103r		     INC RELOJ[0]
+     73
+     74
+     75	0179				     PRINCIPIO:
+     76
+     77	0179  2E: FE 06	0107r		     INC RELOJ[4]
+     78
+     79	017E				 FIN:
+     80
+     81	017E  FB			 STI	    ;Volvemos a	activar	las interupciones
+     82	017F  CF			 IRET	    ;Recupera el valor de los registros	implicados en la rutina
+     83	0180				 ENDP
+     84
+     85
+     86
+     87
+     88
+     89	0180			     Reside: ;Etiqueta para determinar la direccion siguiente a	la ultima de la	rutina que debe	    +
+     90				     quedar residente
+     91
+     92	0180  BA 0109r			     MOV DX, offset Rutina_Servicio ;Empezamos rutina de atencion a interupcion
+     93	0183  B8 0000			     MOV AX, 0
+     94	0186  8E C0			     MOV ES, AX
+     95	0188  BE 0070			     MOV SI, 1Ch*4 ;Desplazamiento
+     96	018B  FA			     CLI;Desactivamos interupciones
+     97	018C  26: 89 14			     MOV ES:[SI], DX;Nos dirigimos a la	primera	direccion( la que va a buscar cpu cd se	    +
+     98				     produzca 1ch)
+     99	018F  26: 8C 4C	02		     MOV ES:[SI+2], CS;Son dos porque empezo en	1ch*4 y	se guarda el desplazamiento ahi	y en+
+    100				     la	1ch*4+1
+    101							      ;	y las dos siguientes la	direccion base
+    102	0193  FB			     STI;Volvemos a activar las	interrupciones
+    103	0194  BA 0180r			     MOV DX, offset Reside;Paso	a DX la	direccion siguiente a la ultima	que tengo residente
+    104	0197  CD 27			     INT 27h;Devuelve el control al sistema operativo dejando el programa residente
+    105
+    106				     END Programa_Int
+Turbo Assembler	 Version 3.2	    02/26/20 20:02:02	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "02/26/20"
+??FILENAME			  Text	 "P2	  "
+??TIME				  Text	 "20:02:02"
+??VERSION			  Number 0314
+@32BIT				  Text	 0
+@CODE				  Text	 _TEXT
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 P2
+@INTERFACE			  Text	 00H
+@MODEL				  Text	 2
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+CONTADOR			  Byte	 _TEXT:0108
+FIN				  Near	 _TEXT:017E
+PRINCIPIO			  Near	 _TEXT:0179
+PROGRAMA_INT			  Near	 _TEXT:0100
+RELOJ				  Byte	 _TEXT:0103
+RELOJ2				  Near	 _TEXT:012D
+RESIDE				  Near	 _TEXT:0180
+RUTINA_SERVICIO			  Near	 _TEXT:0109
+VALE18				  Near	 _TEXT:011A
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0000 Word	  Public  DATA
+_TEXT				  16  0199 Word	  Public  CODE
+

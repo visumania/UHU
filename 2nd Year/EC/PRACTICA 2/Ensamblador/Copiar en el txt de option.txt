@@ -1,0 +1,6 @@
+mount E C:\Ensamblador
+E:
+#cls
+tasm -zi -l P1.ASM
+tlink -v P1.OBJ
+P1

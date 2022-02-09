@@ -1,0 +1,280 @@
+Ejemplo clase: 
+
+set serveroutput on;
+
+create or replace
+procedure navidad is 
+begin
+  dbms_output.put_line('   ---- Navidad --- y buen --- 2020 ---    ');
+end;  
+
+
+NOTA IMPORTANTE:
+
+-Es necesario antes de comenzar a trabajar con el programa ejecutar la siguiente instrucción: 
+
+set serveroutput on;
+
+--------------------------------------------------------------------------------
+
+Ejercicio 1.- Diseñar un procedimiento que tenga como parámetros de entrada el nombre de un piloto, el nombre de un rally y un número (penalización). Dicho procedimiento debe realizar las siguientes operaciones: 
+
+1. Comprobar que existe en la BD el piloto y el rally que se pasan como parámetros. En caso contrario lanzar excepciones que muestren estos mensajes: "ERROR: No existe el piloto de nombre <nombre piloto>" o "ERROR: No existe el rally de nombre <nombre rally>"
+
+2. Actualizar la tabla PARTICIPA incrementando el valor del campo "penalización" con el valor que se pasa por parámetro. Para comprobar que se ha hecho bien, el procedimiento debe mostrar la tabla PARTICIPA antes y después de la actualización.
+
+CREATE OR REPLACE
+PROCEDURE penalizar(nombrePiloto PILOTO.nombreP%TYPE , nombreRally RALLY.nombre%TYPE , tiempoP PARTICIPA.penalizacion%TYPE) IS
+
+    e_pilotoNoEncontrado EXCEPTION;
+    e_rallyNoEncontrado EXCEPTION;
+    
+    cod_piloto PILOTO.codPiloto%TYPE;
+    cod_rally RALLY.codRally%TYPE;
+    
+    existe INTEGER;
+    
+    CURSOR c_penalizacion IS
+        SELECT nombreP, penalizacion
+        FROM PARTICIPA INNER JOIN RALLY USING (codRally) INNER JOIN PILOTO USING (codPiloto)
+        WHERE codRally = cod_rally; 
+        
+BEGIN
+
+    SELECT COUNT(*) INTO existe 
+    FROM PILOTO
+    WHERE nombreP = nombrePiloto;
+    
+    IF existe = 0
+    THEN
+        RAISE e_pilotoNoEncontrado;
+    END IF;
+    
+    SELECT COUNT(*) INTO existe
+    FROM RALLY
+    WHERE nombreRally = nombre;
+    
+    IF existe = 0
+    THEN
+        RAISE e_rallyNoEncontrado;
+    END IF;
+    
+    SELECT codPiloto INTO cod_piloto
+    FROM PILOTO
+    WHERE nombreP = nombrePiloto;
+    
+    SELECT codRally INTO cod_rally
+    FROM RALLY 
+    WHERE nombre = nombreRally;
+    
+    dbms_output.put_line(nombreRally || ' (Antes de la actualización)');
+    dbms_output.put_line('===============================================');
+    
+    FOR v_penalizacion IN c_penalizacion() LOOP
+        dbms_output.put_line(v_penalizacion.nombreP || ' ' || v_penalizacion.penalizacion);
+    END LOOP;
+    
+    UPDATE PARTICIPA SET penalizacion = penalizacion + tiempoP WHERE codRally = cod_rally AND codPiloto = cod_piloto;
+    
+    dbms_output.put_line(nombreRally || ' (Despues de la actualización)');
+    dbms_output.put_line('===============================================');
+    
+    FOR v_penalizacion IN c_penalizacion() LOOP
+        dbms_output.put_line(v_penalizacion.nombreP || ' ' || v_penalizacion.penalizacion);
+    END LOOP;
+    
+    EXCEPTION
+        WHEN e_pilotoNoEncontrado THEN
+            dbms_output.put_line('No existe el piloto con el nombre ' || nombrePiloto);
+        WHEN e_rallyNoEncontrado THEN
+            dbms_output.put_line('No existe el rally con el nombre ' || nombreRally);
+        WHEN OTHERS THEN
+            dbms_output.put_line('Se ha producido un error inesperado');
+    
+END;
+
+
+Ejercicio 2.- Crear un procedimiento que tenga como parámetro de entrada el nombre de un piloto. Dicho procedimiento debe realizar las siguientes operaciones: 
+
+1. Comprobar que existe en la BD el piloto cuyo nombre se pasa como parámetro. En caso contrario lanzar una excepción y mostrar el mensaje "ERROR: No existe el piloto de nombre <nombre del piloto>".
+
+2. Para cada rally en el que haya participado el piloto cuyo nombre se indica cómo parámetro, el procedimiento debe mostrar el nombre del rally. Además, para cada uno de los tramos disputados de este, debe mostrarse su número y el mejor de los tiempos obtenidos, ordenados de forma creciente por el tiempo.
+
+create or replace PROCEDURE mejor_piloto_tramo (a_piloto PILOTO.nombreP%TYPE) IS
+
+  e_piloto_no_encontrado EXCEPTION;
+  
+  existe INTEGER;
+  codigoPiloto PILOTO.codPiloto%TYPE; 
+  
+  CURSOR c_rally(p_codPiloto PILOTO.codPiloto%TYPE) IS
+    SELECT codRally, R.nombre
+    FROM RALLY R INNER JOIN PARTICIPA P USING(codRally)
+    WHERE p.codpiloto = p_codpiloto ;
+    
+  CURSOR c_mejorTiempo(cRally RALLY.codRALLY%TYPE) IS
+    SELECT numeroTramo, MIN(tiempo) AS mejorTiempo
+    FROM CORRE
+    WHERE codRally = cRally
+    GROUP BY numeroTramo
+    ORDER BY mejorTiempo;
+    
+BEGIN
+
+  SELECT COUNT(*) INTO existe 
+  FROM PILOTO 
+  WHERE nombreP=a_piloto;
+  
+  IF existe = 0 
+  THEN
+    RAISE e_piloto_no_encontrado; 
+  END IF;
+  
+  SELECT codPiloto INTO codigoPiloto
+  FROM PILOTO
+  WHERE nombreP = a_piloto;
+
+  FOR v_rally IN c_rally(codigoPiloto) LOOP
+    dbms_output.put_line('-----------------------------');
+    dbms_output.put_line(v_rally.nombre);
+    dbms_output.put_line('-----------------------------');
+    FOR v_mejorTiempo IN c_mejorTiempo(v_rally.codRally) LOOP
+      dbms_output.put_line(v_mejorTiempo.numeroTramo||'    '||v_mejorTiempo.mejorTiempo);
+    END LOOP;
+  END LOOP;
+  
+EXCEPTION
+  WHEN e_piloto_no_encontrado THEN
+    dbms_output.put_line('No existe el piloto con el nombre '||a_piloto);
+  WHEN OTHERS THEN
+    dbms_output.put_line('Se ha producido un error inesperado.'); 
+END;
+
+
+
+Ejercicio 3.- Diseñar una función que devuelva el nombre del piloto que ha invertido menos tiempo habiendo corrido todos los tramos del rally que se pasa por parámetro (no contemplar los casos de empate y suponer que al menos un corredor ha terminado todos los tramos).
+
+create or replace FUNCTION ganador(p_rally RALLY.nombre%TYPE) RETURN PILOTO.nombreP%TYPE IS
+
+    no_existe EXCEPTION;
+
+    cod_piloto PILOTO.codPiloto%TYPE; 
+    nom_piloto PILOTO.nombreP%TYPE; 
+    cod_rally RALLY.codRally%TYPE; 
+    existe INTEGER;
+    nTramos INTEGER; 
+
+BEGIN
+
+    --Lo primero que hacemos es comprobar si existe el rally que nos pasan por parámetro
+    SELECT COUNT(*) INTO existe
+    FROM RALLY
+    WHERE nombre = p_rally;
+
+    IF existe = 0 
+    THEN
+        RAISE no_existe;
+    END IF;
+
+    --Guardamos el valor del codigo de rally cuyo nombre nos pasan por parámetro
+    SELECT codRally INTO cod_rally
+    FROM RALLY 
+    WHERE nombre = p_rally; 
+
+    --Guardamos el numero de tramos que tiene el rally que nos pasan por parámetro
+    SELECT COUNT(*) INTO nTramos
+    FROM TRAMO
+    WHERE codRally = cod_rally;
+
+    --Guardamos el codigo del piloto que cumpla con los requisitos que nos piden en el enunciado
+    SELECT codPiloto INTO cod_piloto 
+    FROM CORRE C1 
+    WHERE codRally = cod_rally
+    GROUP BY codPiloto
+    HAVING COUNT(*) = nTramos AND SUM(tiempo)
+        <=ALL(SELECT SUM(tiempo)
+              FROM CORRE C2
+              WHERE codRally = cod_rally AND C1.codPiloto <> C2.codPiloto
+              GROUP BY codPiloto
+              HAVING COUNT(*) = 3);
+              
+    --Con el codigo de piloto que hemos obtenido en la consulta anterior podemos obtener el nombre del piloto
+    SELECT nombreP INTO nom_piloto
+    FROM PILOTO
+    WHERE codPiloto = cod_piloto; 
+
+    RETURN nom_piloto;
+
+EXCEPTION
+    WHEN no_existe THEN
+        RETURN 'No existen datos para el ' || p_rally;
+    WHEN OTHERS THEN
+        RETURN 'Error inesperado ...';
+
+END;        
+
+Ejercicio 4.- Crear una función que, pasándole como parámetro el nombre de un rally y de un piloto, con la siguiente cabecera: 
+
+FUNCTION rallyCompletado (p_rally RALLY.nombre%TYPE , p_piloto PILOTO.nombreP%TYPE)
+
+Devuelva el valor 1 si el piloto pasado como parámetro (p_piloto) ha corrido todos los tramos que componen el rally pasado por parámetro (p_rally). En caso contrario debe devolver un 0.
+
+Si el rally o el piloto pasados por parámetro no existen en la Base de Datos, la función devuelve un 2.
+
+
+create or replace FUNCTION rallyCompletado(p_rally RALLY.nombre%TYPE , p_piloto PILOTO.nombreP%TYPE) RETURN NUMBER IS
+
+    cod_piloto PILOTO.codPiloto%TYPE;
+    cod_rally RALLY.codRally%TYPE;
+    existe INTEGER; 
+    nTramos_total INTEGER; 
+    nTramos_corre INTEGER; 
+
+BEGIN
+
+    --Comprobamos que existe el nombre del piloto que nos pasen por parámetro
+    SELECT COUNT(*) INTO existe
+    FROM PILOTO
+    WHERE nombreP = p_piloto;
+
+    IF existe = 0
+    THEN
+        RETURN 2;
+    END IF; 
+
+    --Comprobamos que existe el nombre del rally que nos pasen por parámetro
+    SELECT COUNT(*) INTO existe 
+    FROM RALLY
+    WHERE nombre = p_rally; 
+
+    IF existe = 0
+    THEN
+        RETURN 2;
+    END IF; 
+
+    --Guardamos el codigo del piloto cuyo nombre nos han pasado por parametro
+    SELECT codPiloto INTO cod_piloto
+    FROM PILOTO
+    WHERE nombreP = p_piloto; 
+
+    --Guardamos el codigo del rally cuyo nombre nos han pasado por parametro
+    SELECT codRally INTO cod_rally
+    FROM RALLY
+    WHERE nombre = p_rally; 
+
+    SELECT COUNT(*) INTO nTramos_total
+    FROM TRAMO
+    WHERE codRally = cod_rally; 
+
+    SELECT COUNT(*) INTO nTramos_corre
+    FROM CORRE
+    WHERE codPiloto = cod_piloto AND codRally = cod_rally;
+
+    IF nTramos_total = nTramos_corre
+    THEN
+        RETURN 1;
+    ELSE
+        RETURN 0; 
+    END IF;
+
+END;    

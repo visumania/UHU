@@ -1,0 +1,78 @@
+void Empresa::crearContrato()
+{
+    bool encontrado;
+    int i;
+    long int pDni;
+    int opcion;
+    int pDia , pMes , pAnio;
+    int pMinutosHablados;
+    char* pNombre = new char ;
+    int pPrecioMinuto;
+    char *Nacionalidad = new char ;
+
+
+    cout << "Introduzca dni: ";
+    cin >> pDni;
+
+    encontrado =false;
+    i=0;
+
+    while(i<ncli && !encontrado)
+    {
+        if(clientes[i]->getDni() == pDni)
+            encontrado = true;
+        else i++;
+    }
+
+    if(!encontrado) //Si no encuentra al cliente , lo pedimos por teclado y lo creamos:
+    {
+        cout << "Nombre del cliente: ";
+        cin.get(); cin.getline(pNombre, 20);
+
+        cout << "dia: " ;
+        cin >> pDia;
+
+        cout << "mes: " ;
+        cin >> pMes;
+
+        cout << "anio: " ;
+        cin >>pAnio;
+
+        clientes[ncli] = new Cliente(pDni ,pNombre , Fecha(pDia , pMes , pAnio));
+        ncli++;
+
+    }
+
+    cout << "Tipo de contrato a abrir (1.- Tarifa Plana , 2.- Movil): ";
+    cin >> opcion;
+
+    cout << "Fecha del contrato: " << endl;
+
+    cout << "dia: " ;
+    cin >> pDia;
+
+    cout << "mes: " ;
+    cin >> pMes;
+
+    cout << "anio: " ;
+    cin >> pAnio;
+
+    cout << "minutos hablados:" ;
+    cin >> pMinutosHablados;
+
+    if(opcion == 1)
+        contratos[ncon] = new ContratoTP(pDni , Fecha (pDia , pMes , pAnio) , pMinutosHablados );
+
+    if(opcion == 2)
+    {
+        cout << "Precio minuto: ";
+        cin >> pPrecioMinuto;
+
+        cout << "Nacionalidad: ";
+        cin >> Nacionalidad  ;
+
+        contratos[ncon] = new ContratoMovil(pDni, Fecha(pDia , pMes , pAnio),pPrecioMinuto , pMinutosHablados ,Nacionalidad );
+    }
+
+    ncon++;
+}

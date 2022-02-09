@@ -1,0 +1,151 @@
+# depslib dependency file v1.0
+1543678421 source:g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\main.cpp
+	<cstdlib>
+	<iostream>
+	<windows.h>
+	<iomanip>
+	"Fecha.h"
+	"Cliente.h"
+	"Contrato.h"
+	"ContratoTP.h"
+	"ContratoMovil.h"
+	"Empresa.h"
+
+1543482405 source:g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\cliente.cpp
+	"Cliente.h"
+	<cstring>
+	<iomanip>
+	<sstream>
+	<cstdlib>
+	<string.h>
+
+1543345150 g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\cliente.h
+	<iostream>
+	<string.h>
+	"Fecha.h"
+
+1543345150 g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\fecha.h
+	<iostream>
+
+1543482405 source:g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\contrato.cpp
+	"Contrato.h"
+
+1543685817 source:g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\contratomovil.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<iomanip>
+	"Contrato.h"
+	"ContratoMovil.h"
+
+1543479580 source:g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\contratotp.cpp
+	"Contrato.h"
+	"ContratoTP.h"
+
+1543746886 source:g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\empresa.cpp
+	"Empresa.h"
+	"Cliente.h"
+	<typeinfo>
+	<cstdio>
+	<windows.h>
+	<iomanip>
+
+1543345151 source:g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\fecha.cpp
+	"Fecha.h"
+
+1543665917 g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\contrato.h
+	<iostream>
+	"Fecha.h"
+
+1543665917 g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\contratomovil.h
+	<iostream>
+	"Fecha.h"
+	"Contrato.h"
+
+1543665917 g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\contratotp.h
+	<iostream>
+	"Fecha.h"
+	"Contrato.h"
+
+1543683816 g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\empresa.h
+	"Fecha.h"
+	"Cliente.h"
+	"Contrato.h"
+	"ContratoTP.h"
+	"ContratoMovil.h"
+
+1543748979 source:f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\cliente.cpp
+	"Cliente.h"
+	<cstring>
+	<iomanip>
+	<sstream>
+	<cstdlib>
+	<string.h>
+
+1543345150 f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\cliente.h
+	<iostream>
+	<string.h>
+	"Fecha.h"
+
+1543345150 f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\fecha.h
+	<iostream>
+
+1543482405 source:f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\contrato.cpp
+	"Contrato.h"
+
+1543665917 f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\contrato.h
+	<iostream>
+	"Fecha.h"
+
+1543685817 source:f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\contratomovil.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<iomanip>
+	"Contrato.h"
+	"ContratoMovil.h"
+
+1543665917 f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\contratomovil.h
+	<iostream>
+	"Fecha.h"
+	"Contrato.h"
+
+1543479580 source:f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\contratotp.cpp
+	"Contrato.h"
+	"ContratoTP.h"
+
+1543665917 f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\contratotp.h
+	<iostream>
+	"Fecha.h"
+	"Contrato.h"
+
+1543778666 source:f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\empresa.cpp
+	"Empresa.h"
+	"Cliente.h"
+	<typeinfo>
+	<cstdio>
+	<windows.h>
+	<iomanip>
+
+1543683816 f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\empresa.h
+	"Fecha.h"
+	"Cliente.h"
+	"Contrato.h"
+	"ContratoTP.h"
+	"ContratoMovil.h"
+
+1543345151 source:f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\fecha.cpp
+	"Fecha.h"
+
+1543678421 source:f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte3\main.cpp
+	<cstdlib>
+	<iostream>
+	<windows.h>
+	<iomanip>
+	"Fecha.h"
+	"Cliente.h"
+	"Contrato.h"
+	"ContratoTP.h"
+	"ContratoMovil.h"
+	"Empresa.h"
+

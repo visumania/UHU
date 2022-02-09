@@ -1,0 +1,73 @@
+# depslib dependency file v1.0
+1543343459 source:g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\fecha.cpp
+	"Fecha.h"
+
+1543330319 g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\fecha.h
+	<iostream>
+
+1543343460 source:g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\main.cpp
+	<iostream>
+	"Cliente.h"
+	"Fecha.h"
+	<windows.h>
+
+1543330319 g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\cliente.h
+	<iostream>
+	<string.h>
+	"Fecha.h"
+
+1543343679 source:g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\cliente.cpp
+	"Cliente.h"
+	<cstring>
+	<iomanip>
+	<sstream>
+	<cstdlib>
+	<string.h>
+
+1543782857 source:f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\cliente.cpp
+	"Cliente.h"
+	"Fecha.h"
+	<cstring>
+
+1543782826 f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\cliente.h
+	"Fecha.h"
+	<iostream>
+
+1543782826 f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\fecha.h
+	<iostream>
+
+1543782826 source:f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\fecha.cpp
+	"Fecha.h"
+	<iostream>
+
+1543343460 source:f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\main.cpp
+	<iostream>
+	"Cliente.h"
+	"Fecha.h"
+	<windows.h>
+
+1542914922 source:h:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\cliente.cpp
+	"Cliente.h"
+	<cstring>
+	<iomanip>
+	<sstream>
+	<cstdlib>
+	<string.h>
+
+1542901685 h:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\cliente.h
+	<iostream>
+	<string.h>
+	"Fecha.h"
+
+1542899979 h:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\fecha.h
+	<iostream>
+
+1543021085 source:h:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\fecha.cpp
+	"Fecha.h"
+
+1542902487 source:h:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_1_parte1\main.cpp
+	<iostream>
+	"Cliente.h"
+	"Fecha.h"
+	<windows.h>
+

@@ -1,0 +1,41 @@
+#include "ContratoMovil.h"
+#include <cstring>
+#include <iomanip>
+
+ContratoMovil::ContratoMovil(long int dni, Fecha F, float precio, int minutos, char* origen):Contrato(dni, F)
+{
+    this->precioMinuto = precio;
+    this->minutosHablados = minutos;
+
+    this->Nacionalidad = new char[strlen(origen)+1];
+    strcpy(this->Nacionalidad, origen);
+}
+
+ContratoMovil::~ContratoMovil()
+{
+    delete [] Nacionalidad;
+    Nacionalidad = NULL;
+}
+
+ContratoMovil::ContratoMovil(const ContratoMovil &C):Contrato(C.getDniContrato(), C.getFechaContrato())
+{
+    this->precioMinuto = C.getPrecioMinuto();
+
+    this->Nacionalidad = new char[strlen(C.getNacionalidad())+1];
+    strcpy(this->Nacionalidad, C.getNacionalidad());
+    this->minutosHablados = C.getMinutosHablados();
+}
+
+void ContratoMovil::ver()
+{
+    Contrato::ver();
+    cout << " " << minutosHablados << "m, " << getNacionalidad() << " " << getPrecioMinuto() << "$";
+}
+
+void ContratoMovil::setNacionalidad(char* nueva_nacionalidad)
+{
+    delete [] Nacionalidad;
+
+    this->Nacionalidad = new char[strlen(nueva_nacionalidad)+1];
+    strcpy(this->Nacionalidad, nueva_nacionalidad);
+}

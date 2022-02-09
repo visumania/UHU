@@ -1,0 +1,257 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+Ejercicio5.-.exe -- emu8086 assembler version: 4.08  
+ 
+[ 20/11/2019  --  18:13:03 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       data segment
+[   2]        :                                       
+[   3]    0000: 05 00 00 00 00 00 00                  CADENA      DB 5, 0, 0, 0, 0, 0, 0
+[   4]    0007: 08 04 02 01                           PESO        DB 1000b,100b,10b,1b
+[   5]    000B: 00                                    VALOR_CO2   DB 0
+[   6]    000C: 2B                                    SIGNO_CO2   DB '+'
+[   7]    000D: 00                                    VALOR_EXZ   DB 0
+[   8]    000E: 2B                                    SIGNO_EXZ   DB '+'
+[   9]        :                                       
+[  10]        :                                       ends
+[  11]        :                                       
+[  12]        :                                       stack segment
+[  13]    0010: 00 00 00 00 00 00 00 00 00 00 00 00   dw   128  dup(0)
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00                         
+[  14]        :                                       ends
+[  15]        :                                       
+[  16]        :                                       code segment
+[  17]    0110:                                       start:
+[  18]        :                                       
+[  19]        :                                       ;Inicializar el segmento de datos
+[  20]    0110: B8 00 00                              MOV AX, SEG CADENA
+[  21]    0113: 8E D8                                 MOV DS, AX
+[  22]        :                                       
+[  23]        :                                       
+[  24]        :                                       ;Leer por teclado
+[  25]    0115: BA 00 00                              MOV DX, OFFSET CADENA
+[  26]    0118: B4 0A                                 MOV AH, 0Ah
+[  27]    011A: CD 21                                 INT 21h
+[  28]        :                                       
+[  29]        :                                       ;Cambiar caracteres ASCII por los numericos correspondientes
+[  30]    011C: 80 2E 02 00 30                        SUB CADENA[2], 30h
+[  31]    0121: 80 2E 03 00 30                        SUB CADENA[3], 30h
+[  32]    0126: 80 2E 04 00 30                        SUB CADENA[4], 30h
+[  33]    012B: 80 2E 05 00 30                        SUB CADENA[5], 30h
+[  34]        :                                       
+[  35]        :                                       
+[  36]        :                                       ;Calcular el complemento a 2
+[  37]        :                                       ;Evaluar si es positivo o no
+[  38]    0130: 80 3E 02 00 01                        CMP CADENA[2], 1
+[  39]    0135: 74 26                                 JE ESNEGATIVO:
+[  40]        :                                       ;No es negativo luego
+[  41]    0137: BB 00 00                              MOV BX, 0
+[  42]        :                                       
+[  43]    013A: B4 00                                 MOV AH, 00h
+[  44]    013C: A0 03 00                              MOV AL, CADENA[3]
+[  45]    013F: F6 26 08 00                           MUL PESO[1]
+[  46]    0143: 03 D8                                 ADD BX, AX
+[  47]        :                                       
+[  48]    0145: B4 00                                 MOV AH, 00h
+[  49]    0147: A0 04 00                              MOV AL, CADENA[4]
+[  50]    014A: F6 26 09 00                           MUL PESO[2]
+[  51]    014E: 03 D8                                 ADD BX, AX
+[  52]        :                                       
+[  53]    0150: B4 00                                 MOV AH, 00h
+[  54]    0152: A0 05 00                              MOV AL, CADENA[5]
+[  55]    0155: F6 26 0A 00                           MUL PESO[3]
+[  56]    0159: 03 D8                                 ADD BX, AX
+[  57]        :                                       
+[  58]    015B: EB 35                                 JMP FINALIZAR
+[  59]        :                                       
+[  60]    015D:                                       ESNEGATIVO:
+[  61]        :                                       ;Es negativo, lo invierto, lo indico y le sumo uno
+[  62]    015D: BB 01 00                              MOV BX, 1
+[  63]    0160: B4 00                                 MOV AH, 00h
+[  64]        :                                       
+[  65]    0162: A0 03 00                              MOV AL, CADENA[3]
+[  66]    0165: F6 D0                                 NOT AL
+[  67]    0167: 24 01                                 AND AL, 00000001b
+[  68]    0169: F6 26 08 00                           MUL PESO[1]
+[  69]    016D: 03 D8                                 ADD BX, AX
+[  70]        :                                       
+[  71]    016F: B4 00                                 MOV AH, 00h
+[  72]    0171: A0 04 00                              MOV AL, CADENA[4]
+[  73]    0174: F6 D0                                 NOT AL
+[  74]    0176: 24 01                                 AND AL, 00000001b
+[  75]    0178: F6 26 09 00                           MUL PESO[2]
+[  76]    017C: 03 D8                                 ADD BX, AX
+[  77]        :                                       
+[  78]    017E: B4 00                                 MOV AH, 00h
+[  79]    0180: A0 05 00                              MOV AL, CADENA[5]
+[  80]    0183: F6 D0                                 NOT AL
+[  81]    0185: 24 01                                 AND AL, 00000001b
+[  82]    0187: F6 26 0A 00                           MUL PESO[3]
+[  83]    018B: 03 D8                                 ADD BX, AX
+[  84]        :                                       
+[  85]    018D: C6 06 0C 00 2D                        MOV SIGNO_CO2, '-'
+[  86]        :                                       
+[  87]    0192:                                       FINALIZAR:
+[  88]        :                                       
+[  89]    0192: 88 1E 0B 00                           MOV VALOR_CO2, BL
+[  90]        :                                       
+[  91]        :                                       ;Calcular exceso z con z = 2^(n-1) = 8
+[  92]        :                                       ;Se podria hacer pasandolo a complemento a 2 negando el bit n-1 pero lo voy a hacer un poco mas divertido
+[  93]    0196: BB 00 00                              MOV BX, 0
+[  94]    0199: B4 00                                 MOV AH, 0
+[  95]        :                                       
+[  96]    019B: A0 02 00                              MOV AL, CADENA[2]
+[  97]    019E: F6 26 07 00                           MUL PESO[0]
+[  98]    01A2: 8B D8                                 MOV BX, AX
+[  99]        :                                       
+[ 100]    01A4: A0 03 00                              MOV AL, CADENA[3]
+[ 101]    01A7: F6 26 08 00                           MUL PESO[1]
+[ 102]    01AB: 03 D8                                 ADD BX, AX
+[ 103]        :                                       
+[ 104]    01AD: A0 04 00                              MOV AL, CADENA[4]
+[ 105]    01B0: F6 26 09 00                           MUL PESO[2]
+[ 106]    01B4: 03 D8                                 ADD BX, AX
+[ 107]        :                                       
+[ 108]    01B6: A0 05 00                              MOV AL, CADENA[5]
+[ 109]    01B9: F6 26 0A 00                           MUL PESO[3]
+[ 110]    01BD: 03 D8                                 ADD BX, AX
+[ 111]        :                                       
+[ 112]        :                                       ;Compruebo si es negativo
+[ 113]    01BF: 80 FB 08                              CMP BL, 8
+[ 114]    01C2: 72 05                                 JB NEGATIVO_EXZ
+[ 115]        :                                       
+[ 116]        :                                       ;Si no es negativo, solo le quito el exceso
+[ 117]    01C4: 80 EB 08                              SUB BL, 8
+[ 118]        :                                       
+[ 119]    01C7: EB 0B                                 JMP FINALIZAR_EXZ
+[ 120]        :                                       
+[ 121]        :                                       
+[ 122]    01C9:                                       NEGATIVO_EXZ:
+[ 123]        :                                       ;Bit de signo y resta de 8-BL
+[ 124]    01C9: 8A FB                                 MOV BH, BL
+[ 125]    01CB: B3 08                                 MOV BL, 8
+[ 126]    01CD: 2A DF                                 SUB BL, BH
+[ 127]        :                                       
+[ 128]    01CF: C6 06 0E 00 2D                        MOV SIGNO_EXZ, '-'
+[ 129]        :                                       
+[ 130]    01D4:                                       FINALIZAR_EXZ:
+[ 131]        :                                       
+[ 132]    01D4: 88 1E 0D 00                           MOV VALOR_EXZ, BL
+[ 133]        :                                       
+[ 134]        :                                       
+[ 135]        :                                       ;Mostrar el resultado por pantalla
+[ 136]        :                                       ;Mover el segmento a la memoria de video
+[ 137]    01D8: B8 00 B8                              MOV AX, 0B800h
+[ 138]    01DB: 8E C0                                 MOV ES, AX
+[ 139]        :                                       
+[ 140]        :                                       ;Fondo negro y letras blancas
+[ 141]    01DD: B4 0F                                 MOV AH, 00001111b
+[ 142]        :                                       
+[ 143]        :                                       ;Mostrar complemento a 2
+[ 144]    01DF: B4 0F                                 MOV AH, 00001111b
+[ 145]    01E1: B0 43                                 MOV AL, 'C'
+[ 146]    01E3: 26 A3 A0 00                           MOV ES:[160], AX
+[ 147]    01E7: B0 32                                 MOV AL, '2'
+[ 148]    01E9: 26 A3 A2 00                           MOV ES:[162], AX
+[ 149]    01ED: B0 3A                                 MOV AL, ':'
+[ 150]    01EF: 26 A3 A4 00                           MOV ES:[164], AX
+[ 151]    01F3: A0 0C 00                              MOV AL, SIGNO_CO2
+[ 152]    01F6: 26 A3 A8 00                           MOV ES:[168], AX
+[ 153]    01FA: A0 0B 00                              MOV AL, VALOR_CO2
+[ 154]    01FD: 04 30                                 ADD AL, 30h
+[ 155]    01FF: 26 A3 AA 00                           MOV ES:[170], AX
+[ 156]        :                                       
+[ 157]        :                                       ;Mostrar exceso z
+[ 158]    0203: B4 0F                                 MOV AH, 00001111b
+[ 159]    0205: B0 45                                 MOV AL, 'E'
+[ 160]    0207: 26 A3 40 01                           MOV ES:[320], AX
+[ 161]    020B: B0 58                                 MOV AL, 'X'
+[ 162]    020D: 26 A3 42 01                           MOV ES:[322], AX
+[ 163]    0211: B0 5A                                 MOV AL, 'Z'
+[ 164]    0213: 26 A3 44 01                           MOV ES:[324], AX
+[ 165]    0217: B0 3A                                 MOV AL, ':'
+[ 166]    0219: 26 A3 46 01                           MOV ES:[326], AX
+[ 167]    021D: A0 0E 00                              MOV AL, SIGNO_EXZ
+[ 168]    0220: 26 A3 48 01                           MOV ES:[328], AX
+[ 169]    0224: A0 0D 00                              MOV AL, VALOR_EXZ
+[ 170]    0227: 04 30                                 ADD AL, 30h
+[ 171]    0229: 26 A3 4A 01                           MOV ES:[330], AX
+[ 172]        :                                       
+[ 173]        :                                       
+[ 174]        :                                       ;Devolver el control al OS
+[ 175]    022D: B8 00 4C                              MOV AX, 4C00h
+[ 176]    0230: CD 21                                 INT 21h
+[ 177]        :                                       
+[ 178]        :                                       ends
+[ 179]        :                                       
+[ 180]        :                                       end start
+[ 181]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 32      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 03      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 01      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 9B      -   check sum (l.byte)
+0013: DD      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 11      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 11      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

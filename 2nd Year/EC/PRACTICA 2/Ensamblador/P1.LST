@@ -1,0 +1,212 @@
+Turbo Assembler	 Version 3.2	    02/26/20 19:56:22	    Page 1
+P1.asm
+
+
+
+      1	0000			     .MODEL SMALL
+      2	0000			     .data
+      3
+      4	0000  05 00 00 00 00 00	00   CADENA   DB 5,0,0,0,0,0,0 ; (nummax+1)+num	real caracteres	tecleados+4 bits +cR
+      5
+      6	0007  08 04 02 01	     PESO     DB 8,4,2,1	     ;con db reservamos	posiciones tipo	byte
+      7
+      8	000B  00		     VALOR_B  DB 0
+      9
+     10	000C  00		     VALOR_C1 DB 0
+     11
+     12	000D  2B		     SIGNO_C1 DB '+'
+     13
+     14
+     15
+     16
+     17
+     18	000E			     .code
+     19
+     20
+     21	0000  B8 0000s		       MOV AX,SEG CADENA     ;inicializo el segmento de	datos
+     22	0003  8E D8		       MOV DS,AX
+     23
+     24	0005  BA 0000r		       MOV DX,OFFSET CADENA    ;indica la posicion de memoria a	partir de la que se almacenara la   +
+     25				     cadena
+     26	0008  B4 0A		       MOV AH,0Ah		;lee por teclado hasta pulsar intro
+     27	000A  CD 21		       INT 21h
+     28
+     29
+     30	000C  80 2E 0002r 30	       SUB CADENA[2],48
+     31	0011  80 2E 0003r 30	       SUB CADENA[3],48	  ;cambiamos caracter ascii por	los numeros 48 es el codigo ascii del 0
+     32	0016  80 2E 0004r 30	       SUB CADENA[4],48
+     33	001B  80 2E 0005r 30	       SUB CADENA[5],48
+     34
+     35
+     36	0020  B4 30		       MOV AH,48	      ;calculamos el valor decimal
+     37
+     38	0022  A0 0002r		       MOV AL,CADENA[2]
+     39	0025  F6 26 0007r	       MUL PESO[0]
+     40	0029  8B D8		       MOV BX,AX
+     41
+     42	002B  A0 0003r		       MOV AL,CADENA[3]
+     43	002E  F6 26 0008r	       MUL PESO[1]
+     44	0032  03 D8		       ADD BX,AX
+     45
+     46	0034  A0 0004r		       MOV AL,CADENA[4]
+     47	0037  F6 26 0009r	       MUL PESO[2]
+     48	003B  03 D8		       ADD BX,AX
+     49
+     50	003D  A0 0005r		       MOV AL,CADENA[5]
+     51	0040  F6 26 000Ar	       MUL PESO[3]
+     52	0044  03 D8		       ADD BX,AX
+     53
+     54	0046  88 1E 000Br	       MOV VALOR_B,BL
+     55
+     56
+     57	004A  80 3E 0002r 01	       CMP CADENA[2],1	;Calculamos el c1 pero vemos primero si	es positivo o no con el	cmp
+Turbo Assembler	 Version 3.2	    02/26/20 19:56:22	    Page 2
+P1.asm
+
+
+
+     58	004F  74 03		       JE  ESNEG    ;je:salto si es equal
+     59	0051  EB 24 90		       JMP FINALIZA ;si	no es neg finalizo
+     60
+     61	0054			       ESNEG:	;si es negativo	tengo que invertirlo
+     62
+     63	0054  A0 0003r		       MOV AL,CADENA[3]
+     64	0057  F6 D0		       NOT AL
+     65	0059  24 01		       AND AL,00000001b
+     66	005B  A2 0003r		       MOV CADENA[3],AL
+     67
+     68	005E  A0 0004r		       MOV AL,CADENA[4]
+     69	0061  F6 D0		       NOT AL
+     70	0063  24 01		       AND AL,00000001b
+     71	0065  A2 0004r		       MOV CADENA[4],AL
+     72
+     73	0068  A0 0005r		       MOV AL,CADENA[5]
+     74	006B  F6 D0		       NOT AL
+     75	006D  24 01		       AND AL,00000001b
+     76	006F  A2 0005r		       MOV CADENA[5],AL
+     77
+     78	0072  C6 06 000Dr 2D	       MOV SIGNO_C1,'-'
+     79
+     80	0077			       FINALIZA:
+     81
+     82	0077  BB 0000		       MOV BX,0
+     83	007A  B4 30		       MOV AH,48
+     84	007C  A0 0003r		       MOV AL,CADENA[3]
+     85	007F  F6 26 0008r	       MUL PESO[1]
+     86	0083  03 D8		       ADD BX,AX
+     87
+     88	0085  B4 30		       MOV AH,48
+     89	0087  A0 0004r		       MOV AL,CADENA[4]
+     90	008A  F6 26 0009r	       MUL PESO[2]
+     91	008E  03 D8		       ADD BX,AX
+     92
+     93	0090  B4 30		       MOV AH,48
+     94	0092  A0 0005r		       MOV AL,CADENA[5]
+     95	0095  F6 26 000Ar	       MUL PESO[3]
+     96	0099  03 D8		       ADD BX,AX
+     97
+     98	009B  88 1E 000Cr	       MOV VALOR_C1,BL
+     99
+    100					; Mostramos por	pantalla
+    101					 ;Mover	el segmento a la memoria de video
+    102	009F  B8 B800			 MOV AX, 0B800h
+    103	00A2  8E C0			 MOV ES, AX
+    104
+    105					 ;Fondo	negro y	letras rojas
+    106	00A4  B4 0C			 MOV AH, 00001100b
+    107
+    108					 ;Mostrar binario natural
+    109	00A6  B0 42			 MOV AL, 'B'
+    110	00A8  26: A3 00A0		 MOV ES:[160], AX     ;160 PRIMERA FILA	320 SEGUNDA...
+    111	00AC  B0 49			 MOV AL, 'I'
+    112	00AE  26: A3 00A2		 MOV ES:[162], AX
+    113	00B2  B0 4E			 MOV AL, 'N'
+    114	00B4  26: A3 00A4		 MOV ES:[164], AX
+Turbo Assembler	 Version 3.2	    02/26/20 19:56:22	    Page 3
+P1.asm
+
+
+
+    115	00B8  B0 41			 MOV AL, 'A'
+    116	00BA  26: A3 00A6		 MOV ES:[166], AX
+    117	00BE  B0 52			 MOV AL, 'R'
+    118	00C0  26: A3 00A8		 MOV ES:[168], AX
+    119	00C4  B0 49			 MOV AL, 'I'
+    120	00C6  26: A3 00AA		 MOV ES:[170], AX
+    121	00CA  B0 4F			 MOV AL, 'O'
+    122	00CC  26: A3 00AC		 MOV ES:[172], AX
+    123	00D0  B0 3A			 MOV AL, ':'
+    124	00D2  26: A3 00AE		 MOV ES:[174], AX
+    125
+    126
+    127
+    128					 ;Poner	los digitos
+    129	00D6  B4 00			 MOV AH, 0	     ;PONGO AH A 0 Y METO EL VALOR
+    130							      ;	EN BINARIO
+    131	00D8  A0 000Br			 MOV AL, VALOR_B
+    132	00DB  B3 0A			 MOV BL, 10d
+    133	00DD  F6 F3			 DIV BL
+    134	00DF  04 30			 ADD AL, 30h
+    135	00E1  26: A2 00B0		 MOV ES:[176], AL      ;PRIMER DIGITO
+    136	00E5  80 C4 30			 ADD AH, 30h
+    137	00E8  26: 88 26	00B2		 MOV ES:[178], AH     ;MUETSRA SEGUNDO DIGITO
+    138
+    139					 ;Mostrar complemento a	1
+    140	00ED  B4 06			 MOV AH, 110b
+    141	00EF  B0 43			 MOV AL, 'C'
+    142	00F1  26: A3 0140		 MOV ES:[320], AX
+    143	00F5  B0 31			 MOV AL, '1'
+    144	00F7  26: A3 0142		 MOV ES:[322], AX
+    145	00FB  B0 3A			 MOV AL, ':'
+    146	00FD  26: A3 0144		 MOV ES:[324], AX
+    147	0101  A0 000Dr			 MOV AL, SIGNO_C1
+    148	0104  26: A3 0148		 MOV ES:[328], AX
+    149	0108  A0 000Cr			 MOV AL, VALOR_C1
+    150	010B  04 30			 ADD AL, 30h
+    151	010D  26: A3 014A		 MOV ES:[330], AX
+    152
+    153
+    154
+    155					 ;Devolver el control al OS
+    156	0111  B8 4C00			 MOV AX, 4C00h
+    157	0114  CD 21			 INT 21h
+    158
+    159				      END
+Turbo Assembler	 Version 3.2	    02/26/20 19:56:22	    Page 4
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "02/26/20"
+??FILENAME			  Text	 "P1	  "
+??TIME				  Text	 "19:56:22"
+??VERSION			  Number 0314
+@32BIT				  Text	 0
+@CODE				  Text	 _TEXT
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 P1
+@INTERFACE			  Text	 00H
+@MODEL				  Text	 2
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+CADENA				  Byte	 DGROUP:0000
+ESNEG				  Near	 _TEXT:0054
+FINALIZA			  Near	 _TEXT:0077
+PESO				  Byte	 DGROUP:0007
+SIGNO_C1			  Byte	 DGROUP:000D
+VALOR_B				  Byte	 DGROUP:000B
+VALOR_C1			  Byte	 DGROUP:000C
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  000E Word	  Public  DATA
+_TEXT				  16  0116 Word	  Public  CODE
+

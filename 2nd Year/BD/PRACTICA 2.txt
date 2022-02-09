@@ -1,0 +1,278 @@
+Pr‡ctica 2: 
+
+WRC 1:  Muestra todos los datos de los rallies que se celebren antes del 1 de octubre de 2009, en un país que tenga más de 6 caracteres de longitud.
+
+SELECT *
+FROM wrc.rally
+WHERE fecha < to_date('01/10/2009','dd/mm/yyyy') AND pais like '_______%';
+
+WRC 2: Muestra el nombre de todos los pilotos y sus copilotos, ordenados alfabŽticamente por el nombre del piloto, pero s—lo de aquellos cuyo nombre no comience por M
+
+SELECT nombreP , nombreCop
+FROM WRC.piloto
+WHERE nombreP NOT LIKE 'M%'
+ORDER BY nombreP;
+
+WRC 3: Muestra el nombre de los pilotos y grupo sangu’neo, pero s—lo de aquellos cuyo nombre empiece por M y su grupo sangu’neo tenga 2 caracteres
+
+SELECT nombreP, grupoS
+FROM WRC.piloto
+WHERE nombreP LIKE 'M%' AND grupoS LIKE '__';
+
+WRC 4: Muestra los nombres y fechas de celebraci—n de los ralles que se corran en la segunda mitad del mes de Agosto
+
+SELECT nombre, fecha
+FROM WRC.rally
+WHERE EXTRACT(DAY FROM fecha)>15 AND EXTRACT(MONTH FROM fecha)=8 ;
+
+TambiŽn se puede hacer de la siguiente manera: 
+
+SELECT nombre , fecha 
+FROM WRC.rally
+WHERE fecha <= '31/08/2009' AND fecha >= '15/08/2009'
+
+WRC 5: Muestra los números de tramo con dificultad B del Rally de Montecarlo
+
+SELECT T.numeroTramo
+FROM WRC.rally R NATURAL JOIN WRC.tramo T
+WHERE T.dificultad = 'B' AND R.nombre = 'Rally de Montecarlo';
+
+
+
+WRC 6: Muestra el nombre de los pilotos con RH negativo junto con la marca y modelo de su coche, siempre que la cilindrada de este no supere los 2500cc
+
+SELECT P.nombreP , C.marca, C.modelo 
+FROM WRC.piloto P INNER JOIN WRC.coche C ON P.coche = C.codCoche     
+WHERE P.rh = '-' AND C.cilindrada > 2500;
+
+WRC 7: Muestra el nombre de todos los copilotos que participan en el Rally de Catalu–a y que sufran una penalizaci—n de m‡s de 10 segundos
+
+SELECT P.nombreCop
+FROM (WRC.piloto P NATURAL JOIN WRC.participa PA) NATURAL JOIN WRC.rally R
+WHERE R.nombre = 'Rally de Catalu–a' AND PA.penalizacion > 10;
+
+WRC 8: Muestra un listado con el nombre de los pilotos, el nombre de los rallies en los que ha participado y fecha de celebraci—n en dicho rally, pero s—lo de aquellos rallies en los que el piloto haya tenido menos de 20 segundos de penalizaci—n y se celebrasen en los meses de Agosto o Noviembre
+
+SELECT nombreP, nombre, fecha
+FROM (WRC.rally INNER JOIN WRC.participa USING(codRally)) INNER JOIN WRC.piloto USING (codPiloto)
+WHERE penalizacion < 20 AND EXTRACT(MONTH FROM fecha) IN (8,11);
+
+-TambiŽn se puede hacer de la siguiente forma: 
+
+SELECT PI.nombreP , R.nombre , R.fecha
+FROM WRC.piloto PI INNER JOIN WRC.participa PA USING (codPiloto) INNER JOIN WRC.rally R USING (codRally)
+WHERE PA.penalizacion < 20 AND EXTRACT(MONTH FROM fecha) IN(8,11);
+
+WRC 9: Muestra un listado con el nombre y la fecha de celebración de aquellos rallies en los que haya participado algún piloto con un coche de la marca Citroen
+
+SELECT DISTINCT R.nombre, R.fecha
+FROM (((WRC.piloto P INNER JOIN WRC.coche C ON C.codCoche = P.coche)
+      INNER JOIN WRC.participa PAR USING (codPiloto)) INNER JOIN WRC.rally R USING (codRally))
+WHERE C.marca = 'Citroen';
+
+-TambiŽn se puede hacer as’: 
+
+SELECT DISTINCT R.nombre , R.fecha
+FROM WRC.rally R INNER JOIN WRC.participa PA USING(codRally) INNER JOIN WRC.piloto PI USING(codPiloto) INNER JOIN WRC.coche C ON PI.coche = C.codCoche
+WHERE C.marca = 'Citroen';
+
+WRC 10: Utilizando una subconsulta, muestra el nombre de los rallies en los que haya corrido algún vehículo en los que los copilotos no fuesen ni Marc Martí (con acento) ni Timo Rautiainen
+
+SELECT DISTINCT R.nombre
+FROM WRC.rally R INNER JOIN WRC.participa P USING (codRally)
+WHERE P.codPiloto NOT IN
+(SELECT codPiloto 
+FROM WRC.piloto
+WHERE nombreCop IN ('Marc Martí', 'Timo Rautiainen')
+);
+
+WRC 11: Muestra el nombre de los pilotos que hayan participado en el Rally de Cataluña pilotando un Subaru y hayan acumulado menos de 10 segundos de penalización
+
+-De esta manera tambiŽn funciona pero no estamos usando subconsultas ni consultas anidadas:
+
+SELECT PI.nombreP
+FROM WRC.piloto PI INNER JOIN WRC.participa PA USING (codPiloto) INNER JOIN WRC.rally R USING (codRally) INNER JOIN WRC.coche C ON C.codCoche = PI.coche
+WHERE PA.penalizacion < 10 AND R.nombre = 'Rally de Catalu–a' AND C.marca = 'Subaru';
+
+-La supuestamente correcta manera de hacerlo es:
+
+SELECT PI.nombreP
+FROM WRC.piloto PI
+WHERE PI.codPiloto IN (SELECT PA.codPiloto
+                        FROM WRC.participa PA 
+                        WHERE PA.penalizacion < 10 AND PA.codRally = (SELECT RA.codRally
+                                                                        FROM WRC.rally RA
+                                                                        WHERE RA.nombre = 'Rally de Catalu–a'))
+      AND PI.coche IN (SELECT C.codCoche
+                        FROM WRC.coche C
+                        WHERE C.marca = 'Subaru');
+                
+
+WRC 12: Muestra un listado con el nombre de los rallies en los que haya corrido algún piloto con un grupo sanguíneo A y rh +
+
+SELECT DISTINCT R.nombre
+FROM WRC.rally R INNER JOIN WRC.participa P USING(codRally)
+WHERE P.codPiloto IN 
+(SELECT codPiloto
+FROM WRC.piloto
+WHERE grupoS = 'A' AND rh = '+'
+);
+
+WRC 13: Muestra el nombre de los pilotos que hayan participado en alguno de los rallies que tengan alguno de sus tramos etiquetado como dificultad C
+
+SELECT PI.nombreP
+FROM WRC.piloto PI INNER JOIN WRC.participa PA USING (codPiloto)
+WHERE PA.codRally IN (SELECT codRally 
+                        FROM WRC.tramo
+                        WHERE dificultad = 'C')
+
+WRC 14: Usando subconsultas, devuelve el nombre de los pilotos que tengan más puntos que todos los pilotos que corren con Subaru
+
+SELECT nombreP
+FROM WRC.piloto
+WHERE puntos > ALL( SELECT PI.puntos
+                    FROM WRC.piloto PI INNER JOIN WRC.coche C ON PI.coche = C.codCoche
+                    WHERE C.marca = 'Subaru');
+
+WRC 15: Usando subconsultas, devuelve el modelo de coche, el nombre rally y el nombre del piloto para aquellos pilotos que hayan participado en un rally que tenga algún tramo de menos de 30 kms 
+
+SELECT PI.nombreP , C.modelo, R.nombre 
+FROM WRC.rally R INNER JOIN WRC.participa PA USING(codRally) INNER JOIN WRC.piloto PI USING (codPiloto) INNER JOIN WRC.coche C ON C.codCoche = PI.coche
+WHERE codRally IN(SELECT T.codRally
+                    FROM WRC.tramo T
+                    WHERE T.totalKms < 30);
+
+WRC 16: Utilizando consultas correlacionadas, muestra el nombre de los pilotos que no han corrido el rally de Cataluña
+
+SELECT nombreP
+FROM WRC.piloto PI
+WHERE NOT EXISTS (SELECT R.nombre
+                    FROM WRC.rally R INNER JOIN WRC.participa PA USING (codRally)
+                    WHERE R.nombre = 'Rally de Catalu–a' AND PA.codPiloto = PI.codPiloto);
+
+WRC 17: Muestra el nombre de los pilotos que tengan más puntos que algún otro piloto que conduzca un coche con igual o menos cilindrada
+
+SELECT PI.nombreP
+FROM WRC.piloto PI INNER JOIN WRC.coche C ON PI.coche = C.codCoche
+WHERE EXISTS
+        (SELECT *
+        FROM WRC.piloto P INNER JOIN WRC.coche CO ON P.coche = CO.codCoche
+        WHERE PI.puntos > P.puntos AND C.cilindrada >= CO.cilindrada);
+
+WRC 18: Muestra el nombre de los pilotos que hayan corrido el Rally de Cataluña pero no el de Gran Bretaña
+
+SELECT PI.nombreP
+FROM WRC.piloto PI
+WHERE EXISTS (SELECT *
+                FROM WRC.participa INNER JOIN WRC.rally USING (codRally)
+                WHERE PI.codPiloto = codPiloto AND nombre = 'Rally de Catalu–a')
+      AND NOT EXISTS (SELECT *
+                      FROM WRC.participa INNER JOIN WRC.rally USING (codRally)
+                      WHERE PI.codPiloto = codPiloto AND nombre = 'Rally RAC de Gran Breta–a');
+
+
+WRC 19: Muestra el nombre de los pilotos que hayan corrido algún tramo de dificultad A, pero no hayan conseguido finalizar algún tramo de menos de 30 kms
+
+SELECT PI.nombreP
+FROM WRC.piloto PI
+WHERE EXISTS (SELECT *
+              FROM WRC.corre INNER JOIN WRC.tramo USING (codRally , numeroTramo)
+              WHERE PI.codPiloto = codPiloto AND dificultad = 'A')
+      AND NOT EXISTS (SELECT *
+                      FROM WRC.corre INNER JOIN WRC.tramo USING (codRally , numeroTramo)
+                      WHERE  PI.codPiloto = codPiloto AND  totalKms < 30);          
+
+WRC 20: Muestra la marca y el modelo de los coches que tienen una cilindrada mayor que, al menos, otros dos coches
+
+-Forma 1 que es la que se supone que deber’amos hacerlo si nos lo piden dado solo este nivel de temario:
+
+SELECT C1.marca , C1.modelo
+FROM WRC.coche C1
+WHERE EXISTS (SELECT *
+              FROM WRC.coche C2
+              WHERE C1.codCoche <> C2.codCoche AND C1.cilindrada > C2.cilindrada AND EXISTS (SELECT *
+                                                                                             FROM WRC.coche C3
+                                                                                             WHERE C3.codCoche <> C2.codCoche AND C3.codCoche <> C1.codCoche AND C1.cilindrada > C3.cilindrada));
+
+
+-Forma 2 , usando el Count , pero esto se ve mas adelante en el temario
+
+SELECT marca , modelo
+FROM WRC.coche c1
+WHERE (SELECT count(*)
+       FROM WRC.coche C2
+       WHERE (C1.cilindrada > C2.cilindrada)) >= 2;
+
+WRC 21: Muestra el nombre de los pilotos que hayan corrido todos los tramos que ha finalizado Marcus Gronholm en el Rally de  Montecarlo (excluyendo, claro, al propio Marcus Gronholm)
+
+-No se hace porque no entra la divisi—n en el examen
+
+WRC 22: Muestra el nombre de los rallies junto con el número de tramos de cada uno de ellos
+
+SELECT nombre , COUNT(*) AS Num_Tramos
+FROM WRC.rally R INNER JOIN WRC.tramo T USING (codRally)
+GROUP BY nombre;
+
+WRC 23: Para cada rally, muestra el nombre del rally junto con el número del tramo y los tiempos máximo y mínimo invertidos en dicho tramo, ordenados, dentro de cada rally, desde el menos al mayor tiempo mínimo invertido.
+
+SELECT nombre , numeroTramo , MAX(tiempo) AS Tiempo_M‡ximo , MIN(tiempo) AS Tiempo_M’nimo 
+FROM WRC.rally R INNER JOIN WRC.tramo T USING(codRally) INNER JOIN WRC.corre CO USING(codRally , numeroTramo)
+GROUP BY nombre , numeroTramo
+ORDER BY nombre , Tiempo_M’nimo;
+
+
+WRC 24: Para cada rally, muestra el nombre del rally junto con el nombre de los pilotos que hayan corrido algún tramo de dicho rally y el tiempo total invertido por cada piloto en cada rally (sin restar penalización)
+
+SELECT nombre , nombreP , SUM(tiempo) AS Tiempo_Total_Invertido
+FROM WRC.rally R INNER JOIN WRC.corre C USING (codRally) INNER JOIN WRC.piloto P USING (codPiloto)
+GROUP BY nombre , nombreP
+ORDER BY nombre;
+
+-O as’ tambien es v‡lido : 
+
+SELECT nombre , nombreP , SUM(tiempo) AS Tiempo_Total_Invertido
+FROM WRC.rally  INNER JOIN WRC.corre  USING (codRally) INNER JOIN WRC.piloto  USING (codPiloto)
+GROUP BY nombre , nombreP
+ORDER BY nombre;
+
+
+WRC 25: Muestra el nombre del piloto, el número de tramos completados y el total de kilómetros de cada piloto que ha corrido en el Rally de Montecarlo ordenados de mayor a menos kilometraje recorrido
+
+SELECT PI.nombreP , COUNT(*) AS NumeroDeTramosCompletados, SUM(T.totalKms) AS TotalKilometrosRecorridos
+FROM WRC.piloto PI INNER JOIN WRC.corre C USING(codPiloto) INNER JOIN WRC.tramo T USING(codRally , numeroTramo) INNER JOIN WRC.rally R USING(codRally)
+WHERE R.nombre = 'Rally de Montecarlo'
+GROUP BY PI.nombreP
+ORDER BY TotalKilometrosRecorridos DESC;
+
+WRC 26: Para cada rally cuyo total de kilómetros de recorrido sea mayor que 100, mostrar su código y su media de kilómetros
+
+SELECT codRally ,AVG(totalKms) AS MediaDeKilometrosRecorridos
+FROM WRC.rally  INNER JOIN WRC.tramo  USING(codRally)
+GROUP BY codRally
+HAVING SUM(totalKms)>100;
+
+-TambiŽn se puede hacer a mi manera que ser’a: 
+
+SELECT R.codRally ,AVG(T.totalKms) AS MediaDeKilometrosRecorridos
+FROM WRC.rally R  INNER JOIN WRC.tramo T  USING(codRally)
+GROUP BY R.codRally
+HAVING SUM(T.totalKms)>100;
+
+WRC 27: Muestra el nombre de los rallies junto con el número de tramos de cada uno de ellos, pero sólo aquellos rallies que tengan más de 2 tramos
+
+SELECT R.nombre , COUNT(*)
+FROM WRC.rally R INNER JOIN WRC.tramo T USING(codRally)
+GROUP BY R.nombre
+HAVING COUNT(*) >2;
+
+WRC 28: Muestra el nombre, grupo sanguíneo, rh y número de puntos del piloto que ha realizado más tramos de dificultad A 
+
+SELECT PI.nombreP , PI.grupoS , PI.rh , PI.puntos
+FROM WRC.piloto PI INNER JOIN WRC.corre C USING(codPiloto) INNER JOIN WRC.tramo T USING(codRally,numeroTramo)
+WHERE T.dificultad = 'A'
+GROUP BY PI.nombreP , PI.grupoS , PI.rh , PI.puntos
+HAVING COUNT(numeroTramo)>= ALL(SELECT COUNT(numeroTramo)
+                                  FROM WRC.piloto PI INNER JOIN WRC.corre C USING(codPiloto) INNER JOIN WRC.tramo T USING(codRally,numeroTramo)
+                                  WHERE T.dificultad = 'A'
+                                  GROUP BY PI.nombreP);
+

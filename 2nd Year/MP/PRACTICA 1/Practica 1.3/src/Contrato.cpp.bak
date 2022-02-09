@@ -1,0 +1,14 @@
+#include "Contrato.h"
+
+int Contrato::contadorId=1; // Inicializamos el contadorId
+
+Contrato::Contrato(int dni, Fecha F):idContrato(contadorId), FechaContrato(F)
+{
+    contadorId++;
+    this->dniContrato = dni;
+}
+
+void Contrato::ver() const
+{
+    cout << this->dniContrato << " (" << this->idContrato << " - " << this->FechaContrato << ")";
+}

@@ -1,0 +1,286 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+Ejercicio10.exe -- emu8086 assembler version: 4.08  
+ 
+[ 20/11/2019  --  12:01:25 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       data segment
+[   2]        :                                       
+[   3]    0000: 05 00 00 00 00 00 00                  CADENA      DB 5,0,0,0,0,0,0
+[   4]    0007: 00 10 00 01 10 00 01 00               PESO_HEX    DW 1000h,100h,10h,1h
+[   5]    000F: 08 04 02 01                           PESO_BIN    DB 8,4,2,1
+[   6]    0013: 00 00                                 VALOR_HEX   DW 0
+[   7]    0015: 00                                    VALOR_EXZ   DB 0
+[   8]    0016: 2B                                    SIGNO_EXZ   DB '+'
+[   9]        :                                       
+[  10]        :                                       ends
+[  11]        :                                       
+[  12]        :                                       stack segment
+[  13]    0020: 00 00 00 00 00 00 00 00 00 00 00 00   dw   128  dup(0)
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00                         
+[  14]        :                                       ends
+[  15]        :                                       
+[  16]        :                                       code segment
+[  17]    0120:                                       start:
+[  18]        :                                       ;Inicializar el segmento de datos
+[  19]    0120: B8 00 00                              MOV AX, SEG CADENA
+[  20]    0123: 8E D8                                 MOV DS, AX
+[  21]        :                                       
+[  22]        :                                       
+[  23]        :                                       ;Leer por teclado
+[  24]    0125: BA 00 00                              MOV DX, OFFSET CADENA
+[  25]    0128: B4 0A                                 MOV AH, 0Ah
+[  26]    012A: CD 21                                 INT 21h
+[  27]        :                                       
+[  28]        :                                       ;Cambiar caracteres ASCII por los numericos correspondientes
+[  29]    012C: 80 2E 02 00 30                        SUB CADENA[2], 30h
+[  30]    0131: 80 2E 03 00 30                        SUB CADENA[3], 30h
+[  31]    0136: 80 2E 04 00 30                        SUB CADENA[4], 30h
+[  32]    013B: 80 2E 05 00 30                        SUB CADENA[5], 30h
+[  33]        :                                       ;Comprobar si se han introducido digitos de hexadecimal
+[  34]    0140: 80 3E 02 00 09                        CMP CADENA[2], 9d
+[  35]    0145: 77 17                                 JA C2HEX
+[  36]    0147:                                       HEX3CHK:
+[  37]    0147: 80 3E 03 00 09                        CMP CADENA[3], 9d
+[  38]    014C: 77 17                                 JA C3HEX
+[  39]    014E:                                       HEX4CHK:
+[  40]    014E: 80 3E 04 00 09                        CMP CADENA[4], 9d
+[  41]    0153: 77 17                                 JA C4HEX
+[  42]    0155:                                       HEX5CHK:
+[  43]    0155: 80 3E 05 00 09                        CMP CADENA[5], 9d
+[  44]    015A: 77 17                                 JA C5HEX
+[  45]    015C: EB 1C                                 JMP HEXFIN
+[  46]        :                                       
+[  47]    015E:                                       C2HEX:
+[  48]    015E: 80 2E 02 00 07                        SUB CADENA[2], 7d
+[  49]    0163: EB E2                                 JMP HEX3CHK
+[  50]    0165:                                       C3HEX:
+[  51]    0165: 80 2E 03 00 07                        SUB CADENA[3], 7d
+[  52]    016A: EB E2                                 JMP HEX4CHK
+[  53]    016C:                                       C4HEX:
+[  54]    016C: 80 2E 04 00 07                        SUB CADENA[4], 7d
+[  55]    0171: EB E2                                 JMP HEX5CHK
+[  56]    0173:                                       C5HEX:
+[  57]    0173: 80 2E 05 00 07                        SUB CADENA[5], 7d
+[  58]    0178: EB 00                                 JMP HEXFIN
+[  59]        :                                       
+[  60]    017A:                                       HEXFIN:
+[  61]        :                                       
+[  62]        :                                       
+[  63]        :                                       ;Calcular el hexadecimal
+[  64]    017A: B4 00                                 MOV AH, 00h       ;Muy importante poner esa parte a 00h porque la multiplicacion deja residuos ahi
+[  65]    017C: A0 02 00                              MOV AL, CADENA[2]
+[  66]    017F: F7 26 07 00                           MUL PESO_HEX[0]
+[  67]    0183: 8B D8                                 MOV BX, AX
+[  68]        :                                       
+[  69]    0185: B4 00                                 MOV AH, 00h
+[  70]    0187: A0 03 00                              MOV AL, CADENA[3]
+[  71]    018A: F7 26 09 00                           MUL PESO_HEX[2]   ;MUY MUY IMPORTANTE sumar de 2 en dos posiciones de memoria, es un DW
+[  72]    018E: 03 D8                                 ADD BX, AX
+[  73]        :                                       
+[  74]    0190: B4 00                                 MOV AH, 00h
+[  75]    0192: A0 04 00                              MOV AL, CADENA[4]
+[  76]    0195: F7 26 0B 00                           MUL PESO_HEX[4]
+[  77]    0199: 03 D8                                 ADD BX, AX
+[  78]        :                                       
+[  79]    019B: B4 00                                 MOV AH, 00h
+[  80]    019D: A0 05 00                              MOV AL, CADENA[5]
+[  81]    01A0: F7 26 0D 00                           MUL PESO_HEX[6]
+[  82]    01A4: 03 D8                                 ADD BX, AX
+[  83]        :                                       
+[  84]    01A6: 89 1E 13 00                           MOV VALOR_HEX, BX
+[  85]        :                                       
+[  86]        :                                       
+[  87]        :                                       ;Calcular el exceso z
+[  88]    01AA: BB 00 00                              MOV BX, 0
+[  89]    01AD: B4 00                                 MOV AH, 0
+[  90]        :                                       
+[  91]    01AF: A0 02 00                              MOV AL, CADENA[2]
+[  92]    01B2: F6 26 0F 00                           MUL PESO_BIN[0]
+[  93]    01B6: 8B D8                                 MOV BX, AX
+[  94]        :                                       
+[  95]    01B8: A0 03 00                              MOV AL, CADENA[3]
+[  96]    01BB: F6 26 10 00                           MUL PESO_BIN[1]
+[  97]    01BF: 03 D8                                 ADD BX, AX
+[  98]        :                                       
+[  99]    01C1: A0 04 00                              MOV AL, CADENA[4]
+[ 100]    01C4: F6 26 11 00                           MUL PESO_BIN[2]
+[ 101]    01C8: 03 D8                                 ADD BX, AX
+[ 102]        :                                       
+[ 103]    01CA: A0 05 00                              MOV AL, CADENA[5]
+[ 104]    01CD: F6 26 12 00                           MUL PESO_BIN[3]
+[ 105]    01D1: 03 D8                                 ADD BX, AX
+[ 106]        :                                       
+[ 107]        :                                       ;Compruebo si es negativo
+[ 108]    01D3: 80 FB 08                              CMP BL, 8
+[ 109]    01D6: 72 05                                 JB NEGATIVO_EXZ
+[ 110]        :                                       
+[ 111]        :                                       ;Si no es negativo, solo le quito el exceso
+[ 112]    01D8: 80 EB 08                              SUB BL, 8
+[ 113]        :                                       
+[ 114]    01DB: EB 0B                                 JMP FINALIZAR_EXZ
+[ 115]        :                                       
+[ 116]        :                                       
+[ 117]    01DD:                                       NEGATIVO_EXZ:
+[ 118]        :                                       ;Bit de signo y resta de 8-BL
+[ 119]    01DD: 8A FB                                 MOV BH, BL
+[ 120]    01DF: B3 08                                 MOV BL, 8
+[ 121]    01E1: 2A DF                                 SUB BL, BH
+[ 122]        :                                       
+[ 123]    01E3: C6 06 16 00 2D                        MOV SIGNO_EXZ, '-'
+[ 124]        :                                       
+[ 125]    01E8:                                       FINALIZAR_EXZ:
+[ 126]        :                                       
+[ 127]    01E8: 88 1E 15 00                           MOV VALOR_EXZ, BL
+[ 128]        :                                       
+[ 129]        :                                       
+[ 130]        :                                       ;Mostrar el resultado por pantalla
+[ 131]        :                                       ;Mover el segmento a la memoria de video
+[ 132]    01EC: B8 00 B8                              MOV AX, 0B800h
+[ 133]    01EF: 8E C0                                 MOV ES, AX
+[ 134]        :                                       
+[ 135]        :                                       ;Fondo negro y letras blancas
+[ 136]    01F1: B4 0F                                 MOV AH, 00001111b
+[ 137]        :                                       
+[ 138]        :                                       ;Mostrar exceso z
+[ 139]    01F3: B0 45                                 MOV AL, 'E'
+[ 140]    01F5: 26 A3 A0 00                           MOV ES:[160], AX
+[ 141]    01F9: B0 58                                 MOV AL, 'X'
+[ 142]    01FB: 26 A3 A2 00                           MOV ES:[162], AX
+[ 143]    01FF: B0 5A                                 MOV AL, 'Z'
+[ 144]    0201: 26 A3 A4 00                           MOV ES:[164], AX
+[ 145]    0205: B0 3A                                 MOV AL, ':'
+[ 146]    0207: 26 A3 A6 00                           MOV ES:[166], AX
+[ 147]    020B: A0 16 00                              MOV AL, SIGNO_EXZ
+[ 148]    020E: 26 A3 A8 00                           MOV ES:[168], AX
+[ 149]    0212: A0 15 00                              MOV AL, VALOR_EXZ
+[ 150]    0215: 04 30                                 ADD AL, 30h
+[ 151]    0217: 26 A3 AA 00                           MOV ES:[170], AX
+[ 152]        :                                       
+[ 153]        :                                       ;Mostrar hexadecimal
+[ 154]    021B: B0 48                                 MOV AL, 'H'
+[ 155]    021D: 26 A3 40 01                           MOV ES:[320], AX
+[ 156]    0221: B0 45                                 MOV AL, 'E'
+[ 157]    0223: 26 A3 42 01                           MOV ES:[322], AX
+[ 158]    0227: B0 58                                 MOV AL, 'X'
+[ 159]    0229: 26 A3 44 01                           MOV ES:[324], AX
+[ 160]    022D: B0 3A                                 MOV AL, ':'
+[ 161]    022F: 26 A3 46 01                           MOV ES:[326], AX
+[ 162]        :                                       ;Poner el estilo primero
+[ 163]    0233: 26 88 26 49 01                        MOV ES:[329], AH
+[ 164]    0238: 26 88 26 4B 01                        MOV ES:[331], AH
+[ 165]    023D: 26 88 26 4D 01                        MOV ES:[333], AH
+[ 166]    0242: 26 88 26 4F 01                        MOV ES:[335], AH
+[ 167]    0247: 26 88 26 51 01                        MOV ES:[337], AH
+[ 168]        :                                       ;Poner los digitos
+[ 169]        :                                       ;Quinto digito
+[ 170]    024C: A1 13 00                              MOV AX, VALOR_HEX
+[ 171]    024F: B9 10 27                              MOV CX, 10000d
+[ 172]    0252: BA 00 00                              MOV DX, 0
+[ 173]    0255: F7 F1                                 DIV CX
+[ 174]    0257: 04 30                                 ADD AL, 30h
+[ 175]    0259: 26 A2 48 01                           MOV ES:[328], AL
+[ 176]    025D: 8B C2                                 MOV AX, DX
+[ 177]        :                                       ;Cuarto digito
+[ 178]    025F: B9 E8 03                              MOV CX, 1000d
+[ 179]    0262: BA 00 00                              MOV DX, 0
+[ 180]    0265: F7 F1                                 DIV CX
+[ 181]    0267: 04 30                                 ADD AL, 30h
+[ 182]    0269: 26 A2 4A 01                           MOV ES:[330], AL
+[ 183]    026D: 8B C2                                 MOV AX, DX
+[ 184]        :                                       ;Tercero digito
+[ 185]    026F: B9 64 00                              MOV CX, 100d
+[ 186]    0272: BA 00 00                              MOV DX, 0
+[ 187]    0275: F7 F1                                 DIV CX
+[ 188]    0277: 04 30                                 ADD AL, 30h
+[ 189]    0279: 26 A2 4C 01                           MOV ES:[332], AL
+[ 190]    027D: 8B C2                                 MOV AX, DX
+[ 191]        :                                       ;Segundo digito
+[ 192]    027F: B9 0A 00                              MOV CX, 10d
+[ 193]    0282: BA 00 00                              MOV DX, 0
+[ 194]    0285: F7 F1                                 DIV CX
+[ 195]    0287: 04 30                                 ADD AL, 30h
+[ 196]    0289: 26 A2 4E 01                           MOV ES:[334], AL
+[ 197]    028D: 8B C2                                 MOV AX, DX
+[ 198]        :                                       ;Primer digito
+[ 199]    028F: 04 30                                 ADD AL, 30h
+[ 200]    0291: 26 A2 50 01                           MOV ES:[336], AL
+[ 201]        :                                       
+[ 202]        :                                       
+[ 203]        :                                       
+[ 204]        :                                       ;Devolver el control al OS
+[ 205]    0295: B8 00 4C                              MOV AX, 4C00h
+[ 206]    0298: CD 21                                 INT 21h
+[ 207]        :                                       ends
+[ 208]        :                                       
+[ 209]        :                                       end start
+[ 210]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 9A      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 03      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 02      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: C1      -   check sum (l.byte)
+0013: E3      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 12      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 12      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

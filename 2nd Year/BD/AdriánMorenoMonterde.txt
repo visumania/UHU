@@ -1,0 +1,43 @@
+Adrián Moreno Monterde
+
+Ejercicio 1.-
+
+PARTE1:
+
+ALTER TABLE PARTICIPA DROP COLUMN codPiloto CASCADE CONSTRAINT; //Primero eliminamos el atributo codPiloto
+
+PARTE2:
+
+ALTER TABLE PARTICIPA MODIFY codPiloto char(5);
+
+
+
+Ejercicio 2.-
+
+Apartado a)
+
+SELECT codRally , numeroTramo
+FROM WRC.rally R INNER JOIN WRC.corre C USING(codRally) INNER JOIN WRC.tramo T USING(codRally , numeroTramo) INNER JOIN WRC.piloto P USING(codPiloto)
+WHERE P.rH = '-' AND T.totalKms > 45
+ORDER BY codRally ASC, numeroTramo ASC;
+
+Apartado b)
+
+SELECT nombre ,pais
+FROM WRC.rally R
+WHERE EXISTS(SELECT PI.nombreP
+             FROM WRC.participa P INNER JOIN WRC.piloto PI USING(codPiloto)
+             WHERE PI.nombreP = 'Marcus Gronholm' AND R.codRally = P.codRally)
+      AND NOT EXISTS(SELECT T.dificultad
+                     FROM WRC.rally R INNER JOIN WRC.tramo T USING(codRally)
+                     WHERE T.dificultad = 'C' AND R.codRally = T.codRally);  
+     
+  
+
+Apartado c)
+
+SELECT DISTINCT R.nombre ,C.numeroTramo ,AVG(tiempo) AS TiempoMedio 
+FROM WRC.rally R INNER JOIN WRC.corre C USING(codRally)
+WHERE R.pais <> 'Monaco'
+ORDER BY TiempoMedio ASC
+HAVING

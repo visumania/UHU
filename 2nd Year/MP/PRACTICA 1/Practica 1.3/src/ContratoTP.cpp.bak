@@ -1,0 +1,47 @@
+#include "ContratoTP.h"
+#include <iostream>
+
+using namespace std;
+
+float ContratoTP::precioTP = 10;
+int ContratoTP::minutosTP = 300;
+
+ContratoTP::ContratoTP(long int dni, Fecha F, int minutos):Contrato(dni, F)
+{
+    this->minutosHablados = minutos;
+}
+
+void ContratoTP::ver()
+{
+    Contrato::ver();
+    cout << " " << minutosHablados << "m, " << getLimiteMinutos() << "(" << getPrecioTP() << ")";
+}
+
+ContratoTP::ContratoTP(const ContratoTP &P):Contrato(P.getDniContrato(), P.getFechaContrato())
+{
+    this->minutosTP = P.getLimiteMinutos();
+    this->minutosHablados = P.getMinutosHablados();
+    
+}
+
+float ContratoTP::factura() const
+{
+    if(minutosHablados > minutosTP)
+    {
+        int min_a_pagar = minutosHablados-minutosTP;
+
+        return (precioTP + (min_a_pagar*precioExcesoMin));
+    }
+    else
+        return precioTP;
+}
+
+ostream& operator<<(ostream &s, const ContratoTP &C)
+{
+    s << C.getDniContrato() << " (" << C.getIdContrato() << " - " << C.getFechaContrato() << ") ";
+    s << C.getMinutosHablados() << "m, ";
+    s << C.getLimiteMinutos() << "(" << C.getPrecioTP() << ")" << " - ";
+    s << C.factura() << "$";
+
+    return s;
+}

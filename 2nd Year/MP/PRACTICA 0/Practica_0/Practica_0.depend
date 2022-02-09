@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1540290102 source:h:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_0\main.cpp
+	<iostream>
+	<iomanip>
+	<cstdlib>
+	<fstream>
+	"Complejo.h"
+
+1540289937 h:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_0\include\complejo.h
+	<iostream>
+
+1540290003 source:h:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_0\src\complejo.cpp
+	<iostream>
+	"Complejo.h"
+
+1539599486 source:f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_0\main.cpp
+	<iostream>
+	"Complejo.h"
+
+1539677290 f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_0\include\complejo.h
+	<iostream>
+
+1539599502 source:f:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_0\src\complejo.cpp
+	<iostream>
+	"Complejo.h"
+
+1539599502 source:g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_0\src\complejo.cpp
+	<iostream>
+	"Complejo.h"
+
+1539677290 g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_0\include\complejo.h
+	<iostream>
+
+1539681704 source:g:\uhu\asignaturas\2 curso\1er cuatrimestre\metodología de la programación\practica_0\main.cpp
+	<iostream>
+	<iomanip>
+	<cstdlib>
+	<fstream>
+	"Complejo.h"
+
