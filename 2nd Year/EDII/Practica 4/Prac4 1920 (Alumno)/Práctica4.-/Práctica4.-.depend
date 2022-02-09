@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1591189598 source:h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\practica 4\prac4 1920 (alumno)\practica4.cpp
+	<iostream>
+	<cstdlib>
+	"grafo.h"
+	"conjunto.h"
+	<queue>
+	<sstream>
+	<map>
+
+1367496006 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\practica 4\prac4 1920 (alumno)\grafo.h
+	"vertice.h"
+	"arista.h"
+	"conjunto.h"
+	"excep_grafo.h"
+	<map>
+
+1367229138 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\practica 4\prac4 1920 (alumno)\vertice.h
+
+1367495998 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\practica 4\prac4 1920 (alumno)\arista.h
+	"vertice.h"
+
+1367317150 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\practica 4\prac4 1920 (alumno)\conjunto.h
+	"excep_conjunto.h"
+
+1367310762 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\practica 4\prac4 1920 (alumno)\excep_conjunto.h
+	"excepcion.h"
+
+1331037254 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\practica 4\prac4 1920 (alumno)\excepcion.h
+	<string>
+	<stdexcept>
+
+1367489298 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\practica 4\prac4 1920 (alumno)\excep_grafo.h
+	"excepcion.h"
+

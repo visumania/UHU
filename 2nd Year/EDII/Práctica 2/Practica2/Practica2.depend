@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1587561441 source:h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\practica2.cpp
+	<iostream>
+	<cstdlib>
+	<queue>
+	"arbin.h"
+	"abb.h"
+
+1363095298 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\arbin.h
+	"nodoB.h"
+	"excep_arbin.h"
+
+1144354256 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\nodob.h
+	<stdlib.h>
+
+1331895784 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\excep_arbin.h
+	"excepcion.h"
+
+1331040854 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\excepcion.h
+	<string>
+	<stdexcept>
+
+1331892404 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\abb.h
+	"nodoB.h"
+	"excep_abb.h"
+	"arbin.h"
+
+1587556405 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\excep_abb.h
+	"excepcion.h"
+
+1587617831 source:g:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\practica2.cpp
+	<iostream>
+	<cstdlib>
+	<queue>
+	"arbin.h"
+	"abb.h"
+
+1363095298 g:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\arbin.h
+	"nodoB.h"
+	"excep_arbin.h"
+
+1144354256 g:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\nodob.h
+	<stdlib.h>
+
+1331895784 g:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\excep_arbin.h
+	"excepcion.h"
+
+1331040854 g:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\excepcion.h
+	<string>
+	<stdexcept>
+
+1331892404 g:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\abb.h
+	"nodoB.h"
+	"excep_abb.h"
+	"arbin.h"
+
+1587556405 g:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 2\material practica 2 (alum) 1920\excep_abb.h
+	"excepcion.h"
+

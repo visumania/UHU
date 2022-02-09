@@ -1,0 +1,34 @@
+//Ejercicio 1 (Grupo L1 Jueves 8:30)
+template <typename T,typename U>
+T verticeMaxConexion(const Grafo<T,U>& G)
+{
+    map<T,int> valor;
+    T vMaxCon;
+
+    Conjunto<Vertice<T> > vertices = G.vertices();
+
+    while(!vertices.esVacio())
+        valor[vertices.quitar().getObj()] = 0;
+
+    Conjunto<Arista<T,float> > aristas = G.aristas();
+
+    while(!aristas.esVacio())
+    {
+        Arista<T,float> actual = aristas.quitar();
+        valor[actual.getOrigen()] += 1;
+        valor[actual.getDestino()] += 1;
+    }
+
+    float gradoMax = 0;
+
+    for(typename map<T,int>::iterator it = valor.begin() ; it != valor.end() ; it++)
+    {
+        if(it->second > gradoMax)
+        {
+            gradoMax = it->second;
+            vMaxCon = it->first;
+        }
+    }
+
+    return vMaxCon;
+}

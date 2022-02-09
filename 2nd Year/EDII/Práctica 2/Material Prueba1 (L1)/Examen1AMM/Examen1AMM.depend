@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1587633944 source:c:\users\adria\desktop\material prueba1 (l1)\usuariol1.cpp
+	<iostream>
+	<cstdlib>
+	"arbin.h"
+
+1586793882 c:\users\adria\desktop\material prueba1 (l1)\arbin.h
+	"nodoB.h"
+	"excep_arbin.h"
+
+1586793914 c:\users\adria\desktop\material prueba1 (l1)\nodob.h
+	<stdlib.h>
+
+1586793894 c:\users\adria\desktop\material prueba1 (l1)\excep_arbin.h
+	"excepcion.h"
+
+1586793902 c:\users\adria\desktop\material prueba1 (l1)\excepcion.h
+	<string>
+	<stdexcept>
+

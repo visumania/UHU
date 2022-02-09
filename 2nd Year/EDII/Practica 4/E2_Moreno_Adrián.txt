@@ -1,0 +1,27 @@
+//NO FUNCIONA
+
+//Ejercicio 2 (Grupo L1 Jueves 8:30)
+template <typename T,typename U>
+int numCaminos(const Grafo<T,U>& G, const T& v1, const T& v2)
+{
+     return numCaminos(G, v1, v2, 0);
+}
+
+template <typename T, typename U>
+int numCaminos(const Grafo<T,U> &G, const T &v1, const T &v2, int num)
+{
+    Conjunto<Arista<T,float> > ca = G.aristas();
+
+    while(!ca.esVacio())
+    {
+        Arista<T,float> a = ca.quitar();
+
+        if(a.getOrigen() == v1)
+        {
+            num++;
+            numCaminos(G,a.getDestino(),v2,num);
+        }
+    }
+
+    return num;
+}

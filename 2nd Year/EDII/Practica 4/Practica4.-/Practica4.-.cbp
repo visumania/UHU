@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Practica4.-" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Practica4.-" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Practica4.-" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Linker>
+			<Add library="G:/UHU/Asignaturas/2 CURSO/2do Cuatrimestre/ED II/Practica 4/Prac4 1920 (Alumno)/arista.o" />
+			<Add library="G:/UHU/Asignaturas/2 CURSO/2do Cuatrimestre/ED II/Practica 4/Prac4 1920 (Alumno)/conjunto.o" />
+			<Add library="G:/UHU/Asignaturas/2 CURSO/2do Cuatrimestre/ED II/Practica 4/Prac4 1920 (Alumno)/grafo.o" />
+			<Add library="G:/UHU/Asignaturas/2 CURSO/2do Cuatrimestre/ED II/Practica 4/Prac4 1920 (Alumno)/vertice.o" />
+		</Linker>
+		<Unit filename="../Prac4 1920 (Alumno)/arista.h" />
+		<Unit filename="../Prac4 1920 (Alumno)/conjunto.h" />
+		<Unit filename="../Prac4 1920 (Alumno)/excep_conjunto.h" />
+		<Unit filename="../Prac4 1920 (Alumno)/excep_grafo.h" />
+		<Unit filename="../Prac4 1920 (Alumno)/excepcion.h" />
+		<Unit filename="../Prac4 1920 (Alumno)/grafo.h" />
+		<Unit filename="../Prac4 1920 (Alumno)/practica4.cpp" />
+		<Unit filename="../Prac4 1920 (Alumno)/vertice.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,66 @@
+(defrule tiene-gripe
+	(tos)(cansancio)(fiebre)(dolor)
+	=>
+	(assert (gripe_de))
+)
+(defrule tiene-rubeola
+	(fiebre)(escalofrios)(jaqueca)(secrecion)
+	=>
+	(assert (rubeola))
+)
+(defrule tiene-malaria
+	(diarrea)(fiebre)(ictericia)(escalofrios)
+	=>
+	(assert (malaria))
+)
+(defrule tiene-hepatitis
+	(diarrea)(nauseas)(ictericia)
+	=>
+	(assert (hepatitis))
+)
+(defrule tiene-tuberculosis
+	(tos)(cansancio)(fiebre)(escalofrios)
+	=>
+	(assert (tuberculosis))
+)
+(defrule tiene-anemia
+	(cansancio)(nauseas)(apatia)
+	=>
+	(assert (anemia))
+)
+
+(defrule remedio-gripe
+	(gripe)
+	=>
+	(assert (jarabe)(contrex)(vacuna))
+)
+
+(defrule remedio-rubeola
+	(rubeola)
+	=>
+	(assert (vacuna)(pastilla))
+)
+
+(defrule remedio-malaria
+	(malaria)
+	=>
+	(assert (vacuna))
+)
+
+(defrule remedio-hepatitis
+	(hepatitis)
+	=>
+	(assert (vacuna)(pastilla))
+)
+
+(defrule remedio-tuberculosis
+	(tuberculosis)
+	=>
+	(assert(pastilla))
+)
+
+(defrule remedio-anemia
+	(anemia)
+	=>
+	(assert (vitamina))
+)

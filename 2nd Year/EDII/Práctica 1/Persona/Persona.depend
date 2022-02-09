@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1587206254 source:h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 1\persona\persona.cpp
+	"Persona.h"
+
+1587206254 h:\uhu\asignaturas\2 curso\2do cuatrimestre\ed ii\práctica 1\persona\persona.h
+	<iostream>
+	<string>
+
