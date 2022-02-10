@@ -1,10 +1,3 @@
-/*
-I have not compiled the program, because as I mentioned earlier,
- I do not have a computer where opencl can work, nor do I 
- have anyone who can borrow it to me. I have followed all the notes 
- that you have uploaded to moodle for the realization of this code.
-*/
-
 #define BLOCK_SIZE 16
 #define AS(i, j) As[j + i * BLOCK_SIZE]
 #define BS(i, j) Bs[j + i * BLOCK_SIZE]
