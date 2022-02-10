@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Pul/QFPY+f6FNSdVUbAN4z1yWDo7r3Mqc918ztgY6Z8Z+Hg5LiKtOic5K4nLUYnN/k3s6TlY5k2oXPlGXnA9vg==",
+  "success": true,
+  "projectFilePath": "/Users/adrianmorenomonterde/Desktop/FSharpProblemsAMM/FSharpProblemsAMM.fsproj",
+  "expectedPackageFiles": [
+    "/Users/adrianmorenomonterde/.nuget/packages/fsharp.core/5.0.0/fsharp.core.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
