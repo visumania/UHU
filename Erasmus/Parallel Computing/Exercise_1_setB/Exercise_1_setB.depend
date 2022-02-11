@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1605796684 source:c:\exercise_1_setb\main.cpp
+	<iostream>
+	<omp.h>
+

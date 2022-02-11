@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1611445853 source:c:\assignment_3_amm\lodepng.cpp
+	"lodepng.h"
+	<limits.h>
+	<stdio.h>
+	<stdlib.h>
+
+1611445856 c:\assignment_3_amm\lodepng.h
+	<string.h>
+	<vector>
+	<string>
+	"lodepng.h"
+	<iostream>
+	"lodepng.h"
+
+1611754789 source:c:\assignment_3_amm\main.cpp
+	<iostream>
+	<random>
+	<vector>
+	<omp.h>
+	"lodepng.h"
+
+1611445853 source:c:\assignment_3_amm v2\lodepng.cpp
+	"lodepng.h"
+	<limits.h>
+	<stdio.h>
+	<stdlib.h>
+
+1611445856 c:\assignment_3_amm v2\lodepng.h
+	<string.h>
+	<vector>
+	<string>
+	"lodepng.h"
+	<iostream>
+	"lodepng.h"
+
+1611757667 source:c:\assignment_3_amm v2\main.cpp
+	<iostream>
+	<random>
+	<vector>
+	<omp.h>
+	"lodepng.h"
+

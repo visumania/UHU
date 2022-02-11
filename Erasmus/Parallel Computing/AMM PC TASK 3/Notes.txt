@@ -1,0 +1,2 @@
+V1: Basic exercise resolution
+V2: Resolution of the exercise based on figure 3 of the statement

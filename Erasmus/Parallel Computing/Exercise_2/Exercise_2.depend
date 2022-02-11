@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1603982262 source:c:\exercise_2\main.cpp
+	<iostream>
+	<omp.h>
+	<cmath>
+	<vector>
+	<iomanip>
+	<windows.h>
+
