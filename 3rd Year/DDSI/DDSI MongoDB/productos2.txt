@@ -1,0 +1,45 @@
+1. Obtener los productos que tengan las etiquetas "blank" y "red" (solo esas etiquetas y en ese orden)
+db.productos2.find({"tags":["blank", "red"]})
+
+2. Obtener los productos que tengan las etiquetas "red" y "blank" (en cualquier orden)
+db.productos2.find({"tags":{$in:["red", "blank"]}})
+
+
+3. Obtener los productos que tengan la etiqueta "plain"
+db.productos2.find({"tags":"plain"})
+
+4. Obtener los productos que tengan, al menos, una dimensión menor que 12
+db.productos2.find({"dim_cm":{$lt:12}})
+
+5. Obtener los productos cuyas dimensiones cumplan, al menos, ser mayor que 15 o menor que 20
+db.productos2.find({dim_cm:{$gt:15, $lt:20}})
+
+6. Obtener los productos que tengan, al menos, una dimensión mayor que 15 y menor que 18
+db.productos2.find({"dim_cm":{$elemMatch:{$gt:15, $lt:18}}})
+
+7. Obtener los productos cuya segunda dimensión sea 14
+db.productos2.find({"dim_cm.1":14})
+
+8. Obtener los productos cuya primera dimensión sea mayor que 20
+db.productos2.find({"dim_cm.0":{$gt:20}})
+
+9. Obtener los productos que tengan una única etiqueta
+db.productos2.find({"tags":{$size:1}})
+
+10. Añadir la etiqueta "orange" al productos "journal"
+db.productos2.updateOne(
+  {"item":"journal"},
+  {$push:{"tags":"orange"}}
+  )
+
+11. Eliminar la etiqueta "plain" al producto "paper"
+db.productos2.updateOne(
+  {"item":"paper"},
+  {$pop:{"tags":1}}
+  )
+
+12. Aumentar en 10 las cantidades de los productos que tengan más de 50 unidades
+db.productos2.updateMany(
+  {qty:{$gt:50}},
+  {$inc:{qty:10}}
+  )

@@ -1,0 +1,33 @@
+1. Obtener el nombre de los viajeros que han visitado 2 veces Canadá y lo han valorado con un 9
+db.viajeros.find({"travel":{country:"Canada", visits:2, rating:9}},{"_id":0, "first":1})
+
+2. Obtener los viajeros que ha realizado 4 visitas a un país
+db.viajeros.find({"travel.visits":4})
+
+3. Obtener los viajeros que han realizado más de 3 visitas a un país
+db.viajeros.find({"travel.visits":{$gt:3}})
+
+4. Obtener los viajeros que han realizado más de 2 visitas a un país y han puntuado con menos de un 8
+db.viajeros.find({$and:[{"travel.visits":{$gt:2}}, {"travel.rating":{$lt:8}}]})
+
+5. Obtener los viajeros que han realizado más de 2 visitas a un país y han puntuado con menos de un 8 pero del mismo país ($elemMatch)
+db.viajeros.find({"travel":{$elemMatch:{"visits":{$gt:2}, "rating":{$lt:8}}}})
+
+6. Igual que la anterior pero ahora la puntuación debe estar entre 6 y 9
+db.viajeros.find({"travel":{$elemMatch:{"visits":{$gt:2}, $and:[{"rating":{$gte:6}}, {"rating":{$lte:9}}]}}})
+
+7. Actualizar el número de visitas de María a Canadá con 5 visitas
+db.viajeros.updateOne(
+  {first:"Maria", "travel.country":"Canada"},
+  {
+    $set: {
+      "travel.$.visits":5}
+  })
+
+8. Actualizar los viajes de Chen añadiendo una visita a España y con una puntuación de 10
+db.viajeros.updateOne(
+  {_id:2},
+  {
+    $push:{travel:{country:"Spain", visits:1, rating:10}}
+  }
+  )

@@ -1,0 +1,45 @@
+1. Obtener todos los documentos de la colección
+db.productos.find()
+
+2. Obtener toda la información del producto "planner" 
+db.productos.find({"item":"planner"})
+
+3. Obtener toda la información de los productos que tienen una cantidad (qty) mayor que 60
+db.productos.find({"qty":{$gt:60}})
+
+4. Obtener toda la información de los productos que tiene una cantidad (qty) entre 75 y 100 (ambos inclusive)
+db.productos.find({"qty":{$gte:75, $lte:100}})
+
+5. Obtener toda la información de los productos cuyo tamaño esté guardado en centímetros
+db.productos.find({"size.uom":"cm"})
+
+6. Obtener el nombre y el status de los productos con status "D"
+db.productos.find({"status":"D"},{"item":1, "status":1, "_id":0})
+
+7. Cambiar el estado del producto "postcard" al valor "C"
+db.productos.updateOne(
+  {item:"postcard"},
+  {
+    $set:{status:"C"}
+  }
+)
+
+8. Cambiar las dimensiones de producto "notebook" a (10,14)
+db.productos.updateOne(
+  {item:"notebook"}, 
+  {
+    $set:{
+      "size.h":10,
+      "size.w":14
+    }
+  })
+
+9. Pasar a "cm" todos los productos "in"
+db.productos.updateMany(
+  {"size.uom":"in"},
+  {
+    $set:{"size.uom":"cm"}
+  })
+
+10. Eliminar los productos con status "A"
+db.productos.deleteMany({status:"A"})
