@@ -1,0 +1,15 @@
+/Users/adrianmorenomonterde/Desktop/Lab5/bin/Debug/net5.0/Lab5.deps.json
+/Users/adrianmorenomonterde/Desktop/Lab5/bin/Debug/net5.0/Lab5.runtimeconfig.json
+/Users/adrianmorenomonterde/Desktop/Lab5/bin/Debug/net5.0/Lab5.runtimeconfig.dev.json
+/Users/adrianmorenomonterde/Desktop/Lab5/bin/Debug/net5.0/Lab5.dll
+/Users/adrianmorenomonterde/Desktop/Lab5/bin/Debug/net5.0/ref/Lab5.dll
+/Users/adrianmorenomonterde/Desktop/Lab5/bin/Debug/net5.0/Lab5.pdb
+/Users/adrianmorenomonterde/Desktop/Lab5/obj/Debug/net5.0/Lab5.csprojAssemblyReference.cache
+/Users/adrianmorenomonterde/Desktop/Lab5/obj/Debug/net5.0/Lab5.GeneratedMSBuildEditorConfig.editorconfig
+/Users/adrianmorenomonterde/Desktop/Lab5/obj/Debug/net5.0/Lab5.AssemblyInfoInputs.cache
+/Users/adrianmorenomonterde/Desktop/Lab5/obj/Debug/net5.0/Lab5.AssemblyInfo.cs
+/Users/adrianmorenomonterde/Desktop/Lab5/obj/Debug/net5.0/Lab5.csproj.CoreCompileInputs.cache
+/Users/adrianmorenomonterde/Desktop/Lab5/obj/Debug/net5.0/Lab5.dll
+/Users/adrianmorenomonterde/Desktop/Lab5/obj/Debug/net5.0/ref/Lab5.dll
+/Users/adrianmorenomonterde/Desktop/Lab5/obj/Debug/net5.0/Lab5.pdb
+/Users/adrianmorenomonterde/Desktop/Lab5/obj/Debug/net5.0/Lab5.genruntimeconfig.cache
