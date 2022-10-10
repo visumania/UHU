@@ -1,0 +1,12 @@
+set title "SecuencialSecuencialMedioEmpirico"
+set key top left vertical inside
+set grid
+set xlabel "Talla (n)"
+set ylabel "Tiempo (ms)"
+M(x) = t*x + u
+fit M(x) "SecuencialMedioEmpirico.dat" using 1:2 via t,u
+plot "SecuencialMedioEmpirico.dat" using 1:2 with lines title "SecuencialMedioEmpirico", M(x)
+set terminal pdf
+set output "SecuencialMedioEmpirico.pdf"
+replot
+pause 5 "Pulsa Enter para continuar..."

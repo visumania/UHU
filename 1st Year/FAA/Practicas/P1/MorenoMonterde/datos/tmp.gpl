@@ -1,0 +1,11 @@
+set title "SecuencialSecuencialPeorSecuencialMedioSecuencialMejorTeorico"
+set key top left vertical inside
+set grid
+set xlabel "Talla (n)"
+set ylabel "Tiempo (OE)"
+
+plot "SecuencialPeorSecuencialMedioSecuencialMejorTeorico.dat" using 1:2 with lines title "SecuencialPeorTeorico", "SecuencialPeorSecuencialMedioSecuencialMejorTeorico.dat" using 1:3 with lines title "SecuencialMedioTeorico", "SecuencialPeorSecuencialMedioSecuencialMejorTeorico.dat" using 1:4 with lines title "SecuencialMejorTeorico", "SecuencialPeorSecuencialMedioSecuencialMejorTeorico.dat" using 1:4 title "SecuencialMejorTeorico"
+set terminal pdf
+set output "SecuencialPeorSecuencialMedioSecuencialMejorTeorico.pdf"
+replot
+pause 5 "Pulsa Enter para continuar..."

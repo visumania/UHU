@@ -1,0 +1,11 @@
+	#ESTE ES UN SCRIP DE GNUPLOT PARA ESTUDIO DE 2 METODOS
+set title " Comparacion tiempos Burbuja y Mayo22"
+set key top left vertical inside
+set grid
+set xlabel "Talla (n)"
+set ylabel "Tiempo (ms)"
+plot "Burbuja.dat" using 1:2 with lines title"Burbuja","Mayo22.dat" using 1:2 with lines title"Mayo22"
+set terminal pdf
+set output "BurbujaMayo22.pdf"
+replot
+pause -1 "Pulsa Enter para continuar..."

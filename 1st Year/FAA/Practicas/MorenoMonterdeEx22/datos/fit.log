@@ -1,0 +1,114 @@
+
+
+*******************************************************************************
+Mon May 23 20:11:44 2022
+
+
+FIT:    data read from "Mayo22.dat" using 1:2
+        format = x:z
+        #datapoints = 10
+        residuals are weighted equally (unit weight)
+
+function used for fitting: Cuadrado(x)
+	Cuadrado(x) = a*x*x + b*x + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.5393556927e+12   0.00e+00  2.91e+05    1.000000e+00   1.000000e+00   1.000000e+00
+   9 3.4069150948e-03  -2.63e-01  2.91e-04    1.184002e-06  -2.904124e-05   4.958151e-03
+
+After 9 iterations the fit converged.
+final sum of squares of residuals : 0.00340692
+rel. change during last iteration : -2.63021e-06
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0220613
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000486702
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 1.184e-06        +/- 9.601e-08    (8.109%)
+b               = -2.90412e-05     +/- 0.0001084    (373.2%)
+c               = 0.00495815       +/- 0.02595      (523.3%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.975  1.000 
+c               0.814 -0.909  1.000 
+
+
+*******************************************************************************
+Wed Jun 01 21:02:12 2022
+
+
+FIT:    data read from "Mayo22.dat" using 1:2
+        format = x:z
+        #datapoints = 10
+        residuals are weighted equally (unit weight)
+
+function used for fitting: Cuadrado(x)
+	Cuadrado(x) = a*x*x + b*x + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.5393552518e+12   0.00e+00  2.91e+05    1.000000e+00   1.000000e+00   1.000000e+00
+   9 4.7259359582e-01  -2.21e-03  2.91e-04    7.443610e-07   5.121325e-04  -7.378978e-02
+
+After 9 iterations the fit converged.
+final sum of squares of residuals : 0.472594
+rel. change during last iteration : -2.20935e-08
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.259833
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0675134
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 7.44361e-07      +/- 1.131e-06    (151.9%)
+b               = 0.000512133      +/- 0.001276     (249.2%)
+c               = -0.0737898       +/- 0.3056       (414.2%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.975  1.000 
+c               0.814 -0.909  1.000 
+
+
+*******************************************************************************
+Wed Jun 01 21:09:40 2022
+
+
+FIT:    data read from "Mayo22.dat" using 1:2
+        format = x:z
+        #datapoints = 10
+        residuals are weighted equally (unit weight)
+
+function used for fitting: Cuadrado(x)
+	Cuadrado(x) = a*x*x + b*x + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.5393559681e+12   0.00e+00  2.91e+05    1.000000e+00   1.000000e+00   1.000000e+00
+   9 8.6845671708e-02  -1.02e-02  2.91e-04    1.218325e-06  -1.126216e-04   1.231623e-02
+
+After 9 iterations the fit converged.
+final sum of squares of residuals : 0.0868457
+rel. change during last iteration : -1.01656e-07
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.111385
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0124065
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 1.21833e-06      +/- 4.847e-07    (39.79%)
+b               = -0.000112622     +/- 0.0005471    (485.8%)
+c               = 0.0123162        +/- 0.131        (1064%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.975  1.000 
+c               0.814 -0.909  1.000 

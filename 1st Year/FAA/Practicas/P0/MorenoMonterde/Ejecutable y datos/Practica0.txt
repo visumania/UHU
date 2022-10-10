@@ -1,0 +1,57 @@
+Ejercicio 3.- 
+l1=(2,4,6,8,10)
+Número comparaciones: 10
+Número asignaciones: 0
+Número operaciones elementales:59
+
+l2=(3,5,7,9,11)
+Número comparaciones:10
+Número asignaciones: 0
+Número operaciones elementales:59
+
+l3=(10,2,6,8,4)
+Número comparaciones:10
+Número asignaciones: 18
+Número operaciones elementales:101
+
+l4=(9,7,11,5,3)
+Número comparaciones: 10
+Número asignaciones: 24
+Número operaciones elementales: 115
+
+l5=(10,8,6,4,2)
+Número comparaciones:10
+Número asignaciones: 30
+Número operaciones elementales:129
+
+l6=(11,9,7,5,3)
+Número comparaciones:10
+Número asignaciones: 30
+Número operaciones elementales:129
+
+Ejercicio 4.-
+A=(2,4,6,8,10)
+n1=2
+Número comparaciones:1
+Número asignaciones: 0
+Número operaciones elementales:7
+
+n2=6
+Número comparaciones:3
+Número asignaciones: 2
+Número operaciones elementales:17
+
+n3=8
+Número comparaciones:4
+Número asignaciones: 3
+Número operaciones elementales:22
+
+n4=15
+Número comparaciones:6
+Número asignaciones: 5
+Número operaciones elementales:32
+
+n5=4
+Número comparaciones:2
+Número asignaciones: 1
+Número operaciones elementales:12
