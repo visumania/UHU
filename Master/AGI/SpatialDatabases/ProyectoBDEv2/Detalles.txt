@@ -1,0 +1,5 @@
+Si se desea visualizar los fragmentos de códigos expuestos en el .pdf de manera completa, hay que abrir el archivo .html que se encuentra dentro de fichero "Desarrollo de aplicaciones". 
+
+La conexión a la base de datos está rellena con los valores correctos para la conexión desde mi equipo, no obstante se pueden modificar a los valores que usted desee. La password es: casona.
+
+Las librerías externas necesarias para la ejecución del programa se encuentran dentro del fichero "Proyecto BDEv2", al igual que todo el código desarrollado.

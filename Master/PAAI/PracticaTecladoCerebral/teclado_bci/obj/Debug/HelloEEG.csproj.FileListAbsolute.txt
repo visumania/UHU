@@ -1,0 +1,37 @@
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\HelloEEG.exe.config
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\HelloEEG.exe
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\HelloEEG.pdb
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\ThinkGear.dll
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\Jayrock.Json.dll
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\NLog.dll
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\NLog.xml
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\Debug\HelloEEG.exe
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\Debug\HelloEEG.pdb
+\\tsclient\F\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\HelloEEG.exe.config
+\\tsclient\F\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\Debug\HelloEEG.exe
+\\tsclient\F\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\Debug\HelloEEG.pdb
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\teclado_bci\bin\Debug\HelloEEG.exe.config
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\teclado_bci\bin\Debug\HelloEEG.exe
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\teclado_bci\bin\Debug\HelloEEG.pdb
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\teclado_bci\bin\Debug\ThinkGear.dll
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\teclado_bci\bin\Debug\Jayrock.Json.dll
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\teclado_bci\bin\Debug\NLog.dll
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\teclado_bci\bin\Debug\NLog.xml
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\teclado_bci\obj\Debug\HelloEEG.csprojAssemblyReference.cache
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\teclado_bci\obj\Debug\HelloEEG.csproj.CoreCompileInputs.cache
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\teclado_bci\obj\Debug\HelloEEG.csproj.CopyComplete
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\teclado_bci\obj\Debug\HelloEEG.exe
+C:\Users\naharro\Dropbox\trabajo\docencia\perifericos_avanzados\practicas\teclado_bci\obj\Debug\HelloEEG.pdb
+C:\Users\Digitales\Downloads\teclado_bci\bin\Debug\HelloEEG.exe.config
+C:\Users\Digitales\Downloads\teclado_bci\bin\Debug\HelloEEG.exe
+C:\Users\Digitales\Downloads\teclado_bci\bin\Debug\HelloEEG.pdb
+C:\Users\Digitales\Downloads\teclado_bci\bin\Debug\ThinkGear.dll
+C:\Users\Digitales\Downloads\teclado_bci\bin\Debug\Jayrock.Json.dll
+C:\Users\Digitales\Downloads\teclado_bci\bin\Debug\NLog.dll
+C:\Users\Digitales\Downloads\teclado_bci\bin\Debug\NLog.xml
+C:\Users\Digitales\Downloads\teclado_bci\obj\Debug\HelloEEG.csprojAssemblyReference.cache
+C:\Users\Digitales\Downloads\teclado_bci\obj\Debug\HelloEEG.csproj.CoreCompileInputs.cache
+C:\Users\Digitales\Downloads\teclado_bci\obj\Debug\HelloEEG.csproj.CopyComplete
+C:\Users\Digitales\Downloads\teclado_bci\obj\Debug\HelloEEG.exe
+C:\Users\Digitales\Downloads\teclado_bci\obj\Debug\HelloEEG.pdb

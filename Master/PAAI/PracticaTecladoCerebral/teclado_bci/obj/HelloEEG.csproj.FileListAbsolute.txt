@@ -1,0 +1,10 @@
+I:\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\HelloEEG.exe.config
+I:\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\Debug\HelloEEG.exe
+I:\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\Debug\ResolveAssemblyReference.cache
+I:\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\HelloEEG.exe
+I:\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\HelloEEG.pdb
+I:\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\ThinkGear.dll
+I:\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\Jayrock.Json.dll
+I:\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\NLog.dll
+I:\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\NLog.xml
+I:\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\Debug\HelloEEG.pdb

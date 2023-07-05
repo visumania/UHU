@@ -1,0 +1,246 @@
+COLECCIÓN PARA REALIZAR LOS EJERCICIOS DE LA PRIMERA PARTE
+    Usaremos la colección zips (disponible en la web de la asignatura), que almacena información sobre ciudades y estados norteamericanos.
+
+    Ejemplo de documento de la colección zips:
+
+    {
+        "_id": "10280",
+        "city": "NEW YORK",
+        "state": "NY",
+        "pop": 5574,
+        "loc": [
+            -74.016323,
+            40.710537
+        ]
+    }
+
+    El significado de cada campo es: 
+        - _id: una cadena que almacena el código zip (código postal)
+        - city: nombre de la ciudad. Hay ciudades que tienen más de un código zip. Por ejemplo, la ciudad de "NEW YORK" tiene 40 códigos zip.
+        - state: abreviatura del nombre del estado al que pertenece la ciudad.
+        - pop: número de habitantes
+        - loc: coordenadas geográficas (latitud y longitud) en la que se encuentra la ciudad. 
+
+    1. Contar el número de documentos que tiene la colección.
+
+    db.zips.aggregate([{$count:("numDocumentos")}])
+
+    2. Calcular el número de habitantes que tiene EEUU.
+
+    db.zips.aggregate([
+        {$group:{_id:null, totalPob:{$sum:"$pop"}}},
+        {$project:{_id:0, totalPob:1}}
+    ])
+
+    3. Calcular el número de estados que tiene EEUU.
+
+    db.zips.aggregate([
+        {$group:{_id:"$state"}},
+        {$count:"numEstados"}
+    ])
+
+    4. Calcular el número de ciudades que tiene EEUU.
+
+    db.zips.aggregate([
+        {$group:{_id:"$city"}},
+        {$count:"numCiudades"}
+    ])
+
+    5. Calcular el número de habitantes de las 5 ciudades más pobladas ordenadas de mayor a menor por el número de habitantes.
+
+    db.zips.aggregate([
+        {$group:{_id:"$city", totalPob:{$sum:"$pop"}}},
+        {$sort:{totalPob:-1}},
+        {$limit:5}
+    ])
+
+    6. De las ciudades que tengan un código postal mayor que 62015, mostrar las que tengan más de 5000 habitantes, ordenadas alfabéticamente (mostrar sólo las 5 primeras).
+
+    db.zips.aggregate([
+        {$match:{$and:[{_id:{$gt:"62015"}}, {pop:{$gt:5000}}]}},
+        {$group:{_id:"$city", totalPob:{$sum:"$pop"}}},
+        {$sort:{_id:1}},
+        {$limit:5}
+    ])
+
+    7. Obtener el valor medio de la población de cada estado. Para ello hay que hacer dos agrupaciones en dos etapas. En una primera etapa se agrupa por "estado y ciudad" y se calcula su población total. En la siguiente etapa se obtiene la media de la población realizando otra agrupación y tomando como entrada la colección anterior (mostrar los 5 primeros estados ordenados de mayor a menor población).
+
+    db.zips.aggregate([
+        {$group:{_id:{state:"$state", city:"$city"},poblacionTotalCiudad:{$sum:"$pop"}}},
+        {$group:{_id:"$_id.state", mediaEstado:{$avg:"$poblacionTotalCiudad"}}},
+        {$sort:{mediaEstado:-1}},
+        {$limit:5}
+    ])
+
+    8. Por cada estado, mostrar el nombre y la población de la ciudad más poblada (mostrar los 3 primeros resultados ordenados de mayor a menor según la población). PISTA: operador $first
+
+    db.zips.aggregate([
+        {$group:{_id:{state:"$state", city:"$city"},poblacionTotalCiudad:{$sum:"$pop"}}},
+        {$sort:{poblacionTotalCiudad:-1}},
+        {$group:{_id:"$_id.state", nombreCiudadMayor:{$first:"$_id.city"},poblacionCiudadMayor:{$max:"$poblacionTotalCiudad"}}},
+        {$sort:{poblacionCiudadMayor:-1}},
+        {$limit:3}
+    ])
+
+    9. Por cada estado, mostrar el nombre y la población de la ciudad menos poblada pero que tenga más de 100 habitantes. Mostrar los 3 primeros resultados ordenados de menor a mayor según la población.
+
+    db.zips.aggregate([
+        {$match:{pop:{$gt:100}}},
+        {$group:{_id:{state:"$state", city:"$city"},poblacionTotalCiudad:{$sum:"$pop"}}},
+        {$sort:{poblacionTotalCiudad:-1}},
+        {$group:{_id:"$_id.state", nombreCiudadMenor:{$last:"$_id.city"},poblacionCiudadMenor:{$min:"$poblacionTotalCiudad"}}},
+        {$sort:{poblacionCiudadMenor:1}},
+        {$limit:3}
+    ])
+
+    10. Unir ambas consultas en una única y, mediante el operador $project, hacer que los documentos de salida tengan la siguiente estructura (mirar enunciado).
+
+    db.zips.aggregate([
+        {$group:{_id:{state:"$state", city:"$city"},poblacionTotalCiudad:{$sum:"$pop"}}},
+        {$sort:{poblacionTotalCiudad:-1}},
+        {$group:{_id:"$_id.state", nombreCiudadMayor:{$first:"$_id.city"},poblacionCiudadMayor:{$max:"$poblacionTotalCiudad"}, nombreCiudadMenor:{$last:"$_id.city"},poblacionCiudadMenor:{$min:"$poblacionTotalCiudad"}}},
+        {$sort:{poblacionCiudadMayor:-1}},
+        {
+          $project:{
+            _id:0,
+            estado:"$_id",
+            ciudad_mayor:{
+              nombre:"$nombreCiudadMayor",
+              poblacion:"$poblacionCiudadMayor"
+            },
+            ciudad_menor:{
+              nombre:"$nombreCiudadMenor",
+              poblacion:"$poblacionCiudadMenor"
+            }
+          }
+        },
+        {$limit:3}
+    ])
+
+    11. Mostrar el nombre del estado, su población total y un campo "situación" que muestre la cadena "superpoblado" si la población supera los 3.000.000 de habitantes, y la cadena "normal" en caso contrario (los 4 primeros ordenador alfabéticamente)
+
+    db.zips.aggregate([
+        {$group:{_id:"$state", poblacion:{$sum:"$pop"}}},
+        {
+            $project:{
+            _id:0,
+            estado:"$_id",
+            poblacion:1,
+            situacion:{$cond:{if:{$gt:["$poblacion",3000000]},then:"superpoblado", else:"normal"}}
+            }
+        },
+        {$sort:{estado:1}},
+        {$limit:4}
+    ])
+
+    12. Mostrar el nombre del estado, su población total y el número de código postales que tiene (solo de los 4 estados que menos códigos postales tienen).
+
+    db.zips.aggregate([
+        {$group:{_id:"$state", poblacion:{$sum:"$pop"}, numCodigos:{$sum:1}}},
+        {$sort:{numCodigos:1}},
+        {$limit:4},
+    ])
+
+    13. Mostrar el número de ciudades que hay en cada rango de habitantes: [0,100), [100,1000), [1000,50000) y [50000, ∞].
+
+    db.zips.aggregate([
+        {$group:{_id:"$city", poblacion:{$sum:"$pop"}}},
+        {$project:{_id:0}},
+        {
+            $bucket:{
+                groupBy:"$poblacion",
+                boundaries:[0,100,10000,50000],
+                default:"Más de 50000",
+                output:{
+                    "numCiudades":{$sum:1}
+                }
+            }
+        }
+    ])
+
+    14. Crear una NUEVA COLECCIÓN con los estados que tengan más de 1000 códigos postales. Cada documento tendrá el nombre del estado y el número de códigos postales.
+
+    db.zips.aggregate([
+        {$group:{_id:"$state", numCodigos:{$sum:1}}},
+        {$sort:{numCodigos:-1}},
+        {$match:{numCodigos:{$gt:1000}}},
+        {$out:"estadosCodigosPostales"}
+    ])
+
+    15. Sobre la colección anterior, mostrar los documentos con la siguiente estructura: (mirar el enunciado).
+
+   db.estadosCodigosPostales.aggregate([
+        {
+            $project:
+            {
+                _id:0, 
+                estado:{$concat:["Estado de ", "$_id"]}, 
+                numCodigo:{$concat:[{$toString:"$numCodigos"}, " códigos"]}
+            }
+        }
+    ])
+
+COLECCIÓN PARA REALIZAR LOS EJERCICIOS DE LA SEGUNDA PARTE
+
+    Para la segunda parte, usaremos una colección para almacenar los socios de un club y que está disponible en la web de la asignatura. Esta colección almacena socios de un club con los deportes elegidos a practicar. 
+
+    Un ejemplo de documento: 
+
+    {
+        "_id" : ObjectId("5ac112d7eff2c6c1d8337c11"), 
+        "nombre" : "Sebastián",
+        "alta" : ISODate("2017-03-02T00:00:00.000Z"), 
+        "deportes" : [ "golf", "pádel" ]
+    }
+
+    16. Mostrar, únicamente, el nombre de los socios en mayúsculas y ordenados alfabéticamente.
+
+    db.club.aggregate([
+        {$project:{_id:0, nombre:{$toUpper:"$nombre"}}},
+        {$sort:{nombre:1}}
+    ])
+
+    17. Mostrar el año de alta y el nombre del socio, ordenados por antigüedad.
+
+    db.club.aggregate([
+        {$project:{_id:0, añoAlta:{$year:"$alta"}, nombre:1}},
+        {$sort:{añoAlta:1}}
+    ])
+
+    18. Mostrar el número de socios que se han dado de alta cada año.
+
+    db.club.aggregate([
+        {$group:{_id:{$year:"$alta"}, socios:{$sum:1}}}
+    ])
+
+    19. Obtener el número de socios que practican cada deporte, pero solo de los deportes que lo practican, al menos, 3 socios. 
+
+    db.club.aggregate([
+        {$unwind:"$deportes"},
+        {$group:{_id:"$deportes", socios:{$sum:1}}},
+        {$match:{socios:{$gte:3}}}
+    ])
+
+    20. Obtener el nombre del socio que practica más deportes.
+
+    db.club.aggregate([
+        {$unwind:"$deportes"},
+        {$group:{_id:"$nombre", deportes:{$sum:1}}},
+        {$sort:{deportes:-1}},
+        {$limit:1}
+    ])
+
+    21. Mostrar la siguiente información, añadiendo el campo "cuota" y teniendo en cuenta que cada deporte cuesta 50€:
+
+    {
+        "nombre" : "Sandra",
+        "fecha" : "02-01-2018", 
+        "numDeportes" : 4, 
+        "cuota" : 200
+    }
+
+    db.club.aggregate([
+        {$unwind:"$deportes"},
+        {$group:{_id:{nombre:"$nombre", fecha:{$dateToString:{format:"%d-%m-%Y", date:"$alta"}}}, numDeportes:{$sum:1}}},
+        {$project:{_id:0, nombre:"$_id.nombre", fecha:"$_id.fecha", numDeportes:1, cuota:{$multiply:["$numDeportes",50]}}}
+    ])

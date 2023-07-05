@@ -1,0 +1,154 @@
+1. En la colección noticias, crear un índice ascendente sobre el campo "etiquetaPrincipal" y llamarlo "etiquetaUp".
+
+db.noticias.createIndex({etiquetaPrincipal:1},{name:"etiquetaUp"})
+
+2. En la colección noticias, crear un índice descendente sobre el campo "etiquetaPrincipal" y llamarlo "etiquetaDown".
+
+db.noticias.createIndex({etiquetaPrincipal:-1},{name:"etiquetaDown"})
+
+3. Obtener la colección de documentos sin utilizar ningún índice (se hace mediante la sentencia hint({$natural:1})) y utilizando los índices creados de ejercicios anteriores. Comprobad cómo cambia el resultado de la consulta.
+
+Sin utilizar ningún índice: 
+db.noticias.find().hint({$natural:1})
+En esta consulta se muestra la colección ordenada en función del _id.
+
+Utilizando el índice "etiquetaUp":
+db.noticias.find().hint({etiquetaPrincipal:1})
+En esta consulta de muestra la colección ordenada alfabéticamente ascendete en función de etiquetaPrincipal.
+
+Utilizando el índice "etiquetaDown":
+db.noticias.find().hint({etiquetaPrincipal:-1})
+En esta consulta se muestra la colección ordenada alfabéticamente descendente en función de etiquetaPrincipal.
+
+4. Obtener el documento con etiqueta principal "Animales" e indicar cual ha sido elegido y el rechazado.
+
+db.noticias.explain("executionStats").find({etiquetaPrincipal:"Animales"})
+
+El plan elegido ha sido etiquetaUp y el rechazado etiquetaDown.
+
+5. Obtener el documento con etiqueta principal "Animales" sin usar índices y usando los índices creados. Mediante el método explain(), obvservad cuántas claves y cuántos documentos necesita comprobar MongoDB en cada caso. 
+
+Sin usar los índices creados:
+db.noticias.explain("allPlansExecution").find({etiquetaPrincipal:"Animales"}).hint({$natural:1})
+Esta consulta ha examinado 0 claves y 6 documentos. 
+
+Usando el índice etiquetaUp:
+db.noticias.explain("allPlansExecution").find({etiquetaPrincipal:"Animales"}).hint({etiquetaPrincipal:1})
+Esta consulta he examinado 1 clave y 1 documento.
+
+Usando el índice etiquetaDown:
+db.noticias.explain("allPlansExecution").find({etiquetaPrincipal:"Animales"}).hint({etiquetaPrincipal:-1})
+Esta consulta ha examinado 1 clave y 1 documento. 
+
+6. Usando la colección zips, obtener los documentos de las ciudades "MONSON" y, mediante el método explain(), observad cuántos documentos necesita comprobar y cuántos milisegundos ha consumido para ejecutar la consulta. 
+
+db.zips.explain("allPlansExecution").find({city:"MONSON"})
+Necesita comprobar 29353 documentos y tarda 13 milisegundos.
+
+7. Crear un índice ascendente sobre el campo "city" y volver a realizar la consulta para ver si se reduce el tiempo y el número de documentos examinados.
+
+db.zips.createIndex({city:1})
+
+db.zips.explain("allPlansExecution").find({city:"MONSON"}).hint({city:1})
+
+Con el índice creado se reduce el número de documentos que comprueba a 2 y, por ende, el tiempo de ejecución ha bajado a 0 milisegundos. 
+
+8. Crear un índice parcial ascendente sobre el campo "city" pero indexando solo las ciudades que tienen más de 10000 habitantes. Comprobad qué ocurre cuando se hace una búsqueda que no cumple la condición del índice y comprobad que la búsqueda con índice es más eficiente. 
+
+Ahora si hacemos la siguiente consulta: 
+db.zips.find({city:"MONSON"}).hint({city:1})
+No devuelve nada porque no cumple la condición del índice. 
+
+La búsqueda es más eficiente porque solamente examina 7634 documentos, es decir, los que cumple con la condición del índice. 
+
+9. En la colección noticias, crear un índice único sobre el campo "autor" y comprobar que no se puede introducir un documento cuyo autor ya exista en la colección. 
+
+db.noticias.createIndex({autor:1}, {unique:true})
+
+Ahora si intentamos introducir una noticia cuyo autor sea "Raúl Limón" (que existe previamente almacenado), no se nos deja insertarlo y se nos muestra el siguiente mensaje:
+
+MongoServerError: E11000 duplicate key error collection: ElPais.noticias index: autor_1 dup key: { autor: "Raúl Limón" }
+
+
+10. Crear una consulta para obtener los documentos que contengan la palabra "aprendizaje". Comprobar el error que se produce si no se crea, previamente, un índice de texto. 
+
+db.noticias.find({$text:{$search:"aprendizaje"}})
+
+Se nos devuelve el sigiuente error: 
+
+MongoServerError: text index required for $text query
+
+11. Crear un índice que tipo texto en el campo "noticia" y volver a obtener los documentos que contengan la palabra "aprendizaje". 
+
+db.noticias.createIndex({noticia:"text"})
+
+db.noticias.find({$text:{$search:"aprendizaje"}})
+
+12. Obtener los documentos que contengan la palabra "Google". ¿Se obtiene algún documento? ¿Por qué?
+
+db.noticias.find({$text:{$search:"Google"}})
+
+No se obtiene ningún documento porque a pesar de aparecer la palabra "Google" en el campo etiquetas cuya etiquetaPrincipal es "Transformación digital", no está indexado el campo. 
+
+13. Crear un índice de tipo texto sobre el campo "etiquetas". ¿Qué tipo de error se produce?
+
+db.noticias.createIndex({etiquetas:"text"})
+
+Nos devuelve el siguiente error: 
+
+MongoServerError: An equivalent index already exists with a different name and options. Requested index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "etiquetas_text", weights: { etiquetas: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, existing index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "noticia_text", weights: { noticia: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }
+
+El cuál nos dice que ya existe un índice con diferente nombre pero las mismas opciones. 
+
+14. Buscar una solución para poder buscar palabras tanto en el campo "noticia" como en el campo "etiquetas".
+
+Para ello primero tenemos que borrar el índice que previamente ha sido creado para el campo "noticia": 
+
+db.noticias.dropIndex("noticia_text")
+
+Ahora podemos crear un índice que nos permite poder buscar palabras tanto en el campo "noticia" como en el campo "etiquetas":
+
+db.noticias.createIndex(
+  {
+    noticia:"text",
+    etiquetas:"text"
+  }
+)
+
+Ahora si hacemos la búsqueda que intentamos hacer en el ejercicio 12: 
+
+db.noticias.find({$text:{$search:"Google"}})
+
+Si se nos devuelve el documento en cuyo array "etiquetas" si aparece la palabra "Google".
+
+15. Obtener los documentos que tengan la frase "carrera evolutiva"
+
+db.noticias.find({$text:{$search:"carrera evolutiva"}})
+
+16. Obtener los documentos que contengan la palabra "la". ¿Cuántos documentos devuelve?
+
+db.noticias.find({$text:{$search:"la"}})
+
+Devuelve 6 documentos (todos).
+
+17. Eliminar el índice anterior y volver a crearlo especificando el lenguaje español. Volver a recuperar los documentos que contengan la palabra "la". ¿Cuántos documentos devuelve? ¿Por qué? 
+
+Eliminamos el índice anterior:
+
+db.noticias.dropIndex("noticia_text_etiquetas_text")
+
+Volvemos a crearlo especificando el lenguaje español: 
+
+db.noticias.createIndex(
+  {
+    noticia:"text",
+    etiquetas:"text"
+  },
+  {default_language:"spanish"}
+)
+
+Ahora si volvemos a realizar la búsqueda de los documentos en los que aparezca la palabra "la":
+
+db.noticias.find({$text:{$search:"la"}})
+
+No aparece ningún documento. Esto se debe porque al especificar el lenguaje español para el índice, a la hora de hacer uso de él se eliminan las stopwords. Y como la palabra "la" se considera una stopword pues es por eso que no se encuentra ahora ningún documento que contenga la palabra "la".

@@ -1,0 +1,26 @@
+Ejercicio 1.- 
+
+SELECT ST_AsKML(geom)
+FROM nyc_streets
+WHERE name = 'Nassau Expy';
+
+Ejercicio 2.-
+
+SELECT SUM(ST_Length(geom))
+FROM nyc_streets
+WHERE name = 'Clawson St';
+
+Ejercicio 3.-
+
+SELECT SUM(ST_Area(geom))
+FROM nyc_neighborhoods
+WHERE boroname = 'Queens';
+
+Ejercicio 4.-
+
+SELECT name
+FROM nyc_subway_stations
+WHERE ST_DWithin(geom,
+                (SELECT geom
+                FROM nyc_streets
+                WHERE name = 'Amanda Ct'), 3000);

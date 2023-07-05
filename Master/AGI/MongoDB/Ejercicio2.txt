@@ -1,0 +1,131 @@
+1. Obtener las noticias de "Laura Camón"
+
+db.noticias.find({"autor":"Laura Camón"})
+
+2. Obtener las noticias de "Laura Camón" o de "Raúl Limón"
+
+db.noticias.find({"autor":{$in:["Laura Camón", "Raúl Limón"]}})
+
+3. Obtener las noticias que tengan la etiqueta "Ciencia"
+
+db.noticias.find({"etiquetas":"Ciencia"})
+
+4. Obtener las noticias que tengan la etiqueta "Computación" o la etiqueta "Android"
+
+db.noticias.find({"etiquetas":{$in:["Computación", "Android"]}})
+
+5. Obtener las noticias que tengan las etiquetas "Ciencia" y "Robots"
+
+db.noticias.find({"etiquetas":"Ciencia", "etiquetas": "Robots"})
+
+6. Obtener las noticias que tengan la etiqueta "Ciencia" pero en la segunda posición del array
+
+db.noticias.find({"etiquetas.1":"Ciencia"})
+
+7. Obtener las noticias que no tengan la etiqueta "Ciencia"
+
+db.noticias.find({"etiquetas":{$nin:["Ciencia"]}})
+
+8. Obtener las noticias con fecha posterior al 1 de octubre de 2022
+
+db.noticias.find({"fecha":{$gt: ISODate("2022-10-01")}})
+
+9. Obtener las 3 primeras noticias ordenadas alfabéticamente por la Etiqueta Principal
+
+db.noticias.find({}).limit(3).sort({etiquetaPrincipal:1}) 
+o 
+db.noticias.find({}).sort({etiquetaPrincipal:1}).limit(3)
+
+10. Mostrar únicamente el Titular y el Subtítulo de todas las noticias
+
+db.noticias.find({},{titular:1, subtitulo:1, _id:0})
+
+11. Mostrar únicamente el Titular y las 5 primeras etiquetas de todas las noticias
+
+db.noticias.find({},{titular:1,_id:0, etiquetas:{$slice:[0,5]}})
+
+12. Mostrar únicamente el Titular y las 3 últimas etiquetas de todas las noticias
+
+db.noticias.find({},{titular:1,_id:0, etiquetas:{$slice:-3}})
+
+13. Mostrar todos los campos menos las etiquetas de las noticias del día 29 de septiembre de 2022
+
+db.noticias.find({$and: [{fecha: {$gte: new Date("2022-09-29T00:00:00.000Z")}},{fecha: {$lte: new Date("2022-09-29T23:59:59.999Z")}}]}, {etiquetas:0})
+
+14. Mostrar las noticias que tienen 10 etiquetas
+
+db.noticias.find({etiquetas:{$size:10}})
+
+15. Añadir la etiqueta "Salsa" a la noticia cuya Etiqueta Principal es "Seguridad internet"
+
+db.noticias.updateOne(
+  {etiquetaPrincipal:"Seguridad internet"},
+  {$push:{etiquetas:"Salsa"}}
+  )
+
+16. Añadir la etiqueta "Blackberry" a la noticia cuya Etiqueta Principal es "Mensajería móvil" pero en la primera posición
+
+db.noticias.updateOne(
+  {etiquetaPrincipal:"Mensajería móvil"},
+  {
+    $set:{
+        "etiquetas.0":"Blackberry"
+    }
+  })
+
+17. Eliminar las etiquetas "Blackberry" y "Android" a la noticia cuya Etiqueta Principal es "Mensajería móvil"
+
+db.noticias.updateOne(
+  {etiquetaPrincipal:"Mensajería móvil"},
+  {
+    $pullAll:{etiquetas:["Blackberry", "Android"]}
+  })
+
+18. Eliminar el campo "fecha" de todos los documentos que tengan la etiqueta "Ciencia"
+
+db.noticias.updateMany(
+  {etiquetas:"Ciencia"},
+  {$unset:{fecha:1}}
+)
+
+19. Añadir un campo "enlace" a la noticia con Etiqueta Principal "Mensajería móvil" con el contenido "https://unenlace.com"
+
+db.noticias.updateOne(
+  {etiquetaPrincipal:"Mensajería móvil"},
+  {$set:{enlace:"https://unenlace.com"}}
+  )
+  
+20. Añadir a todas las noticias una etiqueta llamada "Nueva Etiqueta" en el campo "etiquetas"
+
+db.noticias.updateMany(
+  {},
+  {$push:{etiquetas:"Nueva Etiqueta"}}
+  )
+
+21. Eliminar de todas las noticias la etiqueta "Nueva Etiqueta" en el campo "etiquetas"
+
+db.noticias.updateMany(
+  {},
+  {$pullAll:{etiquetas:["Nueva Etiqueta"]}}
+  )
+
+22. Añadir a todas las noticias la etiqueta "WhatsApp" en el campo "etiquetas". Tened en cuenta que, si la etiqueta "WhatsApp" ya existen en un documento, no debe insertarse de nuevo
+
+db.noticias.updateMany(
+  {},
+  {$addToSet:{etiquetas:"WhatsApp"}}
+  )
+
+23. Sustituir, en todos los documentos, la etiqueta "Tecnología" por "Tecnología 7.0"
+
+db.noticias.updateMany(
+  {etiquetas:"Tecnología"},
+  {$set:{"etiquetas.$[elemento]":"Tecnología 7.0"}},
+  {arrayFilters:[{"elemento":"Tecnología"}]}
+  )
+
+24. Eliminar los documentos que tengan la etiqueta "Ciencia" en el campo "etiquetas"
+
+db.noticias.deleteMany(
+  {etiquetas:"Ciencia"}
+  )

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="HelloEEG">
+</Property><Property Name="Solution File" Value="\\tsclient\F\Docencia\perifericos_avanzados\practicas\neurosky\ThinkGear SDK for .NET\Sample Projects\HelloEEG\HelloEEG.sln">
+</Property><Property Name="Date" Value="lunes, 19 de enero de 2015">
+</Property><Property Name="Time" Value="13:44">
+</Property></Properties><Event ErrorLevel="0" Project="HelloEEG" Source="HelloEEG.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="HelloEEG" Source="HelloEEG.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="HelloEEG.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="HelloEEG.sln" Description="Converted">
+</Event></UpgradeLog>

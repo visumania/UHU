@@ -1,0 +1,81 @@
+ADRIÁN MORENO MONTERDE
+
+EJERCICIO 1 
+
+db.movies.aggregate([
+  {$match:{num_mflix_comments:{$gt:120}}},
+  {$project:{_id:0, title:1}},
+  {$sort:{num_mflix_comments:-1}},
+  {$limit:5}
+  ])
+
+db.movies.find({
+  num_mflix_comments:{$gt:120}},
+  {_id:0, title:1}).sort({num_mflix_commets:-1}).limit(5)
+
+EJERCICIO 2
+
+db.movies.find({cast:"Elvis Presley"},{_id:0, title:1})
+
+EJERCICIO 3
+
+db.movies.find(
+  {$and:[{cast:"John Travolta"},{cast:"Olivia Newton-John"}]},
+  {_id:0, title:1})
+
+EJERCICIO 4
+
+db.movies.find({directors:{$size:6}},{_id:0, title:1})
+
+EJERCICIO 5
+
+db.movies.aggregate([{$group:{_id:"$type", número:{$sum:1}}}])
+
+EJERCICIO 6
+
+db.movies.aggregate([
+  {$group:{_id:{$month:"$released"}, número:{$sum:1}}},
+  {$sort:{número:-1}},
+  {$limit:5}
+  ])
+
+EJERCICIO 7
+
+db.movies.aggregate([
+  {$unwind:"$cast"},
+  {$group:{_id:"$cast", número:{$sum:1}}},
+  {$sort:{número:-1}},
+  {$limit:5}
+  ])
+
+EJERCICIO 8
+
+db.movies.aggregate([
+ {$unwind:"$cast"},
+ {$group:{_id:{nombre:"$cast",año:"$year"}, número:{$sum:1}}},
+ {$match:{número:{$gt:5}}},
+ {$sort:{úumero:-1}}
+])
+
+EJERCICIO 9
+
+db.movies.aggregate([
+  {$unwind:"$directors"},
+  {$group:{_id:"$directors", votos:{$sum:"$imdb.votes"}}},
+  {$sort:{votos:-1}},
+  {$limit:5}
+  ])
+
+EJERCICIO 10
+
+db.movies.find(
+    {$text:{$search:"\"Public Enemy\""}},
+    {_id:0, year:1 ,title:1,cast:1,"tomatoes.critic":1 }).sort({title:1})
+
+EJERCICIO 11
+
+db.movies.aggregate([
+    {$unwind:"$countries"},
+    {$match: {"countries" : {$nin:["USA"]}}},
+    {$group:{_id: 0, total:{$sum:1}}}
+])

@@ -1,0 +1,263 @@
+Ejercicio 1. Relaciones 1 a n con documentos embedidos
+Vamos a ampliar la información de las noticias con el campo comentarios. Cada noticia puede tener "n" comentarios y un comentario pertenece a una única noticia. Los comentarios se guardarán en un array y cada comentario será un documento con los siguientes campos: 
+
+    - autor: texto
+    - fecha: date
+    - comentario: texto 
+
+Para poder buscar las noticias, supongamos que el campo titular es un campo que no admite valores repetidos. 
+
+1.a) Añadir, mediante el comando updateOne(), los siguientes comentarios a las noticias:
+
+    - A la noticia "¿Qué tecnología habrá dentro de cien años?"
+
+    Comentario 1: 
+    autor: Luis
+    fecha: 11 de octubre de 2022
+    comentario: "No estaré para verlo"
+
+    Comentario 2: 
+    autor: Sandra
+    fecha: 12 de octubre de 2022
+    comentario: "Yo creo que volveremos a la edad de piedra"
+
+    db.noticias.updateOne(
+  {titular:"¿Qué tecnología habrá dentro de cien años?"},
+  {$push:{comentarios:{$each:[
+    {
+      autor: "Luis",
+      fecha:ISODate("2022-10-11"),
+      comentario: "No estaré para verlo"
+    },
+    {
+     autor:"Sandra",
+     fecha:ISODate("2022-10-12"),
+     comentario: "Yo creo que volveremos a la edad de piedra"
+    }
+    ]}}}
+  )
+
+    - A la noticia "¿Puede una máquina decidir cuánto debes cobrar?"
+    
+    Comentario 1:
+    autor: Carmen
+    fecha: 5 de octubre de 2022
+    comentario: "Con lo que yo gano, eso lo puede decidir hasta mi lavadora"
+
+    Comentario 2:
+    autor: Tomás
+    fecha: 6 de octubre de 2022
+    comentario: "Noooooooooo"
+
+    db.noticias.updateOne(
+  {titular:"¿Puede una máquina decidir cuánto debes cobrar?"},
+  {$push:{comentarios:{$each:[
+    {
+      autor: "Carmen",
+      fecha:ISODate("2022-10-05"),
+      comentario: "Con lo que yo gano, eso lo puede decidir hasta mi lavadora"
+    },
+    {
+     autor:"Tomás",
+     fecha:ISODate("2022-10-06"),
+     comentario: "Noooooooooo"
+    }
+    ]}}}
+  )
+
+1.b) Realizar las siguientes consultas:
+
+    1. Mostrar el texto de la noticia y todos los comentarios de aquellas personas que tengan un comentario posterior al 11 de octubre de 2022
+
+    db.noticias.find({"comentarios.fecha":{$gt:ISODate("2022-10-11")}},{noticia:1, _id:0, comentarios:1})
+
+    2. Mostrar el texto de la noticia y todos los comentarios de aquellas noticias cuyo primer comentario se hizo el 5 de octubre de 2022
+
+    db.noticias.find({"comentarios.0.fecha":{$gte:ISODate("2022-10-05")},"comentarios.0.fecha":{$lt:ISODate("2022-10-06")}},{noticia:1, _id:0, comentarios:1})
+
+    3. Mostrar el titular de la noticia y todos los comentarios de aquellas noticias en los que haya comentado "Tomás" el 6 de octubre de 2022
+
+    db.noticias.find(
+  {"comentarios.autor":"Tomás", "comentarios.fecha":{$gte:ISODate("2022-10-06")}, "comentarios.fecha":{$lt:ISODate("2022-10-07")}},
+  {titular:1, _id:0, comentarios:1}
+  )
+
+    4. Mostrar la noticia y todos los comentarios de la noticia "¿Qué tecnología habrá dentro de cien años?". Tiene que mostrar, únicamente, el titular de la noticia y los comentarios. Además, debe mostrar el número de comentarios que tiene (mirar foto adjunta).
+
+    Ver Script1.js
+
+    5. Mostrar el último comentario (solo el texto del comentario) de la noticia "¿Puede una máquina decidir cuánto debes cobrar?" (mirar foto adjunta)
+
+    Ver Script2.js
+
+Ejercicio 2. Relaciones 1 a n con documentos embedidos
+Tenemos información sobre equipos y jugadores de baloncesto. Cada equipo puede tener hasta 12 jugadores y, evidentemente, un jugador sólo pertenece a un equipo. Para modelar esta relación se ha optado por el patrón "embedded"
+
+¿Cuál será la colección principal?, ¿por qué?
+
+La colección principal será los equipos porque un equipo puede tener 1 a n (en nuestro caso 12) jugadores, mientras tanto un jugador solamente puede pertenecer a un solo equipo en una época de tiempo. 
+
+  2.a) Crear la base de datos "Baloncesto" y la colección "equipos" con la siguiente información
+
+  use Baloncesto
+
+  db.equipos.insertMany(
+  [
+    {
+      nombre:"F.C. Barcelona",
+      pabellon:{nombre:"Palau Blaugrana", espectadores:7585},
+      fundacion:1926,
+      sede:"Barcelona",
+      jugadores:[
+        {numero:20, nombre:"Nicolás Laprovittola", nacionalidad: "Argentina", altura:190, edad:32},
+        {numero:10, nombre:"Nikola Kalinic", nacionalidad:"Serbia", altura:203, edad:30},
+        {numero:8, nombre:"Sergi Martínez", nacionalidad:"España", altura:203, edad:23}
+        ]
+    },
+    {
+      nombre:"FIATC Joventut",
+      pabellon:{nombre:"Olímpico de Badalona", espectadores:13000},
+      fundacion:1930,
+      sede:"Badalona",
+      jugadores:[
+        {numero:44, nombre:"Joel Parra", nacionalidad:"España", altura:201, edad:22},
+        {numero:25, nombre:"William Howard", nacionalidad:"Francia", altura:203, edad:28},
+        {numero:88, nombre:"Ante Tomic", nacionalidad:"Croacia", altura:217, edad:35}
+        ]
+    },
+    {
+      nombre:"Real Madrid C.F.",
+      pabellon:{nombre:"Palacio de los Deportes", espectadores:15000},
+      fundacion:1932,
+      sede:"Madrid",
+      jugadores:[
+          {numero:22, nombre:"Walter Tavares", nacionalidad:"Cabo Verde", altura:220, edad:30},
+          {numero:14, nombre:"Gabriel Deck", nacionalidad:"Argentina", altura:198, edad:27},
+          {numero:13, nombre:"Sergio Rodríguez", nacionalidad:"España", altura: 189, edad:36}
+          ]
+    }
+  ]
+  )
+
+  2.b) Realizar las siguientes consultas:
+
+    1. Obtener toda la información de los jugadores del Joventut
+
+    db.equipos.find({nombre:"FIATC Joventut"},{_id:0, jugadores:1})
+
+    2. Obtener el nombre del equipo que tenga algún jugador argentino 
+
+    db.equipos.find({"jugadores.nacionalidad":"Argentina"},{_id:0, nombre:1})
+
+    3. Obtener el nombre del equipo que tenga algún jugador español de 22 años
+
+    db.equipos.find({"jugadores.nacionalidad":"España", "jugadores.edad":22},{_id:0, nombre:1})
+
+    4. En MongoDB una consulta devuelve un documento completo, es decir, no se pueden devolver sólo los elementos de un subdocumento (que a su vez están dentro de un array) y que cumplan una condición. Por ejemplo, para obtener el nombre y la altura de los jugadores que miden más de 2 metros se puede utilizar la sentencia: 
+
+    db.equipos.find({"jugadores.altura": {$gt:2}}, {"jugadores.nombre":1, "jugadores.altura":1, _id:0})
+
+    Sin embargo, esta consulta devuelve todos los jugadores de un equipo que, al menos, tenga un jugador de más de 2 metros ya que los jugadores (subdocumentos) están dentro de un array.
+
+    La solución debe hacer a nivel de código. Se debe recoger la consulta en un cursor y recorrerlo para mostrar, únicamente, los elementos del array que cumplen la condición.
+
+    Ver Script3.js
+
+Ejercicio 3. Relaciones 1 a n con referencias
+Ahora queremos mantener los oducmentos de los equipos y los documentos de los jugadores en colecciones separadas y relacionarlos mediante referencias. 
+
+¿Qué es más eficiente?, ¿poner referencias de los jugadores en el equipo o poner la referencia del equipo en los jugadores?
+
+Poner la referencia del equipo en cada jugador porque un jugador solamente puede pertenece a un equipo. De la otra manera un equipo puede tener n referencias a jugadores (aunque en este caso solo 12 jugadores por equipo).
+
+  3.a) Crear la base de datos "BaloncestoRef", las colecciones "equipos" y "jugadores", y relacionarlas mediante el campo "_id"
+
+  Creación de la colección "equipos":
+
+  db.equipos.insertMany([
+  {
+    nombre:"F.C. Barcelona",
+    pabellon:{nombre:"Palau Blaugrana", espectadores:7585},
+    fundacion:1926,
+    sede:"Barcelona"
+  },
+  {
+    nombre:"FIATC Joventut",
+    pabellon:{nombre:"Olímpico de Badalona", espectadores:13000},
+    fundacion:1930,
+    sede:"Badalona"
+  },
+  {
+    nombre:"Real Madrid C.F.",
+    pabellon:{nombre:"Palacio de los Deportes", espectadores:15000},
+    fundacion:1932,
+    sede:"Madrid"
+  }
+  ])
+
+  Creación de la colección "jugadores":
+
+  db.jugadores.insertMany([
+  {
+    numero:22, nombre:"Walter Tavares", nacionalidad:"Cabo Verde", altura:220, edad:30, 
+    equipo:ObjectId("635673ce09af4b6eb2c27edf")
+  },
+  {
+    numero:14, nombre:"Gabriel Deck", nacionalidad:"Argentina", altura:198, edad:27,
+    equipo:ObjectId("635673ce09af4b6eb2c27edf")
+  },
+  {
+    numero:13, nombre:"Sergio Rodríguez", nacionalidad:"España", altura:189, edad:36,
+    equipo:ObjectId("635673ce09af4b6eb2c27edf")
+  },
+  {
+    numero:20, nombre:"Nicolás Laprovittola", nacionalidad:"Argentina", altura:190, edad:32,
+    equipo:ObjectId("635673ce09af4b6eb2c27edd")
+  },
+  {
+    numero:10, nombre:"Nikola Kalinic", nacionalidad:"Serbia", altura:203, edad:30,
+    equipo:ObjectId("635673ce09af4b6eb2c27edd")
+  },
+  {
+    numero:8, nombre:"Sergi Martínez", nacionalidad:"España", altura:203, edad:23,
+    equipo:ObjectId("635673ce09af4b6eb2c27edd")
+  },
+  {
+    numero:44, nombre:"Joel Parra", nacionalidad:"España", altura:201, edad:22, 
+    equipo:ObjectId("635673ce09af4b6eb2c27ede")
+  },
+  {
+    numero:25, nombre:"William Howard", nacionalidad:"Francia", altura:203, edad:28,
+    equipo:ObjectId("635673ce09af4b6eb2c27ede")
+  },
+  {
+    numero:88, nombre:"Ante Tomic", nacionalidad:"Croacia", altura:217, edad:35,
+    equipo:ObjectId("635673ce09af4b6eb2c27ede")
+  }
+  ])
+
+  3.b) Realizar las siguientes consultas:
+
+    1. Obtener toda la información de los jugadores del Joventut
+
+    db.jugadores.find({equipo:ObjectId("635673ce09af4b6eb2c27ede")})
+
+    2. Obtener el nombre del equipo que tenga algún jugador argentino (PISTA: se resuelve de forma sencilla usando el método distinct())
+
+    db.equipos.find({_id:{$in:db.jugadores.distinct("equipo",{nacionalidad:"Argentina"})}},{_id:0, nombre:1})
+
+    3. Obtener el nombre del equipo que tenga algún jugador español de 22 años
+
+    db.equipos.find({_id:{$in:db.jugadores.distinct("equipo",{edad:22})}},{_id:0, nombre:1})
+
+    4. Obtener el nombre y la altura de los jugadores que miden más de 2 metros
+
+    db.jugadores.find({altura:{$gte:200}},{_id:0, nombre:1, altura:1})
+
+    5. Obtener el nombre del pabellón en el que juega Gabriel Deck
+
+    db.equipos.find({_id:{$in:db.jugadores.distinct("equipo",{nombre:"Gabriel Deck"})}},{_id:0, "pabellon.nombre":1})
+
+    6. Obtener el nombre de los jugadores que jueguen en un equipo cuya sede está en "Badalona" 
+
+    db.jugadores.find({equipo:{$in:db.equipos.distinct("_id",{sede:"Badalona"})}},{_id:0, nombre:1})
